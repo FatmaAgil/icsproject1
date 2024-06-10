@@ -55,6 +55,7 @@
                     </form>
                     <a href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Log out</a>
                 </li>
+                <li><a href="{{ route('profile.edit') }}">Profile</a></li>
                 </ul>
               <li><a href="signup">Creating a source of income</a></li>
              <li><a href="/guide">Scheduling pick up</a></li>
