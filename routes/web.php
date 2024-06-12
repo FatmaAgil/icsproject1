@@ -17,7 +17,9 @@ Route::get('/terms', function () {
 Route::get('/landingUser', function () {
     return view('plasticUser');
 });
-
+Route::get('/profile', function () {
+    return view('Userprofile');
+});
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
 require __DIR__.'/auth.php';

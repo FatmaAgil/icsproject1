@@ -8,7 +8,7 @@
                  padding: 20px;
 
                  border-radius: 8px;
-                 box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+                 box-shadow: 0 0 10px rgba(59, 110, 77, 0.809);
              }
              .section-header {
                  text-align: center;
@@ -20,7 +20,7 @@
              }
              .section-description {
                  font-size: 16px;
-                 color: #777;
+                 color: #2dc997;
              }
              .form-group {
                  margin-bottom: 20px;
@@ -35,7 +35,7 @@
              .form-group textarea {
                  width: 100%;
                  padding: 10px;
-                 border: 1px solid #ccc;
+                 border: 1px solid #2dc997;
                  border-radius: 4px;
              }
              .input-icon {
@@ -61,14 +61,14 @@
              .form-group button {
                  display: inline-block;
                  padding: 10px 20px;
-                 background-color: #007bff;
+                 background-color: #2dc997;
                  color: #fff;
                  border: none;
                  border-radius: 4px;
                  cursor: pointer;
              }
              .form-group button:hover {
-                 background-color: #0056b3;
+                 background-color: #16bc0a;
              }
          </style>
 
@@ -81,6 +81,14 @@
 
 
                         <h3>Fill in plastic Details</h3>
+                        <div class="form-group">
+                            <label for="name">Name:</label>
+                            <input type="text" id="name" name="name"placeholder="Enter your name official name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phoneNumber">Phone Number:</label>
+                            <input type="text" id="phoneNumber" name="phoneNumber"placeholder="Enter your phone number" required>
+                        </div>
                         <div class="form-group">
                             <label for="plastic-type">Type of Plastic:</label>
                             <select id="plastic-type" name="plastic_type" required>
