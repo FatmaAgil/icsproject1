@@ -11,6 +11,12 @@ Route::get('/', function () {
 Route::get('/event', function () {
     return view('eventandnews');
 });
+Route::get('/terms', function () {
+    return view('terms');
+});
+Route::get('/landingUser', function () {
+    return view('plasticUser');
+});
 
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 

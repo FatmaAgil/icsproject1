@@ -24,6 +24,7 @@
   <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
 
   <link href="assets/css/style.css" rel="stylesheet">
+  
 
 </head>
 
@@ -47,14 +48,9 @@
 
               <li class="dropdown"><a href="#"><span>Registration and profiles</span> <i class="bi bi-chevron-right"></i></a>
                 <ul>
-                  <li><a href="{{ route('register') }}">Create account</a></li>
-                  <li><a href="{{ route('login') }}">Log in</a></li>
-                  <li>
-                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                        @csrf
-                    </form>
-                    <a href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Log out</a>
-                </li>
+                  <li><a href="#">Create account</a></li>
+                  <li><a href="#">Log in</a></li>
+
                 </ul>
               <li><a href="signup">Creating a source of income</a></li>
              <li><a href="/guide">Scheduling pick up</a></li>
@@ -72,3 +68,39 @@
       </nav>
     </div>
   </header>
+
+  {{$slot}}
+<footer id="footer">
+    <div class="footer-top">
+
+
+    <div class="container">
+        <div id="logo">
+            <h1><a href="welcome.blade.php"></a> RecycleConnect</h1>
+        </div>
+      <div class="credits">
+
+        <div class="quick-links">
+        <h5>Quick links</h5>
+        <ul>
+            <a class="nav-link scrollto active" href="/">Home</a>
+            <a class="nav-link scrollto" href="#about">About</a>
+            <a class="nav-link scrollto" href="#support">Support</a>
+           <a class="nav-link scrollto " href="#events">Events & News</a>
+           <a class="nav-link scrollto" href="#sag">SAG</a>
+        </ul>
+        </div>
+        <div class="services">
+            <h5>Our services</h5>
+            <ul>
+                <a class="nav-link scrollto" href="#guide">Educational resource</a>
+
+
+            </ul>
+      </div>
+    </div>
+  </footer>
+
+</body>
+
+</html>
