@@ -21,8 +21,20 @@ class User extends Authenticatable implements MustVerifyEmail
         'name',
         'email',
         'password',
+        'role',
     ];
+    const ROLE_PLASTIC_USER = 'plastic user';
+    const ROLE_ADMIN = 'admin';
 
+    public function isAdmin()
+    {
+        return $this->role === self::ROLE_ADMIN;
+    }
+
+    public function isPlasticUser()
+    {
+        return $this->role === self::ROLE_PLASTIC_USER;
+    }
     /**
      * The attributes that should be hidden for serialization.
      *

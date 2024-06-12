@@ -47,9 +47,14 @@
 
               <li class="dropdown"><a href="#"><span>Registration and profiles</span> <i class="bi bi-chevron-right"></i></a>
                 <ul>
-                  <li><a href="#">Create account</a></li>
-                  <li><a href="#">Log in</a></li>
-
+                  <li><a href="{{ route('register') }}">Create account</a></li>
+                  <li><a href="{{ route('login') }}">Log in</a></li>
+                  <li>
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                        @csrf
+                    </form>
+                    <a href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Log out</a>
+                </li>
                 </ul>
               <li><a href="signup">Creating a source of income</a></li>
              <li><a href="/guide">Scheduling pick up</a></li>
