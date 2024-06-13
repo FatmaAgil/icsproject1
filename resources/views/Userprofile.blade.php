@@ -18,7 +18,7 @@
 
 
         }
-       
+
         .header {
             display: flex;
             justify-content: space-between;
@@ -81,7 +81,7 @@
     <main id="main" class="container">
         <section id="ppprofile">
             <div class="header">
-                <a class="navbar-brand" href="#">
+                <a class="navbar-brand" href="/">
                     <i class="bi bi-house"></i> Home
                 </a>
                 <button class="edit-button">Edit Profile</button>
@@ -92,9 +92,9 @@
                 </div>
                 <div class="profile-info">
                     <h2 class="name">Charlene Mbugua</h2>
-                    <p class="location"><i class="fas fa-map-marker-alt"></i> Kenya</p>
-                    <p class="email"><i class="fas fa-envelope"></i> charlenenjambi@gmail.com</p>
-                    <p class="gender"><i class="fas fa-venus"></i> Female</p>
+                    <p class="location"><i class="fas fa-map-marker-alt"></i>Nationality: Kenya</p>
+                    <p class="email"><i class="fas fa-envelope"></i>Email: charlenenjambi@gmail.com</p>
+                    <p class="gender"><i class="fas fa-venus"></i>Gender: Female</p>
                 </div>
             </div>
             <div class="about-me">
