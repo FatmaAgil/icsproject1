@@ -1,8 +1,11 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DashboardController;
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\EventController;
 use App\Http\Controllers\ProfileController;
+
+
 
 Route::get('/', function () {
     return view('welcome');
@@ -10,7 +13,15 @@ Route::get('/', function () {
 Route::get('/event', function () {
     return view('eventandnews');
 });
-
+Route::get('/terms', function () {
+    return view('terms');
+});
+Route::get('/landingUser', function () {
+    return view('plasticUser');
+});
+Route::get('/profile', function () {
+    return view('Userprofile');
+});
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
