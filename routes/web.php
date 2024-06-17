@@ -19,9 +19,7 @@ Route::get('/terms', function () {
 Route::get('/landingUser', function () {
     return view('plasticUser');
 });
-Route::get('/profile', function () {
-    return view('Userprofile');
-});
+
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
