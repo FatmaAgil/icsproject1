@@ -230,7 +230,13 @@
 
             <div class="col-lg-5 col-md-8">
               <div class="form">
-                <form action="forms/contact.php" method="post" role="form" class="php-email-form">
+                @if(session('success'))
+                <div class="alert alert-success">
+                  {{ session('success') }}
+                </div>
+              @endif
+                <form action="{{ route('contact.store') }}" method="post" role="form">
+                    @csrf
                   <div class="form-group">
                     <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" required>
                   </div>
