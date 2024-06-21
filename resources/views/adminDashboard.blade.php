@@ -47,7 +47,7 @@
                 transition: transform 0.2s;
             }
             .service:hover {
-                background-color: #e0f7fa;
+                background-color:#ffe0b2;";
                 transform: scale(1.05);
             }
             .service h2 {
@@ -91,7 +91,7 @@
         transition: 0.5s;
         border: 2px solid black;
         color: black;
-        margin-top: 20px;
+        margin-top: 45px;
           }
           .btnrecycle:hover{
               background-color: #4CAF50;
@@ -119,23 +119,29 @@
 
     <div class="container">
         <h1>Welcome to RecycleConnect</h1>
-        <h5>Choose a service you want to perform</h5><br><br>
+        <h5>Making Kenya Plastic clean.</h5><br><br>
         <div class="services">
-            <div class="service" style="">
+            <div class="service" >
                 <h2>Guide</h2><i class="bi bi-book"></i>
-                <p>Employ to search different plastic and learn how to dispose and recycle them.</p>
+                <p>Employ to search different plastic and learn how to dispose and recycle them.Edit the guide.</p>
                 <button type="button" class="btnguide"><a href="/guide">Learn more</a></button>
             </div>
-            <div class="service">
+            <div class="service"  >
                 <h2>Recycle</h2>
                 <i class="bi bi-geo-fill"></i>
-                <p>Get connected to plastic recyclers near you.</p>
+                <p>Find plastic to recycle near you.Edit plastic details.</p>
                 <button type="button" class="btnrecycle"><a href="/landingUser">Recycle</a></button>
             </div>
             <div class="service">
                 <h2>Community</h2>
                 <i class="bi bi-people-fill"></i>
-                <p>Join the community and explore the plastic adventure.</p>
+                <p>Join the community and explore the plastic adventure.Edit community details</p>
+                <button type="button" class="btncommunity"><a href="/community">Community</a></button>
+            </div>
+            <div class="service">
+                <h2>Users</h2>
+                <i class="bi bi-person"></i>
+                <p>Join the community and explore the plastic adventure.Edit user information.</p>
                 <button type="button" class="btncommunity"><a href="/community">Community</a></button>
             </div>
 

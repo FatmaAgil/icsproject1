@@ -47,7 +47,7 @@
                 transition: transform 0.2s;
             }
             .service:hover {
-                background-color: #e0f7fa;
+                background-color: #f3e5f5;
                 transform: scale(1.05);
             }
             .service h2 {
@@ -119,20 +119,20 @@
 
     <div class="container">
         <h1>Welcome to RecycleConnect</h1>
-        <h5>Choose a service you want to perform</h5><br><br>
+        <h5>Help us in making recycling plastic easier.</h5><br><br>
         <div class="services">
-            <div class="service" style="">
+            <div class="service" ">
                 <h2>Guide</h2><i class="bi bi-book"></i>
                 <p>Employ to search different plastic and learn how to dispose and recycle them.</p>
                 <button type="button" class="btnguide"><a href="/guide">Learn more</a></button>
             </div>
-            <div class="service">
+            <div class="service" ">
                 <h2>Recycle</h2>
                 <i class="bi bi-geo-fill"></i>
-                <p>Get connected to plastic recyclers near you.</p>
+                <p>Find plastic to recycle near you.</p>
                 <button type="button" class="btnrecycle"><a href="/landingUser">Recycle</a></button>
             </div>
-            <div class="service">
+            <div class="service" >
                 <h2>Community</h2>
                 <i class="bi bi-people-fill"></i>
                 <p>Join the community and explore the plastic adventure.</p>

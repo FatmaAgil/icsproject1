@@ -4,8 +4,9 @@ use App\Http\Controllers\DashboardController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\ProfileController;
-
-
+use App\Http\Controllers\RecyclerDashboard;
+use App\Http\Controllers\AdminDashboard;
+use App\Http\Controllers\GuideDashboard;
 
 Route::get('/', function () {
     return view('welcome');
@@ -19,9 +20,9 @@ Route::get('/terms', function () {
 Route::get('/landingUser', function () {
     return view('plasticUser');
 });
-Route::get('/profile', function () {
-    return view('Userprofile');
-});
+Route::get('/guide',[GuideDashboard::class, 'index'])->name('guide');
+Route::get('/adminDashboard',[AdminDashboard::class, 'index'])->name('adminDashboard');
+Route::get('/landingRecycler',[RecyclerDashboard::class, 'index'])->name('landingRecycler');
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
