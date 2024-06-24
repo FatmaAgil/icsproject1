@@ -119,6 +119,7 @@
         font-size: 13px;
         letter-spacing: 1px;
         display: inline-block;
+        margin-top: 20px;
         padding: 10px 20px;
         border-radius: 20px;
         transition: 0.5s;
@@ -130,22 +131,7 @@
               background-color: #4CAF50;
               color: white;
           }
-          .btncommunity{
-        text-transform: uppercase;
-        font-size: 13px;
-        letter-spacing: 1px;
-        display: inline-block;
-        padding: 10px 20px;
-        border-radius: 20px;
-        transition: 0.5s;
-        border: 2px solid black;
-        color: black;
-        margin-top: 20px;
-          }
-          .btncommunity:hover{
-              background-color: #4CAF50;
-              color: white;
-          }
+
         </style>
 
 
@@ -158,42 +144,49 @@
                    <div class="PET">
             <h3>Polyethylene Terephthalate (PET)</h3>
             <p>Used for beverage bottles and food containers.</p>
+            <button type="menu" <a href="/PET" class="btnrecycle">Recycle</a></button>
             </div>
         </div>
         <div class="plastic">
             <div class="HDPE">
             <h3>High-Density Polyethylene(HDPE)</h3>
             <p>Used for milk jugs, detergent bottles, and some plastic bags.</p>
+        <button type="menu" <a href="/HDPE" class="btnrecycle">Recycle</a></button>
             </div>
         </div>
         <div class="plastic">
             <div class="PVC">
             <h3>Polyvinyl Chloride(PVC or Vinyl)</h3>
             <p>Used for plumbing pipes, credit cards, human and pet toys, rain gutters, teething rings, IV fluid bags and medical tubing and oxygen masks.</p>
+            <button type="menu" <a href="/PVC" class="btnrecycle">Recycle</a></button>
             </div>
         </div>
         <div class="plastic">
             <div class="LDPE">
             <h3>Low-Density Polyethylene(LDPE)</h3>
             <p>Used for Plastic/cling wrap, sandwich and bread bags, bubble wrap, garbage bags, grocery bags and beverage cups.</p>
+            <button type="menu" <a href="/LDPE" class="btnrecycle">Recycle</a></button>
             </div>
         </div>
         <div class="plastic">
             <div class="PP">
             <h3>Polypropylene(PP)</h3>
             <p>Used for  Straws, bottle caps, prescription bottles, hot food containers, packaging tape, disposable diapers and DVD/CD boxes.</p>
+            <button type="menu" <a href="/PP" class="btnrecycle">Recycle</a></button>
             </div>
         </div>
         <div class="plastic">
             <div class="PS">
             <h3>Polystyrene(PS or Styrofoam)</h3>
             <p>Used for Cups, takeout food containers, shipping and product packaging, egg cartons, cutlery and building insulation.</p>
+            <button type="menu" <a href="/PS" class="btnrecycle">Recycle</a></button>
             </div>
         </div>
         <div class="plastic">
             <div class="others">
             <h3>Others</h3>
             <p>This refers to any plastic that does not belong in the 6 categories</p>
+            <button type="menu" <a href="/others" class="btnrecycle">Recycle</a></button>
             </div>
         </div>
         </div>
