@@ -25,7 +25,13 @@ export default function Login({ status, canResetPassword }) {
 
         post(route('login'));
     };
-
+    const clear = () => {
+        setData({
+            email: '',
+            password: '',
+            remember: false,
+        });
+    };
     return (
         <GuestLayout>
             <Head title="Log in" />
@@ -42,7 +48,7 @@ export default function Login({ status, canResetPassword }) {
                         name="email"
                         value={data.email}
                         className="mt-1 block w-full"
-                        autoComplete="username"
+                        autoComplete="off"
                         isFocused={true}
                         onChange={(e) => setData('email', e.target.value)}
                     />
@@ -59,7 +65,7 @@ export default function Login({ status, canResetPassword }) {
                         name="password"
                         value={data.password}
                         className="mt-1 block w-full"
-                        autoComplete="current-password"
+                        autoComplete="off"
                         onChange={(e) => setData('password', e.target.value)}
                     />
 
@@ -86,10 +92,14 @@ export default function Login({ status, canResetPassword }) {
                             Forgot your password?
                         </Link>
                     )}
+                    <PrimaryButton type="button" className="ms-4" onClick={clear} disabled={processing}>
+                        Clear
+                    </PrimaryButton>
 
                     <PrimaryButton className="ms-4" disabled={processing}>
                         Log in
                     </PrimaryButton>
+
                 </div>
             </form>
         </GuestLayout>

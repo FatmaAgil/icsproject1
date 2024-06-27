@@ -230,7 +230,13 @@
 
             <div class="col-lg-5 col-md-8">
               <div class="form">
-                <form action="forms/contact.php" method="post" role="form" class="php-email-form">
+                @if(session('success'))
+                <div class="alert alert-success">
+                  {{ session('success') }}
+                </div>
+              @endif
+                <form action="{{ route('contact.store') }}" method="post" role="form">
+                    @csrf
                   <div class="form-group">
                     <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" required>
                   </div>
@@ -243,12 +249,9 @@
                   <div class="form-group mt-3">
                     <textarea class="form-control" name="message" rows="5" placeholder="Message" required></textarea>
                   </div>
-                  <div class="my-3">
-                    <div class="loading">Loading</div>
-                    <div class="error-message"></div>
-                    <div class="sent-message">Your message has been sent. Thank you!</div>
+
+                  <div class="text-center"><button type="submit" class="btn btn-primary">Send Message</button>
                   </div>
-                  <div class="text-center"><button type="submit">Send Message</button></div>
                 </form>
               </div>
             </div>

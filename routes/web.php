@@ -7,8 +7,12 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RecyclerDashboard;
 use App\Http\Controllers\AdminDashboard;
 use App\Http\Controllers\GuideDashboard;
+<<<<<<< HEAD
 use App\Http\Controllers\PETGuideDashboard;
 
+=======
+use App\Http\Controllers\ContactMessageController;
+>>>>>>> upstream/master
 Route::get('/', function () {
     return view('welcome');
 });
@@ -21,7 +25,11 @@ Route::get('/terms', function () {
 Route::get('/landingUser', function () {
     return view('plasticUser');
 });
+<<<<<<< HEAD
 Route::get('/PETGuide',[PETGuideDashboard::class, 'index'])->name('PETGuide');
+=======
+Route::post('/contact', [ContactMessageController::class, 'store'])->name('contact.store');
+>>>>>>> upstream/master
 Route::get('/guide',[GuideDashboard::class, 'index'])->name('guide');
 Route::get('/adminDashboard',[AdminDashboard::class, 'index'])->name('adminDashboard');
 Route::get('/landingRecycler',[RecyclerDashboard::class, 'index'])->name('landingRecycler');

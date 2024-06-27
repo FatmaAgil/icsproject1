@@ -14,6 +14,8 @@ export default function Login({ status, canResetPassword }: { status?: string, c
         remember: false,
     });
 
+
+
     useEffect(() => {
         return () => {
             reset('password');
@@ -25,7 +27,13 @@ export default function Login({ status, canResetPassword }: { status?: string, c
 
         post(route('login'));
     };
-
+    const clear = () => {
+        setData({
+            email: '',
+            password: '',
+            remember: false,
+        });
+    };
     return (
         <GuestLayout>
             <Head title="Log in" />
@@ -42,9 +50,10 @@ export default function Login({ status, canResetPassword }: { status?: string, c
                         name="email"
                         value={data.email}
                         className="mt-1 block w-full"
-                        autoComplete="username"
+                        autoComplete= "off"
                         isFocused={true}
                         onChange={(e) => setData('email', e.target.value)}
+
                     />
 
                     <InputError message={errors.email} className="mt-2" />
@@ -59,7 +68,7 @@ export default function Login({ status, canResetPassword }: { status?: string, c
                         name="password"
                         value={data.password}
                         className="mt-1 block w-full"
-                        autoComplete="current-password"
+                        autoComplete="off"
                         onChange={(e) => setData('password', e.target.value)}
                     />
 
@@ -90,6 +99,11 @@ export default function Login({ status, canResetPassword }: { status?: string, c
                     <PrimaryButton className="ms-4" disabled={processing}>
                         Log in
                     </PrimaryButton>
+
+                    <PrimaryButton type="button" className="ms-4" onClick={clear} disabled={processing}>
+                        Clear
+                    </PrimaryButton>
+
                 </div>
             </form>
         </GuestLayout>

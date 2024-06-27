@@ -39,7 +39,7 @@ export default function Register() {
                         name="name"
                         value={data.name}
                         className="mt-1 block w-full"
-                        autoComplete="name"
+                        autoComplete="off"
                         isFocused={true}
                         onChange={(e) => setData('name', e.target.value)}
                         required
@@ -57,7 +57,7 @@ export default function Register() {
                         name="email"
                         value={data.email}
                         className="mt-1 block w-full"
-                        autoComplete="username"
+                        autoComplete="off"
                         onChange={(e) => setData('email', e.target.value)}
                         required
                     />
@@ -74,7 +74,7 @@ export default function Register() {
                         name="password"
                         value={data.password}
                         className="mt-1 block w-full"
-                        autoComplete="new-password"
+                        autoComplete="off"
                         onChange={(e) => setData('password', e.target.value)}
                         required
                     />
@@ -91,7 +91,7 @@ export default function Register() {
                         name="password_confirmation"
                         value={data.password_confirmation}
                         className="mt-1 block w-full"
-                        autoComplete="new-password"
+                        autoComplete="off"
                         onChange={(e) => setData('password_confirmation', e.target.value)}
                         required
                     />

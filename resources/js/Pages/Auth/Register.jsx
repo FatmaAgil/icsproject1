@@ -17,7 +17,7 @@ export default function Register() {
 
     useEffect(() => {
         return () => {
-            reset('password', 'password_confirmation');
+            reset('password', 'password_confirmation', 'role');
         };
     }, []);
 
@@ -26,6 +26,16 @@ export default function Register() {
 
         post(route('register'));
     };
+    const clear = () => {
+        setData({
+            name: '',
+            email: '',
+            password: '',
+            password_confirmation: '',
+            role: 'plastic user',
+        });
+    };
+
 
     return (
         <GuestLayout>
@@ -40,7 +50,7 @@ export default function Register() {
                         name="name"
                         value={data.name}
                         className="mt-1 block w-full"
-                        autoComplete="name"
+                        autoComplete="off"
                         isFocused={true}
                         onChange={(e) => setData('name', e.target.value)}
                         required
@@ -58,7 +68,7 @@ export default function Register() {
                         name="email"
                         value={data.email}
                         className="mt-1 block w-full"
-                        autoComplete="username"
+                        autoComplete="off"
                         onChange={(e) => setData('email', e.target.value)}
                         required
                     />
@@ -129,6 +139,10 @@ export default function Register() {
 
                     <PrimaryButton className="ms-4" disabled={processing}>
                         Register
+                    </PrimaryButton>
+
+                    <PrimaryButton type="button" className="ms-4" onClick={clear} disabled={processing}>
+                        Clear
                     </PrimaryButton>
                 </div>
             </form>
