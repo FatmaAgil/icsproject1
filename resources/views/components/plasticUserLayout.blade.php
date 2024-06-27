@@ -45,7 +45,7 @@
           <li><a class="nav-link scrollto" href="/profile">Profile</a></li>
           <li><a class="nav-link scrollto " href="/events">Events & News</a></li>
           <li><a class="nav-link scrollto " href="/Community">Community</a></li>
-          <li><a class="nav-link scrollto " href="/Guide">Guide</a></li>
+          <li><a class="nav-link scrollto " href="/guide">Guide</a></li>
           <li><a class="nav-link scrollto" href="#support">Support</a></li>
           <li><a class="nav-link scrollto" href="#FAQ">FAQ</a></li>
           <li><a href = "#accessibility"><span>Accessibility</span><i class="bi bi-person-wheelchair"></i></a><li>

@@ -7,6 +7,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RecyclerDashboard;
 use App\Http\Controllers\AdminDashboard;
 use App\Http\Controllers\GuideDashboard;
+use App\Http\Controllers\PETGuideDashboard;
 
 Route::get('/', function () {
     return view('welcome');
@@ -20,6 +21,7 @@ Route::get('/terms', function () {
 Route::get('/landingUser', function () {
     return view('plasticUser');
 });
+Route::get('/PETGuide',[PETGuideDashboard::class, 'index'])->name('PETGuide');
 Route::get('/guide',[GuideDashboard::class, 'index'])->name('guide');
 Route::get('/adminDashboard',[AdminDashboard::class, 'index'])->name('adminDashboard');
 Route::get('/landingRecycler',[RecyclerDashboard::class, 'index'])->name('landingRecycler');

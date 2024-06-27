@@ -1,153 +1,187 @@
+<x-plasticUserLayout><br><br><br><br><br><br><br><br
 
-<x-plasticUserLayout><br><br><br><br><br>
     <main id="main">
+
         <style>
+            main{
+                font-family: Arial, sans-serif;
+                background-color: #ffffff;
+                color: #333;
+                margin: 0;
+                padding: 0;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 100vh;
+            }
+            .container {
+                text-align: center;
+                padding: 20px;
+                max-width: 1500px;
+                margin: 40px auto;
+            }
+            h2{
+                font-size: 2.5em;
+                color: #4CAF50;
+                font-weight: bold, italic;
 
-main {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #f4f4f4;
+            }
+
+            .plastic-type {
+                display: flex;
+                justify-content: space-around;
+                flex-wrap: wrap;
+                gap: 20px;
+                margin-top: 20px;
+            }
+            .plastic{
+                background-color: #fff;
+                padding: 20px;
+                border-radius: 10px;
+                box-shadow: 0 4px 8px rgba(59, 110, 77, 0.809);
+                width: 400px;
+                transition: transform 0.2s;
+            }
+
+             .plastic h3{
+                font-size: 1.5em;
+                margin-bottom: 10px;
+                border-radius: 10px;
+                color: #2dc997;
+                font-weight: italic;
+
+            }
+            .plastic p {
+                font-size: 1em;
+                line-height: 1.5;
+                color: #666;
+            }
+.plastic {
+  transition: transform 0.3s, box-shadow 0.3s;
+  transform: perspective(1000px);
+}
+.plastic:hover {
+  transform: scale(1.1) translateZ(20px);
+  box-shadow: 0 0 20px rgba(11, 250, 23, 0.5);
+  z-index: 1;
+}
+@media (max-width: 600px) {
+
+.plastic {
+
+  width: 45%;
+
 }
 
-.search_bar {
-    display: flex;
-    align-items: center;
-    background-color: white;
-    border: 2px solid #2dc997;
-    border-radius: 25px;
-    padding: 5px 10px;
-}
-
-.search_bar i {
-    color: #2dc997;
-    margin-right: 10px;
-    font-size: 1.2em;
-}
-
-.search_bar input[type="text"] {
-    border: none;
-    outline: none;
-    padding: 10px;
-    border-radius: 25px;
-    flex-grow: 1;
-    font-size: 1em;
-}
-
-.search_bar button {
-    background-color: #2dc997;
-    color: white;
-    border: none;
-    border-radius: 25px;
-    padding: 10px 20px;
-    font-size: 1em;
-    cursor: pointer;
-    margin-left: 10px;
-}
-
-.search_bar button:hover {
-    background-color: #2dc930;
 }
 
 
+@media (max-width: 400px) {
 
-section {
-    background-color: white;
-    margin: 1em 0;
-    padding: 1em;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+.plastic {
+
+  width: 100%;
+
+}
+
 }
 
 
-section h2 {
-    margin-top: 0;
-    color: #2dc997;
-    align-text: center;
-    text-transform: UpperCase;
-}
-.identify-plastics {
-    display: flex;
-    justify-content: space-around;
-    flex-wrap: wrap;
-    gap: 20px;
-    margin-top: 20px;
-}
+            .btnguide{
 
-.plastic-type {
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(59, 110, 77, 0.809);
-    width: 200px;
-    transition: transform 0.2s;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-}
+         text-transform: uppercase;
+        font-size: 13px;
+        letter-spacing: 1px;
+        display: inline-block;
+        padding: 10px 20px;
+        border-radius: 20px;
+        transition: 0.5s;
+        border: 2px solid black;
+        color: black;
+            }
+            .btnguide:hover{
+                background-color: #4CAF50;
+                color: white;
+            }
+            .btnrecycle{
+        text-transform: uppercase;
+        font-size: 13px;
+        letter-spacing: 1px;
+        display: inline-block;
+        margin-top: 20px;
+        padding: 10px 20px;
+        border-radius: 20px;
+        transition: 0.5s;
+        border: 2px solid black;
+        color: black;
+        margin-top: 20px;
+          }
+          .btnrecycle:hover{
+              background-color: #4CAF50;
+              color: white;
+          }
 
-.plastic-type h3 {
-    font-size: 1.5em;
-    margin-bottom: 10px;
-}
+        </style>
 
-.plastic-type p {
-    font-size: 1em;
-    line-height: 1.5;
-    color: #666;
-}
 
-.plastic-type .bi {
-    font-size: 2em;
-    color: #4CAF50;
-}
 
-.plastic-type:hover {
-    background-color: #f3e5f5;
-    transform: scale(1.05);
-}
+    <div class="container">
 
-footer {
-    background-color: #2dc997;
-    color: white;
-    text-align: center;
-    padding: 1em 0;
-    position: fixed;
-    width: 100%;
-    bottom: 0;
-}
-
-            </style>
-                    <div class="search_bar">
-                        <i class="bi bi-search"></i>
-            <input type="text" id="search" placeholder="Search for plastic" id="search input">
-            <button type="button" id="search_button">Search</button>
+        <h2>Guide on plastic recycling</h2>
+        <div class="plastic-type">
+            <div class="plastic">
+                   <div class="PET">
+            <h3>Polyethylene Terephthalate (PET)</h3>
+            <p>Used for beverage bottles and food containers.</p>
+            <button type="button" <a href="/PETGuide" class="btnrecycle">Recycle</a></button>
             </div>
+        </div>
+        <div class="plastic">
+            <div class="HDPE">
+            <h3>High-Density Polyethylene(HDPE)</h3>
+            <p>Used for milk jugs, detergent bottles, and some plastic bags.</p>
+        <button type="menu" <a href="/HDPE" class="btnrecycle">Recycle</a></button>
+            </div>
+        </div>
+        <div class="plastic">
+            <div class="PVC">
+            <h3>Polyvinyl Chloride(PVC or Vinyl)</h3>
+            <p>Used for plumbing pipes, credit cards, human and pet toys, rain gutters, teething rings, IV fluid bags and medical tubing and oxygen masks.</p>
+            <button type="menu" <a href="/PVC" class="btnrecycle">Recycle</a></button>
+            </div>
+        </div>
+        <div class="plastic">
+            <div class="LDPE">
+            <h3>Low-Density Polyethylene(LDPE)</h3>
+            <p>Used for Plastic/cling wrap, sandwich and bread bags, bubble wrap, garbage bags, grocery bags and beverage cups.</p>
+            <button type="menu" <a href="/LDPE" class="btnrecycle">Recycle</a></button>
+            </div>
+        </div>
+        <div class="plastic">
+            <div class="PP">
+            <h3>C</h3>
+            <p>Used for  Straws, bottle caps, prescription bottles, hot food containers, packaging tape, disposable diapers and DVD/CD boxes.</p>
+            <button type="menu" <a href="/PP" class="btnrecycle">Recycle</a></button>
+            </div>
+        </div>
+        <div class="plastic">
+            <div class="PS">
+            <h3>Polystyrene(PS or Styrofoam)</h3>
+            <p>Used for Cups, takeout food containers, shipping and product packaging, egg cartons, cutlery and building insulation.</p>
+            <button type="menu" <a href="/PS" class="btnrecycle">Recycle</a></button>
+            </div>
+        </div>
+        <div class="plastic">
+            <div class="others">
+            <h3>Others</h3>
+            <p>This refers to any plastic that does not belong in the 6 categories</p>
+            <button type="menu" <a href="/others" class="btnrecycle">Recycle</a></button>
+            </div>
+        </div>
+        </div>
 
 
-
-        <section id="identifying-plastics">
-
-
-        </section>
-        <section id="preparation">
-            <h2>Preparing Plastics for Disposal</h2>
-            <p>How to clean, sort, and prepare plastics for recycling.</p>
-        </section>
-        <section id="disposal-methods">
-            <h2>Disposal Methods</h2>
-            <p>Information on recycling, reusing, and special disposal methods for plastics.</p>
-        </section>
-        <section id="reducing-plastic-use">
-            <h2>Reducing Plastic Use</h2>
-            <p>Tips and tricks for reducing your plastic consumption and finding alternatives.</p><br><br>
-        </section>
-
-
-    </main>
-
-
+</main>
 
 
 </x-plasticUserLayout>
