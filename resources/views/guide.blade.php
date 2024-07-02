@@ -1,105 +1,84 @@
 <x-plasticUserLayout>
     <section id="hero">
-      <div class="hero-container" data-aos="zoom-in" data-aos-delay="100">
-        <h1>Welcome to RecycleConnect</h1>
-        <h2>Learn how to dispose your plastic waste</h2>
-        <a href="#about" class="btn-get-started">Get Started</a>
-      </div>
+        <div class="hero-container" data-aos="zoom-in" data-aos-delay="100">
+            <h1>Welcome to RecycleConnect</h1>
+            <h2>Learn how to dispose your plastic waste</h2>
+            <a href="#about" class="btn-get-started">Get Started</a>
+        </div>
     </section>
 
-    <main id="main">
 
+    <main id="main">
         <section id="services">
             <div class="container" data-aos="fade-up">
-              <div class="section-header">
-                <h3 class="section-title">Plastic disposal guide</h3><br><br><br>
-                  </div>
-              <div class="row">
-                  <div class="col-lg-4 col-md-6" data-aos="zoom-in">
-                      <div class="box">
-                        <div class="icon"><a href="/PETGuide"><i class="bi bi-recycle"></i></a></div>
-                        <h4 class="title"><a href="/PETGuide">Polyethylene Terephthalate (PET)</a></h4>
-                        <p class="description">Used for beverage bottles and food containers. <a>Learn more.</a></p>
+                <div class="section-header">
+                    <h3 class="section-title">Plastic disposal guide</h3><br><br><br>
+                </div>
+                <div class="row">
+                    <div class="col-lg-4 col-md-6" data-aos="zoom-in">
+                        <div class="box">
+                            <div class="icon"><a href="/PETGuide"><i class="bi bi-recycle"></i></a></div>
+                            <h4 class="title"><a href="/PETGuide">Polyethylene Terephthalate (PET)</a></h4>
+                            <p class="description">Used for beverage bottles and food containers. <a href="/PETGuide">Learn more.</a></p>
                         </div>
                     </div>
-                <div class="col-lg-4 col-md-6" data-aos="zoom-in">
-                  <div class="box">
-                    <div class="icon"><a href="/HDPE"><i class="bi bi-recycle"></i></a></div>
-                    <h4 class="title"><a href="">High-Density Polyethylene(HDPE)</a></h4>
-                    <p class="description">Used for milk jugs, detergent bottles, and some plastic bags.</p>
+                    <div class="col-lg-4 col-md-6" data-aos="zoom-in">
+                        <div class="box">
+                            <div class="icon"><a href="/HDPE"><i class="bi bi-recycle"></i></a></div>
+                            <h4 class="title"><a href="/HDPE">High-Density Polyethylene (HDPE)</a></h4>
+                            <p class="description">Used for milk jugs, detergent bottles, and some plastic bags.</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6" data-aos="zoom-in">
+                        <div class="box">
+                            <div class="icon"><a href="/PVC"><i class="bi bi-recycle"></i></a></div>
+                            <h4 class="title"><a href="/PVC">Polyvinyl Chloride (PVC or Vinyl)</a></h4>
+                            <p class="description">Used for plumbing pipes, credit cards, human and pet toys, rain gutters, teething rings, IV fluid bags, and medical tubing and oxygen masks.</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6" data-aos="zoom-in">
+                        <div class="box">
+                            <div class="icon"><a href="/LDPE"><i class="bi bi-recycle"></i></a></div>
+                            <h4 class="title"><a href="/LDPE">Low-Density Polyethylene (LDPE)</a></h4>
+                            <p class="description">Used for plastic/cling wrap, sandwich and bread bags, bubble wrap, garbage bags, grocery bags, and beverage cups.</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6" data-aos="zoom-in">
+                        <div class="box">
+                            <div class="icon"><a href="/PP"><i class="bi bi-recycle"></i></a></div>
+                            <h4 class="title"><a href="/PP">Polypropylene (PP)</a></h4>
+                            <p class="description">Used for straws, bottle caps, prescription bottles, hot food containers, packaging tape, disposable diapers, and DVD/CD boxes.</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6" data-aos="zoom-in">
+                        <div class="box">
+                            <div class="icon"><a href="/other"><i class="bi bi-recycle"></i></a></div>
+                            <h4 class="title"><a href="/other">Others</a></h4>
+                            <p class="description">This refers to any plastic that does not belong in the 6 categories.</p>
+                        </div>
                     </div>
                 </div>
-                <div class="col-lg-4 col-md-6" data-aos="zoom-in">
-                  <div class="box">
-                    <div class="icon"><a href="/PVC"><i class="bi bi-recycle"></i></a></div>
-                    <h4 class="title"><a href="">Polyvinyl Chloride(PVC or Vinyl)</a></h4>
-                    <p class="description">Used for plumbing pipes, credit cards, human and pet toys, rain gutters, teething rings, IV fluid bags and medical tubing and oxygen masks. </p>
-
-                  </div>
-                </div>
-                <div class="col-lg-4 col-md-6" data-aos="zoom-in">
-                  <div class="box">
-                    <div class="icon"><a href="/LDPE"><i class="bi bi-recycle"></i></a></div>
-                    <h4 class="title"><a href="">Low-Density Polyethylene(LDPE)</a></h4>
-                    <p class="description">Used for Plastic/cling wrap, sandwich and bread bags, bubble wrap, garbage bags, grocery bags and beverage cups.</p>
-                     </div>
-                </div>
-
-                <div class="col-lg-4 col-md-6" data-aos="zoom-in">
-                  <div class="box">
-                    <div class="icon"><a href="/PP"><i class="bi bi-recycle"></i></a></div>
-                    <h4 class="title"><a href="/PP">Polypropylene(PP)</a></h4>
-                    <p class="description">Used for Straws, bottle caps, prescription bottles, hot food containers, packaging tape, disposable diapers and DVD/CD boxes.</p>
-                  </div>
-                </div>
-              </div>
-
-
-              <div class="col-lg-4 col-md-6" data-aos="zoom-in">
-                <div class="box">
-                  <div class="icon"><a href="/other"><i class="bi bi-recycle"></i></a></div>
-                  <h4 class="title"><a href="/other">Others</a></h4>
-                  <p class="description">This refers to any plastic that does not belong in the 6 categories.</p>
-                </div>
-              </div>
             </div>
-
-            </div>
-          </section>
-
-
-
-
+        </section>
       <section id="about">
         <div class="container" data-aos="fade-up">
           <div class="row about-container">
 
             <div class="col-lg-6 content order-lg-1 order-2">
-              <h2 class="title">Plastic disposal guide</h2>
-                <div class="icon-box" data-aos="fade-up" data-aos-delay="100">
-                <div class="icon"><i class="bi bi-recycle"></i></div>
-                <h4 class="title"><a href="/PET"></a>High-Density Polyethylene(HDPE)</h4>
-                <p class="description">Used for milk jugs, detergent bottles, and some plastic bags<a> Learn more</a> </p>
-              </div>
-
-              <div class="icon-box" data-aos="fade-up" data-aos-delay="200">
-                <div class="icon"><i class="bi bi-card-checklist"></i></div>
-                <h4 class="title"><a href="/location">Smart technology</a></h4>
-                <p class="description">RecycleConnect leverages technology to connect plastic waste generators with recyclying organizations.  Their map-based platform simplifies waste disposal and tracks progress, empowering a greener future. </p>
-              </div>
-
-              <div class="icon-box" data-aos="fade-up" data-aos-delay="300">
-                <div class="icon"><i class="bi bi-binoculars"></i></div>
-                <h4 class="title"><a href="/guide">Guide</a></h4>
-                <p class="description">RecycleConnect empowers you! Search their platform to identify your plastic waste and learn the best disposal methods. It's easy recycling,<a href= "/guide">one click at a time.</a></p>
-              </div>
+              <h2 class="title">ABOUT US</h2>
+              <p>
+              Revolutionize plastic waste management in Kenya by leveraging technology to create an effective and convenient platform for connecting waste producers with recycling organizations and promoting sustainable practices.
+              </p>
+              
 
 
-            </div>
+
 
             <div class="col-lg-6 background order-lg-2 order-1" data-aos="fade-left" data-aos-delay="100"></div>
           </div>
-          <section id="facts">
+        </section>
+
+              <section id="facts">
               <div class="container" data-aos="fade-up">
                 <div class="section-header">
                   <h3 class="section-title">Statistics</h3>
@@ -286,7 +265,13 @@
 
             <div class="col-lg-5 col-md-8">
               <div class="form">
-                <form action="forms/contact.php" method="post" role="form" class="php-email-form">
+                @if(session('success'))
+                <div class="alert alert-success">
+                  {{ session('success') }}
+                </div>
+              @endif
+                <form action="{{ route('contact.store') }}" method="post" role="form">
+                    @csrf
                   <div class="form-group">
                     <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" required>
                   </div>
@@ -299,12 +284,9 @@
                   <div class="form-group mt-3">
                     <textarea class="form-control" name="message" rows="5" placeholder="Message" required></textarea>
                   </div>
-                  <div class="my-3">
-                    <div class="loading">Loading</div>
-                    <div class="error-message"></div>
-                    <div class="sent-message">Your message has been sent. Thank you!</div>
+
+                  <div class="text-center"><button type="submit" class="btn btn-primary">Send Message</button>
                   </div>
-                  <div class="text-center"><button type="submit">Send Message</button></div>
                 </form>
               </div>
             </div>
@@ -317,7 +299,7 @@
     </main><!-- End #main -->
 
 
-  </x-plastucUserLayout>
+</x-plasticUserLayout>
 
   @include('components.script')
 

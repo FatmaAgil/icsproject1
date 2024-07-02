@@ -43,7 +43,9 @@
 
             <div class="col-lg-6 background order-lg-2 order-1" data-aos="fade-left" data-aos-delay="100"></div>
           </div>
-          <section id="facts">
+        </section>
+
+              <section id="facts">
               <div class="container" data-aos="fade-up">
                 <div class="section-header">
                   <h3 class="section-title">Statistics</h3>
