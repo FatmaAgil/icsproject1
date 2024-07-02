@@ -26,6 +26,8 @@ class User extends Authenticatable implements MustVerifyEmail
     const ROLE_PLASTIC_USER = 'plastic user';
     const ROLE_ADMIN = 'admin';
 
+    const ROLE_RECYCLING_ORGANIZATION = 'recycling organization';
+
     public function isAdmin()
     {
         return $this->role === self::ROLE_ADMIN;
@@ -35,11 +37,17 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $this->role === self::ROLE_PLASTIC_USER;
     }
+
+    public function isRecyclingOrganization()
+    {
+        return $this->role === self::ROLE_RECYCLING_ORGANIZATION;
+    }
     /**
      * The attributes that should be hidden for serialization.
      *
      * @var array<int, string>
      */
+
     protected $hidden = [
         'password',
         'remember_token',

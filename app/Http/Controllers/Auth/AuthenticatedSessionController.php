@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use Inertia\Response;
+use App\Models\User;
 
 class AuthenticatedSessionController extends Controller
 {
@@ -33,9 +34,21 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
-        return redirect()->intended(route('adminDashboard', absolute: false));
-    }
+        // Get the authenticated user
+        $user = Auth::user();
 
+
+            if ($user->role == 'admin') {
+                return redirect()->intended(route('admin'));
+            } elseif ($user->role == 'plastic user') {
+                return redirect()->intended(route('dashboard'));
+            } elseif ($user->role == 'recycling organization') {
+                return redirect()->intended(route('landingRecycler'));
+            }
+
+
+        return redirect()->intended(route('/'));
+    }
     /**
      * Destroy an authenticated session.
      */
