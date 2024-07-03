@@ -27,7 +27,9 @@ Route::get('/home', function () {
 Route::get('/landingUser', function () {
     return view('plasticUser');
 });
-
+Route::get('/tester', function () {
+    return view('tester');
+});
 Route::prefix('admin')->name('admin.')->group(function() {
     Route::get('/messages', [MessageController::class, 'index'])->name('messages.index');
     Route::get('/messages/{id}', [MessageController::class, 'show'])->name('messages.show');

@@ -3,7 +3,6 @@
 @section('content-header','Dashboard')
 @section('content-action')
 @endsection
-@section('content')
 <div class="main-panel">
     <div class="content-wrapper">
         <div class="container">
