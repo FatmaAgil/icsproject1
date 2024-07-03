@@ -11,19 +11,19 @@ class MessageController extends Controller
     public function index()
     {
         $messages = ContactMessage::latest()->get();
-        return view('admin.messages.index', compact('messages'));
+        return view('admin.messages', compact('messages'));
     }
 
     public function show($id)
     {
         $message = ContactMessage::findOrFail($id);
-        return view('admin.messages.show', compact('message'));
+        return view('admin.messages.index', compact('message'));
     }
 
     public function edit($id)
     {
         $message = ContactMessage::findOrFail($id);
-        return view('admin.messages.edit', compact('message'));
+        return view('admin.messages.index', compact('message'));
     }
 
     public function update(Request $request, $id)

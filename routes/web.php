@@ -9,8 +9,7 @@ use App\Http\Controllers\AdminDashboard;
 use App\Http\Controllers\GuideDashboard;
 use App\Http\Controllers\PETGuideDashboard;
 use App\Http\Controllers\QuizController;
-
-
+use App\Http\Controllers\Admin\MessageController;
 use App\Http\Controllers\ContactMessageController;
 
 Route::get('/', function () {
@@ -28,6 +27,15 @@ Route::get('/home', function () {
 Route::get('/landingUser', function () {
     return view('plasticUser');
 });
+
+Route::prefix('admin')->name('admin.')->group(function() {
+    Route::get('/messages', [MessageController::class, 'index'])->name('messages.index');
+    Route::get('/messages/{id}', [MessageController::class, 'show'])->name('messages.show');
+    Route::get('/messages/{id}/edit', [MessageController::class, 'edit'])->name('messages.edit');
+    Route::put('/messages/{id}', [MessageController::class, 'update'])->name('messages.update');
+    Route::delete('/messages/{id}', [MessageController::class, 'destroy'])->name('messages.destroy');
+});
+
 //Route::post('/quiz-submit', [QuizController::class, 'submit'])->name('quiz.submit');
 //Route::get('/plastic-quiz', 'PlasticQuizController@index')->name('plastic-quiz.index');
 //Route::post('/plastic-quiz', 'PlasticQuizController@store')->name('plastic-quiz.store');
