@@ -249,6 +249,12 @@
               </a>
             </li>
             <li class="nav-item">
+                <a class="nav-link" href="{{ route('messages.index') }}">
+                    <i class="mdi mdi-message"></i>
+                    <span class="menu-title">Messages</span>
+                </a>
+            </li>
+            <li class="nav-item">
               <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
                 <span class="icon-bg"><i class="mdi mdi-crosshairs-gps menu-icon"></i></span>
                 <span class="menu-title">UI Elements</span>
@@ -262,6 +268,7 @@
                 </ul>
               </div>
             </li>
+
             <li class="nav-item">
               <a class="nav-link" href="pages/icons/mdi.html">
                 <span class="icon-bg"><i class="mdi mdi-contacts menu-icon"></i></span>

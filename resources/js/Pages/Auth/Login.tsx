@@ -27,13 +27,7 @@ export default function Login({ status, canResetPassword }: { status?: string, c
 
         post(route('login'));
     };
-    const clear = () => {
-        setData({
-            email: '',
-            password: '',
-            remember: false,
-        });
-    };
+    
     return (
         <GuestLayout>
             <Head title="Log in" />
@@ -100,9 +94,7 @@ export default function Login({ status, canResetPassword }: { status?: string, c
                         Log in
                     </PrimaryButton>
 
-                    <PrimaryButton type="button" className="ms-4" onClick={clear} disabled={processing}>
-                        Clear
-                    </PrimaryButton>
+                    
 
                 </div>
             </form>
