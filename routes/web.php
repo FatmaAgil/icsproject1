@@ -33,9 +33,8 @@ Route::get('/tester', function () {
 Route::prefix('admin')->name('admin.')->group(function() {
     Route::get('/messages', [MessageController::class, 'index'])->name('messages.index');
     Route::get('/messages/{id}', [MessageController::class, 'show'])->name('messages.show');
-    Route::get('/messages/{id}/edit', [MessageController::class, 'edit'])->name('messages.edit');
-    Route::put('/messages/{id}', [MessageController::class, 'update'])->name('messages.update');
-    Route::delete('/messages/{id}', [MessageController::class, 'destroy'])->name('messages.destroy');
+    Route::post('/messages/{id}/reply', [MessageController::class, 'reply'])->name('messages.reply');
+
 });
 
 //Route::post('/quiz-submit', [QuizController::class, 'submit'])->name('quiz.submit');

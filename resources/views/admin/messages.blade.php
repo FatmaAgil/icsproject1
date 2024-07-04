@@ -1,6 +1,6 @@
 @extends('layouts.admin')
-@section('title','dashboard')
-@section('content-header','Dashboard')
+@section('title', 'Dashboard')
+@section('content-header', 'Dashboard')
 @section('content-action')
 @endsection
 @section('content')
@@ -27,12 +27,7 @@
                             <td>{{ $message->message }}</td>
                             <td>
                                 <button type="button" class="btn btn-info" data-toggle="modal" data-target="#viewMessageModal{{ $message->id }}">View</button>
-                                <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#editMessageModal{{ $message->id }}">Edit</button>
-                                <form action="{{ route('admin.messages.destroy', $message->id) }}" method="POST" style="display:inline-block;">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" class="btn btn-danger">Delete</button>
-                                </form>
+                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#replyMessageModal{{ $message->id }}">Reply</button>
                             </td>
                         </tr>
 
@@ -59,37 +54,24 @@
                             </div>
                         </div>
 
-                        <!-- Edit Message Modal -->
-                        <div class="modal fade" id="editMessageModal{{ $message->id }}" tabindex="-1" role="dialog" aria-labelledby="editMessageModalLabel{{ $message->id }}" aria-hidden="true">
+                        <!-- Reply Message Modal -->
+                        <div class="modal fade" id="replyMessageModal{{ $message->id }}" tabindex="-1" role="dialog" aria-labelledby="replyMessageModalLabel{{ $message->id }}" aria-hidden="true">
                             <div class="modal-dialog" role="document">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h5 class="modal-title" id="editMessageModalLabel{{ $message->id }}">Edit Message</h5>
+                                        <h5 class="modal-title" id="replyMessageModalLabel{{ $message->id }}">Reply Message</h5>
                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                             <span aria-hidden="true">&times;</span>
                                         </button>
                                     </div>
                                     <div class="modal-body">
-                                        <form action="{{ route('admin.messages.update', $message->id) }}" method="POST">
+                                        <form action="{{ route('admin.messages.reply', $message->id) }}" method="POST">
                                             @csrf
-                                            @method('PUT')
                                             <div class="form-group">
-                                                <label for="name">Name</label>
-                                                <input type="text" class="form-control" id="name" name="name" value="{{ $message->name }}" required>
+                                                <label for="reply">Reply</label>
+                                                <textarea class="form-control" id="reply" name="reply" rows="3" placeholder="Type your reply here..." required></textarea>
                                             </div>
-                                            <div class="form-group">
-                                                <label for="email">Email</label>
-                                                <input type="email" class="form-control" id="email" name="email" value="{{ $message->email }}" required>
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="subject">Subject</label>
-                                                <input type="text" class="form-control" id="subject" name="subject" value="{{ $message->subject }}" required>
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="message">Message</label>
-                                                <textarea class="form-control" id="message" name="message" required>{{ $message->message }}</textarea>
-                                            </div>
-                                            <button type="submit" class="btn btn-primary">Save changes</button>
+                                            <button type="submit" class="btn btn-primary">Send Reply</button>
                                         </form>
                                     </div>
                                     <div class="modal-footer">
