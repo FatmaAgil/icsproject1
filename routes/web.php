@@ -11,6 +11,8 @@ use App\Http\Controllers\PETGuideDashboard;
 use App\Http\Controllers\QuizController;
 use App\Http\Controllers\Admin\MessageController;
 use App\Http\Controllers\ContactMessageController;
+use App\Http\Controllers\Admin\UserController;
+
 
 Route::get('/', function () {
     return view('welcome');
@@ -30,6 +32,14 @@ Route::get('/landingUser', function () {
 Route::get('/tester', function () {
     return view('tester');
 });
+Route::prefix('admin')->group(function () {
+    Route::get('users', [UserController::class, 'index'])->name('admin.users.index');
+    Route::post('users', [UserController::class, 'store'])->name('admin.users.store');
+    Route::get('users/{user}/edit', [UserController::class, 'edit'])->name('admin.users.edit');
+    Route::put('users/{user}', [UserController::class, 'update'])->name('admin.users.update');
+    Route::delete('users/{user}', [UserController::class, 'destroy'])->name('admin.users.destroy');
+});
+
 Route::prefix('admin')->name('admin.')->group(function() {
     Route::get('/messages', [MessageController::class, 'index'])->name('messages.index');
     Route::get('/messages/{id}', [MessageController::class, 'show'])->name('messages.show');

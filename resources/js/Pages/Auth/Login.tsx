@@ -27,7 +27,7 @@ export default function Login({ status, canResetPassword }: { status?: string, c
 
         post(route('login'));
     };
-    
+
     return (
         <GuestLayout>
             <Head title="Log in" />
@@ -94,7 +94,7 @@ export default function Login({ status, canResetPassword }: { status?: string, c
                         Log in
                     </PrimaryButton>
 
-                    
+
 
                 </div>
             </form>
