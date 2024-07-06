@@ -12,7 +12,7 @@ use App\Http\Controllers\QuizController;
 use App\Http\Controllers\Admin\MessageController;
 use App\Http\Controllers\ContactMessageController;
 use App\Http\Controllers\Admin\UserController;
-
+use App\Http\Controllers\Admin\CommunityController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -38,6 +38,14 @@ Route::prefix('admin')->group(function () {
     Route::get('users/{user}/edit', [UserController::class, 'edit'])->name('admin.users.edit');
     Route::put('users/{user}', [UserController::class, 'update'])->name('admin.users.update');
     Route::delete('users/{user}', [UserController::class, 'destroy'])->name('admin.users.destroy');
+});
+Route::prefix('admin')->group(function () {
+    // Events routes
+    Route::get('events', [CommunityController::class, 'events'])->name('admin.events');
+    Route::post('events', [CommunityController::class, 'storeEvent'])->name('admin.events.store');
+    Route::get('events/{id}/edit', [CommunityController::class, 'editEvent'])->name('admin.events.edit');
+    Route::put('events/{id}', [CommunityController::class, 'updateEvent'])->name('admin.events.update');
+    Route::delete('events/{id}', [CommunityController::class, 'destroyEvent'])->name('admin.events.destroy');
 });
 
 Route::prefix('admin')->name('admin.')->group(function() {

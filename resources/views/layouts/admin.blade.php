@@ -261,6 +261,14 @@
                 </a>
             </li>
             <li class="nav-item">
+                <a class="nav-link" href="{{ route('admin.events') }}">
+                    <span class="icon-bg"><i class="mdi mdi-account-group menu-icon"></i>
+                    </i></span>
+                    <span class="menu-title">Community</span>
+                </a>
+            </li>
+
+            <li class="nav-item">
               <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
                 <span class="icon-bg"><i class="mdi mdi-crosshairs-gps menu-icon"></i></span>
                 <span class="menu-title">UI Elements</span>
