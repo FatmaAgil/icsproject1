@@ -2,7 +2,6 @@
 
 use App\Http\Controllers\DashboardController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\EventController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RecyclerDashboard;
 use App\Http\Controllers\AdminDashboard;
@@ -13,6 +12,8 @@ use App\Http\Controllers\Admin\MessageController;
 use App\Http\Controllers\ContactMessageController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\CommunityController;
+use App\Http\Controllers\Admin\EventController;
+use App\Http\Controllers\Admin\NewsController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -39,15 +40,24 @@ Route::prefix('admin')->group(function () {
     Route::put('users/{user}', [UserController::class, 'update'])->name('admin.users.update');
     Route::delete('users/{user}', [UserController::class, 'destroy'])->name('admin.users.destroy');
 });
-Route::prefix('admin')->group(function () {
-    // Events routes
-    Route::get('events', [CommunityController::class, 'events'])->name('admin.events');
-    Route::post('events', [CommunityController::class, 'storeEvent'])->name('admin.events.store');
-    Route::get('events/{id}/edit', [CommunityController::class, 'editEvent'])->name('admin.events.edit');
-    Route::put('events/{id}', [CommunityController::class, 'updateEvent'])->name('admin.events.update');
-    Route::delete('events/{id}', [CommunityController::class, 'destroyEvent'])->name('admin.events.destroy');
-});
 
+
+Route::prefix('admin')->group(function () {
+       // Events Routes
+       Route::get('events', [EventController::class, 'index'])->name('admin.events.index');
+       Route::post('events', [EventController::class, 'store'])->name('admin.events.store');
+       Route::get('events/{event}/edit', [EventController::class, 'edit'])->name('admin.events.edit');
+       Route::put('events/{event}', [EventController::class, 'update'])->name('admin.events.update');
+       Route::delete('events/{event}', [EventController::class, 'destroy'])->name('admin.events.destroy');
+
+
+    // News Routes
+    Route::get('news', [NewsController::class, 'index'])->name('admin.news.index');
+    Route::post('news', [NewsController::class, 'store'])->name('admin.news.store');
+    Route::get('news/{news}/edit', [NewsController::class, 'edit'])->name('admin.news.edit');
+    Route::put('news/{news}', [NewsController::class, 'update'])->name('admin.news.update');
+    Route::delete('news/{news}', [NewsController::class, 'destroy'])->name('admin.news.destroy');
+});
 Route::prefix('admin')->name('admin.')->group(function() {
     Route::get('/messages', [MessageController::class, 'index'])->name('messages.index');
     Route::get('/messages/{id}', [MessageController::class, 'show'])->name('messages.show');

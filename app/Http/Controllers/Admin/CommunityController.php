@@ -13,50 +13,57 @@ use App\Models\ReportedContent;
 
 class CommunityController extends Controller
 {
-    public function events()
+    public function index()
     {
         $events = Event::all();
-        return view('admin.community', compact('events'));
+        $news = News::all();
+        return view('admin.community', compact('events', 'news'));
     }
 
-    public function storeEvent(Request $request)
+    public function create()
     {
-        $request->validate([
-            'title' => 'required|string|max:255',
-            'description' => 'required|string',
-            'event_date' => 'required|date'
-        ]);
-
-        Event::create($request->all());
-
-        return redirect()->back()->with('success', 'Event added successfully');
+        return view('admin.create_community');
     }
 
-    public function editEvent($id)
+    public function store(Request $request)
     {
-        $event = Event::findOrFail($id);
-        return response()->json($event);
+        if ($request->type == 'event') {
+            Event::create($request->all());
+        } else if ($request->type == 'news') {
+            News::create($request->all());
+        }
+        return redirect()->route('communities.index');
     }
 
-    public function updateEvent(Request $request, $id)
+    public function edit($type, $id)
     {
-        $request->validate([
-            'title' => 'required|string|max:255',
-            'description' => 'required|string',
-            'event_date' => 'required|date'
-        ]);
-
-        $event = Event::findOrFail($id);
-        $event->update($request->all());
-
-        return redirect()->back()->with('success', 'Event updated successfully');
+        if ($type == 'event') {
+            $item = Event::findOrFail($id);
+        } else if ($type == 'news') {
+            $item = News::findOrFail($id);
+        }
+        return view('admin.edit_community', compact('item', 'type'));
     }
 
-    public function destroyEvent($id)
+    public function update(Request $request, $type, $id)
     {
-        $event = Event::findOrFail($id);
-        $event->delete();
+        if ($type == 'event') {
+            $item = Event::findOrFail($id);
+            $item->update($request->all());
+        } else if ($type == 'news') {
+            $item = News::findOrFail($id);
+            $item->update($request->all());
+        }
+        return redirect()->route('communities.index');
+    }
 
-        return redirect()->back()->with('success', 'Event deleted successfully');
+    public function destroy($type, $id)
+    {
+        if ($type == 'event') {
+            Event::destroy($id);
+        } else if ($type == 'news') {
+            News::destroy($id);
+        }
+        return redirect()->route('communities.index');
     }
 }

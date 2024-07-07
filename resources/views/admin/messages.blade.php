@@ -1,11 +1,6 @@
 @extends('layouts.admin')
-@section('title', 'Dashboard')
-@section('content-header', 'Dashboard')
-@section('content-action')
-@endsection
+
 @section('content')
-<div class="main-panel">
-    <div class="content-wrapper">
         <div class="container">
             <h1>Messages</h1>
             <table class="table">
@@ -86,5 +81,22 @@
         </div>
     </div>
 </div>
+<script>
+    function viewMessage(id) {
+        fetch(`/admin/messages/${id}`)
+            .then(response => response.json())
+            .then(message => {
+                document.getElementById('viewName').textContent = message.name;
+                document.getElementById('viewEmail').textContent = message.email;
+                document.getElementById('viewSubject').textContent = message.subject;
+                document.getElementById('viewMessage').textContent = message.message;
+                $('#viewMessageModal').modal('show');
+            });
+    }
 
+    function replyMessage(id) {
+        document.getElementById('replyMessageId').value = id;
+        $('#replyMessageModal').modal('show');
+    }
+    </script>
 @endsection
