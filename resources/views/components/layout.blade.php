@@ -24,7 +24,7 @@
   <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
 
   <link href="assets/css/style.css" rel="stylesheet">
-
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 
 </head>
 
@@ -66,7 +66,7 @@
           </li>
           <li><a class="nav-link scrollto" href="#support">Support</a></li>
           <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
-          <li><a class="nav-link scrollto" href="#FAQ">FAQ</a></li>
+          <li><a class="nav-link scrollto" href="{{ route('faq.index') }}#faq">FAQ</a></li>
           <li><a href = "#accessibility"><span>Accessibility</span><i class="bi bi-person-wheelchair"></i></a><li>
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
@@ -75,8 +75,11 @@
   </header>
 
   {{$slot}}
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <footer id="footer">
-    
+
 
 
   </footer>

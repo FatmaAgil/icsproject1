@@ -11,9 +11,10 @@ use App\Http\Controllers\QuizController;
 use App\Http\Controllers\Admin\MessageController;
 use App\Http\Controllers\ContactMessageController;
 use App\Http\Controllers\Admin\UserController;
-use App\Http\Controllers\Admin\CommunityController;
 use App\Http\Controllers\Admin\EventController;
 use App\Http\Controllers\Admin\NewsController;
+use App\Http\Controllers\FaqController;
+
 
 Route::get('/', function () {
     return view('welcome');
@@ -33,6 +34,11 @@ Route::get('/landingUser', function () {
 Route::get('/tester', function () {
     return view('tester');
 });
+Route::get('/connect', function () {
+    return view('connect'); // Ensure this is the correct view you want to display
+})->name('connect');
+
+Route::get('/faq', [FaqController::class, 'index'])->name('faq.index');
 Route::prefix('admin')->group(function () {
     Route::get('users', [UserController::class, 'index'])->name('admin.users.index');
     Route::post('users', [UserController::class, 'store'])->name('admin.users.store');
@@ -50,7 +56,6 @@ Route::prefix('admin')->group(function () {
        Route::put('events/{event}', [EventController::class, 'update'])->name('admin.events.update');
        Route::delete('events/{event}', [EventController::class, 'destroy'])->name('admin.events.destroy');
 
-
     // News Routes
     Route::get('news', [NewsController::class, 'index'])->name('admin.news.index');
     Route::post('news', [NewsController::class, 'store'])->name('admin.news.store');
@@ -58,6 +63,7 @@ Route::prefix('admin')->group(function () {
     Route::put('news/{news}', [NewsController::class, 'update'])->name('admin.news.update');
     Route::delete('news/{news}', [NewsController::class, 'destroy'])->name('admin.news.destroy');
 });
+
 Route::prefix('admin')->name('admin.')->group(function() {
     Route::get('/messages', [MessageController::class, 'index'])->name('messages.index');
     Route::get('/messages/{id}', [MessageController::class, 'show'])->name('messages.show');
