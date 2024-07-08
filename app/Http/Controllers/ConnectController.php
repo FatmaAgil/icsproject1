@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use App\Models\RecyclingOrganization;
 class ConnectController extends Controller
 {
     public function showMap()
@@ -15,13 +15,16 @@ class ConnectController extends Controller
     {
         $latitude = $request->query('lat');
         $longitude = $request->query('lon');
+        $radius = 10; // Radius in kilometers
 
-        // For simplicity, we are returning a static list of organizations.
-        // Replace this with actual data fetching logic.
-        $organizations = [
-            ['name' => 'Recycling Org 1', 'latitude' => $latitude + 0.01, 'longitude' => $longitude + 0.01],
-            ['name' => 'Recycling Org 2', 'latitude' => $latitude - 0.01, 'longitude' => $longitude - 0.01],
-        ];
+        // Haversine formula to find recycling organizations within the radius
+        $organizations = RecyclingOrganization::selectRaw("
+            id, name, description, requirements, latitude, longitude,
+            (6371 * acos(cos(radians(?)) * cos(radians(latitude)) * cos(radians(longitude) - radians(?)) + sin(radians(?)) * sin(radians(latitude)))) AS distance
+        ", [$latitude, $longitude, $latitude])
+        ->having('distance', '<=', $radius)
+        ->orderBy('distance')
+        ->get();
 
         return response()->json($organizations);
     }

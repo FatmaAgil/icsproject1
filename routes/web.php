@@ -14,6 +14,8 @@ use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\EventController;
 use App\Http\Controllers\Admin\NewsController;
 use App\Http\Controllers\FaqController;
+use App\Http\Controllers\RecyclingOrganizationController;
+use App\Http\Controllers\ConnectController;
 
 
 Route::get('/', function () {
@@ -34,9 +36,18 @@ Route::get('/landingUser', function () {
 Route::get('/tester', function () {
     return view('tester');
 });
-Route::get('/connect', function () {
-    return view('connect'); // Ensure this is the correct view you want to display
-})->name('connect');
+//Route::get('/connect', function () {
+   // return view('connect'); // Ensure this is the correct view you want to display
+//})->name('connect');
+
+Route::get('/register-organization', function () {
+    return view('recyclerForm');
+})->name('register.organization');
+
+Route::post('/recycling_organizations', [RecyclingOrganizationController::class, 'store'])->name('recycling_organizations.store');
+
+Route::get('/connect', [ConnectController::class, 'showMap'])->name('connect');
+Route::get('/api/recycling-organizations', [ConnectController::class, 'getRecyclingOrganizations']);
 
 Route::get('/faq', [FaqController::class, 'index'])->name('faq.index');
 Route::prefix('admin')->group(function () {

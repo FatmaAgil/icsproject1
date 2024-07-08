@@ -1,16 +1,11 @@
-<!-- resources/views/landingUser.blade.php -->
-
 <x-plasticUserLayout>
     <!-- Include Leaflet CSS -->
-    <link rel="stylesheet" href="{{ asset('leaflet/dist/leaflet.css') }}">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
-     integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
-     crossorigin=""/>
-     <!-- Make sure you put this AFTER Leaflet's CSS -->
-     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
-      integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
-      crossorigin=""></script>
-    <br><br><br><br><br>
+          integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+    <!-- Include Leaflet JS -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+            integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+
     <main id="main">
         <style>
             main {
@@ -22,6 +17,7 @@
                 display: flex;
                 justify-content: center;
                 align-items: center;
+                flex-direction: column;
                 height: 100vh;
             }
 
@@ -49,56 +45,136 @@
                 height: 350px;
                 margin-top: 20px;
             }
+
+            .card {
+                background-color: #fff;
+                padding: 20px;
+                margin: 10px;
+                border-radius: 8px;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            }
+
+            .card-container {
+                width: 100%;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                margin-top: 20px;
+            }
+
+            .card button {
+                background-color: #28a745;
+                color: #fff;
+                border: none;
+                padding: 10px;
+                border-radius: 5px;
+                cursor: pointer;
+            }
+
+            .no-org-message {
+                color: #ff0000;
+                font-weight: bold;
+                margin-top: 20px;
+            }
         </style>
 
         <div class="container">
             <h1>Welcome to RecycleConnect</h1>
             <h5>Get connected to plastic recyclers near you</h5><br><br>
             <div id="map" class="map-container"></div>
-
+            <div id="card-container" class="card-container"></div>
+            <div id="no-org-message" class="no-org-message" style="display: none;">
+                No recycling organizations found around your location.
+            </div>
         </div>
     </main>
 
-<script>
-var map = L.map('map').setView([51.505, -0.09], 13);
+    <script>
+        // Define custom icon for recycling organizations
+        var recyclingIcon = L.icon({
+            iconUrl: 'https://www.flaticon.com/free-icon/organization_2560004?term=organization&related_id=2560004', // Replace with your custom icon path
+            iconSize: [32, 32], // Size of the icon
+            iconAnchor: [16, 32], // Point of the icon which will correspond to marker's location
+            popupAnchor: [0, -32] // Point from which the popup should open relative to the iconAnchor
+        });
 
-L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    maxZoom: 19,
-    attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-}).addTo(map);
+        var map = L.map('map').setView([51.505, -0.09], 13);
 
-navigator.geolocation.watchPosition(success, error);
+        L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 19,
+            attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+        }).addTo(map);
 
-let marker, circle, zoomed;
+        navigator.geolocation.watchPosition(success, error);
 
-function success(pos) {
-    const lat = pos.coords.latitude;
-    const lng = pos.coords.longitude;
-    const accuracy = pos.coords.accuracy;
+        let marker, circle, zoomed;
 
-    if (marker) {
-        map.removeLayer(marker);
-        map.removeLayer(circle);
-    }
-    marker =  L.marker([lat, lng]).addTo(map);
-    circle =  L.circle([lat, lng], {radius: accuracy}).addTo(map);
+        function success(pos) {
+            const lat = pos.coords.latitude;
+            const lng = pos.coords.longitude;
+            const accuracy = pos.coords.accuracy;
 
-    if (!zoomed) {
-      zoomed = map.fitBounds(circle.getBounds());
-    }
+            if (marker) {
+                map.removeLayer(marker);
+                map.removeLayer(circle);
+            }
+            marker = L.marker([lat, lng]).addTo(map);
+            circle = L.circle([lat, lng], {radius: accuracy}).addTo(map);
 
-    map.setView([lat, lng]);
+            if (!zoomed) {
+                zoomed = map.fitBounds(circle.getBounds());
+            }
 
-}
+            map.setView([lat, lng]);
 
-function error(err) {
+            fetchRecyclingOrganizations(lat, lng);
+        }
 
-    if (err.code === 1) {
-        alert("Please allow geolocation access");
-    } else {
-        alert("Cannot get current location");
-    }
-}
-</script>
+        function error(err) {
+            if (err.code === 1) {
+                alert("Please allow geolocation access");
+            } else {
+                alert("Cannot get current location");
+            }
+        }
+
+        function fetchRecyclingOrganizations(lat, lng) {
+            console.log(`Fetching recycling organizations for latitude: ${lat}, longitude: ${lng}`);
+            fetch(`/api/recycling-organizations?lat=${lat}&lon=${lng}`)
+                .then(response => response.json())
+                .then(data => {
+                    console.log('Data received:', data);
+                    const cardContainer = document.getElementById('card-container');
+                    const noOrgMessage = document.getElementById('no-org-message');
+                    cardContainer.innerHTML = ''; // Clear existing cards
+
+                    if (data.length === 0) {
+                        noOrgMessage.style.display = 'block';
+                    } else {
+                        noOrgMessage.style.display = 'none';
+                        data.forEach(org => {
+                            const orgMarker = L.marker([org.latitude, org.longitude], { icon: recyclingIcon }).addTo(map)
+                                .bindPopup(`<b>${org.name}</b><br>${org.description}`)
+                                .openPopup();
+
+                            const card = document.createElement('div');
+                            card.classList.add('card');
+                            card.innerHTML = `
+                                <h3>${org.name}</h3>
+                                <p>${org.description}</p>
+                                <p><strong>Requirements:</strong> ${org.requirements}</p>
+                                <button onclick="connectToOrganization('${org.name}')">Connect</button>
+                            `;
+                            cardContainer.appendChild(card);
+                        });
+                    }
+                })
+                .catch(error => console.error('Error fetching organizations:', error));
+        }
+
+        function connectToOrganization(name) {
+            alert(`You have connected to ${name}`);
+        }
+    </script>
 
 </x-plasticUserLayout>
