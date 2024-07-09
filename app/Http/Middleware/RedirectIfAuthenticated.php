@@ -19,7 +19,17 @@ class RedirectIfAuthenticated
     public function handle(Request $request, Closure $next, $guard = null)
     {
         if (Auth::guard($guard)->check()) {
-            return redirect('/home');
+            $user = Auth::guard($guard)->user();
+
+            if ($user->role == 'admin') {
+                return redirect()->intended(route('admin'));
+            } elseif ($user->role == 'plastic user') {
+                return redirect()->intended(route('dashboard'));
+            } elseif ($user->role == 'recycling organization') {
+                return redirect()->intended(route('landingRecycler'));
+            } else {
+                return redirect()->intended(route('/'));
+            }
         }
 
         return $next($request);

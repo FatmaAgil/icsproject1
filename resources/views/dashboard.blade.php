@@ -130,7 +130,7 @@
                 <h2>Recycle</h2>
                 <i class="bi bi-geo-fill"></i>
                 <p>Get connected to plastic recyclers near you.</p>
-                <button type="button" class="btnrecycle"><a href="/landingUser">Recycle</a></button>
+                <button type="button" class="btnrecycle"> <a href="{{ route('connect') }}">Recycle</a></button>
             </div>
             <div class="service">
                 <h2>Community</h2>

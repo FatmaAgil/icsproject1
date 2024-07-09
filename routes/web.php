@@ -2,7 +2,6 @@
 
 use App\Http\Controllers\DashboardController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\EventController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RecyclerDashboard;
 use App\Http\Controllers\AdminDashboard;
@@ -33,6 +32,8 @@ Route::post('/PETDisposalGuide/pledge', [PETPlasticController::class, 'takePledg
 Route::get('/PETDisposalGuide/{id}', [PETPlasticController::class, 'show']);
 Route::post('/contact', [ContactMessageController::class, 'store'])->name('contact.store');
 
+Route::get('/PETGuide',[PETGuideDashboard::class, 'index'])->name('PETGuide');
+Route::post('/contact', [ContactMessageController::class, 'store'])->name('contact.store');
 Route::get('/guide',[GuideDashboard::class, 'index'])->name('guide');
 Route::get('/quiz',[GuideQuiz::class, 'index'])->name('quiz');
 Route::get('/PETGame',[PETGameController::class,'index']);
