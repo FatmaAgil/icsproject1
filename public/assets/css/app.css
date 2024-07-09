@@ -1,0 +1,410 @@
+#main {
+    margin-top: 20px;
+}
+.hero-section {
+    position: relative;
+    text-align: center;
+    color: white;
+    height: 100vh; /* Full viewport height */
+    background: url(../img/PET\ plastic.jpg);
+    background-repeat: no-repeat;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.6); /* Dark overlay */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.5); /* Shadow effect */
+}
+
+.hero-content {
+    z-index: 2;
+    text-align: center;
+}
+
+.hero-content h1,
+.hero-content p {
+    margin: 10px 0;
+}
+
+.hero-content button {
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    background-color: mediumspringgreen;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.hero-content button:hover {
+    background-color: #218838;
+}
+
+.technology-title {
+    text-align: center;
+    font-size: 2em;
+    margin: 20px 0;
+    text-transform: uppercase;
+}
+
+.technology-container {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    padding: 20px;
+    position: relative;
+}
+
+
+.technology-container::-webkit-scrollbar {
+    display: none;
+}
+
+.technology-container {
+    -ms-overflow-style: none;  /* Internet Explorer 10+ */
+    scrollbar-width: thin;  /* Firefox */
+    scrollbar-color: transparent transparent; /* Firefox */
+}
+
+.PET {
+    flex: 0 0 300px; /* Width of each card */
+    margin: 0 10px;
+    background-color: #2dc997;
+    color: #000;
+    padding: 20px;
+    border-radius: 10px;
+    transition: background-color 0.3s ease;
+    scroll-snap-align: start;
+}
+
+.PET:hover {
+    background-color: #218838;
+}
+
+.PET .card-body,
+.PET .environmental-impact,
+.PET .brief-history,
+.PET .video-links,
+.PET .recycling-info,
+.PET .physical-properties,
+.PET .uses,
+.PET .scrolling-images {
+    margin-bottom: 20px;
+}
+
+.card-title {
+    font-size: 30px;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    text-align: center;
+    font-weight: bold;
+    color: #000;
+}
+
+.scroll-icon {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 2em;
+    cursor: pointer;
+    z-index: 1;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    padding: 10px;
+    border-radius: 50%;
+}
+
+.scroll-icon.left {
+    left: 10px;
+}
+
+.scroll-icon.right {
+    right: 10px;
+}
+.video-links {
+    margin: 20px 0;
+}
+
+.video-links h3 {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+    text-align: center;
+    color: #333;
+}
+
+.video-link {
+    display: flex;
+    align-items: center;
+    background-color: #2dc997;
+    border: 1px solid #ddd;
+    padding: 10px 15px;
+    border-radius: 5px;
+    text-decoration: none;
+    color: #28a745;
+    transition: background-color 0.3s, color 0.3s;
+    margin-bottom: 10px;
+}
+
+.video-link i {
+    margin-right: 10px;
+    font-size: 1.2em;
+    color: #ff0000; /* YouTube red */
+}
+
+.video-link:hover {
+    background-color: #2dc997;
+    color: #fff;
+    border-color: #2dc997;
+}
+
+.video-link:hover i {
+    color: #fff;
+}
+
+
+.scroll-icon {
+    cursor: pointer;
+    font-size: 18px;
+    padding: 10px;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    border-radius: 50%;
+    position: fixed;
+    bottom: 10px;
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.scroll-icon.left {
+    left: 10px;
+}
+
+.scroll-icon.right {
+    right: 10px;
+}
+.quiz-section{
+    max-width: 800px;
+    margin:50px auto;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(52, 120, 25, 0.1);
+    border-radius: 8px;
+}
+.quiz-section h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.quiz-section form {
+    display: flex;
+    flex-direction: column;
+}
+
+.quiz-section h3 {
+    font-size: 18px;
+    margin: 15px 0 10px;
+}
+
+.quiz-section ul {
+    list-style: none;
+    padding: 0;
+}
+
+.quiz-section li {
+    margin-bottom: 10px;
+}
+
+
+
+.quiz-section label {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, border-color 0.3s;
+}
+
+.quiz-section label:hover {
+    background-color: #f0f0f0;
+}
+
+.quiz-section input[type="radio"]:checked + label {
+    background-color: #2dc997;
+    color: #fff;
+    border-color: #218838;
+}
+
+.quiz-section button {
+    align-self: flex-start;
+    padding: 10px 20px;
+    font-size: 16px;
+    color: #fff;
+    background-color: #218838;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 20px;
+    transition: background-color 0.3s;
+}
+
+.quiz-section button:hover {
+    background-color: #2dc997;
+}
+
+/* Result Styles */
+.quiz-section p {
+    font-size: 16px;
+    color: #28a745;
+    margin-top: 20px;
+}
+
+.quiz-section .error {
+    font-size: 16px;
+    color: #dc3545;
+    margin-top: 20px;
+}
+.game-container {
+    background-color: #f0f0f0;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    position: relative;
+}
+
+.timer-container {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+}
+
+.timer-container i {
+    font-size: 24px;
+    margin-right: 10px;
+}
+
+.timer-container p {
+    display: inline-block;
+}
+
+.plastic-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.plastic {
+    margin: 10px;
+    cursor: pointer;
+}
+
+.plastic img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+
+.popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #f0f0f0;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    display: none;
+}
+
+.popup.show {
+    display: block;
+}
+#game {
+    background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url(../img/quiz\ background.png) fixed center center;
+    background-size: cover;
+    padding: 80px 0;
+  }
+
+  @media (max-width: 1024px) {
+    #quiz{
+      background-attachment: scroll;
+    }
+  }
+
+  #game .cta-title {
+    color: black;
+    font-size: 28px;
+    font-weight: 700;
+  }
+
+  #game .cta-text {
+    color: black;
+  }
+
+  @media (min-width: 769px) {
+    #quiz .cta-btn-container {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+    }
+  }
+
+  #game .cta-btn {
+    font-family: "Poppins", sans-serif;
+    text-transform: uppercase;
+    font-weight: 500;
+    font-size: 16px;
+    letter-spacing: 1px;
+    display: inline-block;
+    padding: 8px 30px;
+    border-radius: 50px;
+    transition: 0.5s;
+    margin: 10px;
+    border: 2px solid #fff;
+    color: #fff;
+  }
+
+  #game .cta-btn:hover {
+    background: #2dc997;
+    border: 2px solid #2dc997;
+  }
+  .game button {
+    margin-right: 10px;
+}
+
+.fa-pause {
+    font-size: 1.5em;
+}
+
+.timer-container {
+    display: none;
+}
+
+#start-game {
+    display: block;
+}
+
+#game-popup {
+    display: none;
+}
+
+#game-over-popup {
+    display: none;
+}
+
+.show {
+    display: block;
+}

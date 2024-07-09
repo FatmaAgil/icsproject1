@@ -609,6 +609,57 @@ section {
   font-size: 14px;
 }
 
+#quiz {
+    background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url(../img/quiz\ background.png) fixed center center;
+    background-size: cover;
+    padding: 80px 0;
+  }
+
+  @media (max-width: 1024px) {
+    #quiz{
+      background-attachment: scroll;
+    }
+  }
+
+  #quiz .cta-title {
+    color: black;
+    font-size: 28px;
+    font-weight: 700;
+  }
+
+  #quiz .cta-text {
+    color: black;
+  }
+
+  @media (min-width: 769px) {
+    #quiz .cta-btn-container {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+    }
+  }
+
+  #quiz .cta-btn {
+    font-family: "Poppins", sans-serif;
+    text-transform: uppercase;
+    font-weight: 500;
+    font-size: 16px;
+    letter-spacing: 1px;
+    display: inline-block;
+    padding: 8px 30px;
+    border-radius: 50px;
+    transition: 0.5s;
+    margin: 10px;
+    border: 2px solid #fff;
+    color: #fff;
+  }
+
+  #quiz .cta-btn:hover {
+    background: #2dc997;
+    border: 2px solid #2dc997;
+  }
+
+
 
 #facts {
   background: #f7f7f7;
@@ -1305,3 +1356,79 @@ contact .php-email-form button[type=submit]:hover {
   flex-direction: row;
   justify-content: space-evenly;
 }
+
+
+  #PET .about-container .background {
+    min-height: 300px;
+    background: url(../img/about-img.jpg) center top no-repeat;
+    margin-bottom: 10px;
+    align-items: right;
+  }
+
+  #PET .about-container .content {
+    background: #fff;
+  }
+
+  #PET .about-container .title {
+    color: #333;
+    font-weight: 700;
+    font-size: 32px;
+  }
+
+  @media (max-width: 768px) {
+    #about .about-container .title {
+      padding-top: 15px;
+    }
+  }
+
+  #PET .about-container p {
+    line-height: 26px;
+  }
+
+  #PET .about-container p:last-child {
+    margin-bottom: 0;
+  }
+
+  #PET  #about .about-container .icon-box {
+    background: #fff;
+    background-size: cover;
+    padding: 0 0 30px 0;
+  }
+
+  #PET .about-container .icon-box .icon {
+    float: left;
+    background: #fff;
+    width: 64px;
+    height: 64px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+    border-radius: 50%;
+    border: 2px solid #2dc997;
+  }
+
+  #PET .about-container .icon-box .icon i {
+    color: #2dc997;
+    font-size: 24px;
+    line-height: 0;
+  }
+
+  #PET .about-container .icon-box .title {
+    margin-left: 80px;
+    font-weight: 500;
+    margin-bottom: 5px;
+    font-size: 18px;
+    text-transform: uppercase;
+  }
+
+  #PET .about-container .icon-box .title a {
+    color: #111;
+  }
+
+  #PET .about-container .icon-box .description {
+    margin-left: 80px;
+    line-height: 24px;
+    font-size: 14px;
+  }
