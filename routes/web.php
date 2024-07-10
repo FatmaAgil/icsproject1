@@ -11,8 +11,19 @@ use App\Http\Controllers\GuideQuiz;
 use App\Http\Controllers\PETGameController;
 use App\Http\Controllers\PETPlasticController; // Corrected here
 use App\Http\Controllers\PledgeController;
+
 use App\Http\Controllers\PETGuideDashboard;
 use App\Http\Controllers\HDPEPlasticController; // Added here
+
+use App\Http\Controllers\Admin\EventController;
+use App\Http\Controllers\Admin\MessageController;
+use App\Http\Controllers\Admin\NewsController;
+use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\ConnectController;
+use App\Http\Controllers\FaqController;
+use App\Http\Controllers\RecyclingOrganizationController;
+
+
 
 Route::get('/', function () {
     return view('welcome');
@@ -26,6 +37,42 @@ Route::get('/terms', function () {
 //Route::get('/home', function () { return Inertia('Home');});
 Route::get('/landingUser', function () {
     return view('plasticUser');
+});
+Route::get('/register-organization', function () {
+    return view('recyclerForm');
+})->name('register.organization');
+
+Route::post('/recycling_organizations', [RecyclingOrganizationController::class, 'store'])->name('recycling_organizations.store');
+
+Route::get('/connect', [ConnectController::class, 'showMap'])->name('connect');
+Route::get('/api/recycling-organizations', [ConnectController::class, 'getRecyclingOrganizations']);
+
+Route::get('/faq', [FaqController::class, 'index'])->name('faq.index');
+Route::prefix('admin')->group(function () {
+    Route::get('users', [UserController::class, 'index'])->name('admin.users.index');
+    Route::post('users', [UserController::class, 'store'])->name('admin.users.store');
+    Route::get('users/{user}/edit', [UserController::class, 'edit'])->name('admin.users.edit');
+    Route::put('users/{user}', [UserController::class, 'update'])->name('admin.users.update');
+    Route::delete('users/{user}', [UserController::class, 'destroy'])->name('admin.users.destroy');
+});
+Route::prefix('admin')->group(function () {
+       // Events Routes
+       Route::get('events', [EventController::class, 'index'])->name('admin.events.index');
+       Route::post('events', [EventController::class, 'store'])->name('admin.events.store');
+       Route::get('events/{event}/edit', [EventController::class, 'edit'])->name('admin.events.edit');
+       Route::put('events/{event}', [EventController::class, 'update'])->name('admin.events.update');
+       Route::delete('events/{event}', [EventController::class, 'destroy'])->name('admin.events.destroy');
+    // News Routes
+    Route::get('news', [NewsController::class, 'index'])->name('admin.news.index');
+    Route::post('news', [NewsController::class, 'store'])->name('admin.news.store');
+    Route::get('news/{news}/edit', [NewsController::class, 'edit'])->name('admin.news.edit');
+    Route::put('news/{news}', [NewsController::class, 'update'])->name('admin.news.update');
+    Route::delete('news/{news}', [NewsController::class, 'destroy'])->name('admin.news.destroy');
+});
+Route::prefix('admin')->name('admin.')->group(function() {
+    Route::get('/messages', [MessageController::class, 'index'])->name('messages.index');
+    Route::get('/messages/{id}', [MessageController::class, 'show'])->name('messages.show');
+    Route::post('/messages/{id}/reply', [MessageController::class, 'reply'])->name('messages.reply');
 });
 Route::get('/PETDisposalGuide', [PETPlasticController::class, 'index'])->name('PETDisposalGuide');
 Route::post('/quizSubmit', [PETPlasticController::class, 'quizSubmit'])->name('quiz.submit');

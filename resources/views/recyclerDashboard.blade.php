@@ -129,8 +129,8 @@
             <div class="service" ">
                 <h2>Recycle</h2>
                 <i class="bi bi-geo-fill"></i>
-                <p>Find plastic to recycle near you.</p>
-                <button type="button" class="btnrecycle"><a href="/landingUser">Recycle</a></button>
+                <p>Register your organization.</p>
+                <button type="button" class="btnrecycle"><a href="{{ route('register.organization') }}">Recycle</a></button>
             </div>
             <div class="service" >
                 <h2>Community</h2>

@@ -33,7 +33,6 @@
 
 
   <header id="header" class="fixed-top d-flex align-items-center header-transparent">
-    <div class="container d-flex justify-content-between align-items-center">
 
       <div id="logo">
         <h1><a href="welcome.blade.php"></a> RecycleConnect</h1>
@@ -52,7 +51,7 @@
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav>
-    </div>
+
   </header>
 
   {{$slot}}

@@ -54,7 +54,7 @@
                 margin-bottom: 20px;
                 border-radius: 10px;
                 overflow: hidden;
-                border: 1px solid #ddd;
+                border: 1px solid #fdfdfd;
             }
 
             .form-container {
