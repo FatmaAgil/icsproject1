@@ -157,115 +157,104 @@
                 @endforeach
             </div>
             </section>
-            <section class="game-section">
-                <button id="start-game">Start Game</button>
-                <button id="pause-game" disabled>Pause Game</button>
-                <div class="popup" id="game-popup">
-                    <div class="game-container">
-                        <div class="timer-container">
-                            <i class="fas fa-clock" id="clock-icon"></i>
-                            <p id="timer">20 seconds</p>
-                            <audio id="ticking-sound" src="ticking.mp3" loop></audio>
+            <section class="game section">
+                <div class="game-container" id="gameContainer">
+                    <h2>Dispose of Plastics and Save the Earth!</h2>
+                    <p>Dispose of as many plastics as you can before the timer runs out!</p>
+                    <div class="plastic-container" id="plasticContainer">
+                        <button id="startButton">Start Game</button>
+
+                    </div>
+                    <div class="timer-container">
+                        <p>Time remaining: <span id="timer">20</span> </p>
+                    </div>
+                    <div class="score-container">
+                        <p>Score: <span id="score">0</span></p>
+                    </div>
+                </div>
+            </section>
+
+            <div class="modal fade" id="gameOverModal" tabindex="-1" aria-labelledby="gameOverModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="gameOverModalLabel">Game Over</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
                         </div>
-                        <div class="score-container">
-                            <p>Score: <span id="score">0</span></p>
+                        <div class="modal-body">
+                            <p id="gameOverScore">Your score: 0</p>
                         </div>
-                        <div class="plastic-container">
-                            <!-- plastics will be generated here -->
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                         </div>
                     </div>
                 </div>
-                <div class="popup" id="game-over-popup">
-                    <h2>Game Over!</h2>
-                    <p id="game-result"></p>
-                    <button id="close-popup">Close</button>
-                </div>
-            </section>
-        </div>
-    </section>
+            </div>
 
-    <script>
-        const startGameButton = document.getElementById('start-game');
-        const pauseGameButton = document.getElementById('pause-game');
-        const gamePopup = document.getElementById('game-popup');
-        const gameOverPopup = document.getElementById('game-over-popup');
-        const clockIcon = document.getElementById('clock-icon');
-        const timerElement = document.getElementById('timer');
-        const scoreElement = document.getElementById('score');
-        const plasticContainer = document.querySelector('.plastic-container');
-        const tickingSound = document.getElementById('ticking-sound');
-        const closePopupButton = document.getElementById('close-popup');
+            <script>
+                const gameContainer = document.getElementById('gameContainer');
+                const plasticContainer = document.getElementById('plasticContainer');
+                const timerElement = document.getElementById('timer');
+                const scoreElement = document.getElementById('score');
+                const startButton = document.getElementById('startButton');
 
-        let plastics = [];
-        let score = 0;
-        let timer = 20;
-        let gameStarted = false;
-        let gamePaused = false;
+                let plastics = [];
+                let score = 0;
+                let timer = 20;
 
-        startGameButton.addEventListener('click', () => {
-            gameStarted = true;
-            gamePopup.classList.add('show');
-            startGame();
-        });
+                startButton.addEventListener('click', startGame);
 
-        pauseGameButton.addEventListener('click', () => {
-            gamePaused = !gamePaused;
-            if (gamePaused) {
-                pauseGameButton.textContent = 'Resume Game';
-            } else {
-                pauseGameButton.textContent = 'Pause Game';
-            }
-        });
+                function startGame() {
+                    startButton.style.display = 'none'; // Hide start button
+                    gameContainer.style.display = 'block'; // Show game container
+                    startTimer();
+                    generatePlastics();
+                    addPlasticListeners();
+                }
 
-        closePopupButton.addEventListener('click', () => {
-            gameOverPopup.classList.remove('show');
-        });
+                function startTimer() {
+                    const gameTimer = setInterval(() => {
+                        timer--;
+                        timerElement.textContent = timer + ' seconds';
+                        if (timer === 0) {
+                            clearInterval(gameTimer);
+                            endGame();
+                        }
+                    }, 1000);
+                }
 
-        function startGame() {
-            // generate plastics
-            for (let i = 0; i < 20; i++) {
-                const plastic = document.createElement('div');
-                plastic.className = 'plastic';
-                plastic.innerHTML = `<img src="https://via.placeholder.com/50" alt="Plastic">`;
-                plasticContainer.appendChild(plastic);
-                plastics.push(plastic);
-            }
-
-            // add event listeners to plastics
-            plastics.forEach((plastic) => {
-                plastic.addEventListener('click', () => {
-                    disposePlastic(plastic);
-                });
-            });
-
-            // start timer
-            tickingSound.play();
-            setInterval(() => {
-                if (!gamePaused) {
-                    timer--;
-                    timerElement.textContent = timer + ' seconds';
-                    if (timer === 0) {
-                        endGame();
+                function generatePlastics() {
+                    for (let i = 0; i < 20; i++) {
+                        const plastic = document.createElement('div');
+                        plastic.className = 'plastic';
+                        plastic.innerHTML = `<img src="{{ asset('assets/img/GameIcon.png') }}" alt="Plastic">`;
+                        plasticContainer.appendChild(plastic);
+                        plastics.push(plastic);
                     }
                 }
-            }, 1000); // corrected interval time
-        }
 
-        function endGame() {
-            // Handle end game logic, e.g., show score, clear plastics, etc.
-            gameOverPopup.classList.add('show');
-            tickingSound.pause(); // stop ticking sound
-        }
+                function addPlasticListeners() {
+                    plastics.forEach((plastic) => {
+                        plastic.addEventListener('click', () => {
+                            disposePlastic(plastic);
+                        });
+                    });
+                }
 
-        function disposePlastic(plastic) {
-            // Logic for what happens when a plastic is disposed (clicked)
-            score++;
-            scoreElement.textContent = score;
-            plastic.remove(); // remove the disposed plastic from DOM
-        }
-    </script>
+                function disposePlastic(plastic) {
+                    plastic.remove();
+                    score++;
+                    scoreElement.textContent = `Score: ${score}`;
+                }
 
-
+                function endGame() {
+                    document.getElementById('gameOverScore').textContent = `Your score: ${score}`;
+                    $('#gameOverModal').modal('show');
+                    gameContainer.style.display = 'none'; // Hide the game container
+                }
+            </script>
 
         @endsection
     </main>
