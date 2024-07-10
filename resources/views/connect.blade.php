@@ -18,7 +18,7 @@
                 justify-content: center;
                 align-items: center;
                 flex-direction: column;
-                height: 100vh;
+                min-height: 100vh;
             }
 
             .container {
@@ -52,13 +52,20 @@
                 margin: 10px;
                 border-radius: 8px;
                 box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+                flex: 1;
+                min-width: 300px;
+                max-width: 300px;
+                box-sizing: border-box;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
             }
 
             .card-container {
                 width: 100%;
                 display: flex;
-                flex-direction: column;
-                align-items: center;
+                flex-wrap: wrap;
+                justify-content: center;
                 margin-top: 20px;
             }
 
@@ -69,6 +76,7 @@
                 padding: 10px;
                 border-radius: 5px;
                 cursor: pointer;
+                align-self: center;
             }
 
             .no-org-message {
