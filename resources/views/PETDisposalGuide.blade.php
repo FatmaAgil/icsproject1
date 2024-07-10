@@ -50,10 +50,22 @@
                                 <div class="physical-properties">
                                     <h3>Physical Properties</h3>
                                     <ul>
-                                        @if(is_array($petPlastic->physical_properties))
-                                            <li>Density: {{ $petPlastic->physical_properties['density'] }} g/cm³</li>
-                                            <li>Melting Point: {{ $petPlastic->physical_properties['melting_point'] }} °C</li>
-                                            <li>Tensile Strength: {{ $petPlastic->physical_properties['tensile_strength'] }} MPa</li>
+                                        @if(is_array($hdpePlastic->physical_properties))
+                                            @if(isset($hdpePlastic->physical_properties['density']))
+                                                <li>Density: {{ $hdpePlastic->physical_properties['density'] }} g/cm³</li>
+                                            @else
+                                                <li>Density: N/A</li>
+                                            @endif
+                                            @if(isset($hdpePlastic->physical_properties['melting_point']))
+                                                <li>Melting Point: {{ $hdpePlastic->physical_properties['melting_point'] }} °C</li>
+                                            @else
+                                                <li>Melting Point: N/A</li>
+                                            @endif
+                                            @if(isset($hdpePlastic->physical_properties['tensile_strength']))
+                                                <li>Tensile Strength: {{ $hdpePlastic->physical_properties['tensile_strength'] }} MPa</li>
+                                            @else
+                                                <li>Tensile Strength: N/A</li>
+                                            @endif
                                         @else
                                             <li>Physical properties data not available.</li>
                                         @endif
@@ -226,7 +238,7 @@
                 }
 
                 function generatePlastics() {
-                    for (let i = 0; i < 20; i++) {
+                    for (let i = 0; i < 80; i++) {
                         const plastic = document.createElement('div');
                         plastic.className = 'plastic';
                         plastic.innerHTML = `<img src="{{ asset('assets/img/GameIcon.png') }}" alt="Plastic">`;
@@ -255,7 +267,6 @@
                     gameContainer.style.display = 'none'; // Hide the game container
                 }
             </script>
-
         @endsection
     </main>
 </x-PlasticDisposalLayout>

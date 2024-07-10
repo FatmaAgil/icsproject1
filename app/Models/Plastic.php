@@ -23,6 +23,7 @@ class Plastic extends Model
     ];
 
     protected $casts = [
-        'images' => 'array', 
+        'physical_properties'=>'array',
+        'images' => 'array',
     ];
 }

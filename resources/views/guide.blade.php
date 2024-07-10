@@ -24,9 +24,9 @@
                     </div>
                     <div class="col-lg-4 col-md-6" data-aos="zoom-in">
                         <div class="box">
-                            <div class="icon"><a href="/HDPE"><i class="bi bi-recycle"></i></a></div>
-                            <h4 class="title"><a href="/HDPE">High-Density Polyethylene (HDPE)</a></h4>
-                            <p class="description">Used for milk jugs, detergent bottles, and some plastic bags.</p>
+                            <div class="icon"><a href="/hdpe-disposal-guide"><i class="bi bi-recycle"></i></a></div>
+                            <h4 class="title"><a href="/hdpe-disposal-guide">High-Density Polyethylene (HDPE)</a></h4>
+                            <p class="description">Used for milk jugs, detergent bottles, and some plastic bags.<a href="hdpe-disposal-guide">Learn more.</a></p>
                         </div>
                     </div>
                     <div class="col-lg-4 col-md-6" data-aos="zoom-in">

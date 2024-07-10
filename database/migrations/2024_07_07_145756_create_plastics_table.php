@@ -20,7 +20,7 @@ return new class extends Migration
             $table->text('brief_history'); // brief history of the plastic type
             $table->text('video_links');
             $table->text('recycling_info');
-            $table->text('physical_properties');
+            $table->json('physical_properties');
             $table->text('uses');
             $table->json('images')->nullable();;
             $table->timestamps();

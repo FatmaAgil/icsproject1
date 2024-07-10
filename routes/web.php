@@ -11,6 +11,8 @@ use App\Http\Controllers\GuideQuiz;
 use App\Http\Controllers\PETGameController;
 use App\Http\Controllers\PETPlasticController; // Corrected here
 use App\Http\Controllers\PledgeController;
+use App\Http\Controllers\PETGuideDashboard;
+use App\Http\Controllers\HDPEPlasticController; // Added here
 
 Route::get('/', function () {
     return view('welcome');
@@ -46,5 +48,10 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     //Route::get('/adminDashboard',[AdminDashboard::class, 'index'])->name('adminDashboard');
 });
-
+Route::get('/HDPEDisposalGuide', [HDPEPlasticController::class, 'index'])->name('HDPEDisposalGuide');
+Route::get('SubmitQuiz',[HDPEPlasticController::class,'SubmitQuiz'])->name('submit.quiz');
+Route::post('/hdpe-disposal-guide/quiz', [HDPEPlasticController::class, 'quiz'])->name('HDPEDisposalGuide.quiz');
+Route::get('/HDPEDisposalGuide/{id}', [HDPEPlasticController::class, 'show']);
+Route::get('/hdpe-disposal-guide', [HDPEPlasticController::class, 'index'])->name('HDPEDisposalGuide.index');
+//Route::post('/hdpe-disposal-guide/quiz', [HDPEPlasticController::class, 'quiz'])->name('HDPEDisposalGuide.quiz');
 require __DIR__.'/auth.php';
