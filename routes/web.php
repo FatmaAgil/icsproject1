@@ -9,12 +9,15 @@ use App\Http\Controllers\GuideDashboard;
 use App\Http\Controllers\ContactMessageController;
 use App\Http\Controllers\GuideQuiz;
 use App\Http\Controllers\PETGameController;
-use App\Http\Controllers\PETPlasticController; // Corrected here
+use App\Http\Controllers\PETPlasticController;
+use App\Http\Controllers\LDPEPlasticController;
+use App\Http\Controllers\PVCPlasticController;
+use App\Http\Controllers\PpPlasticController;
+use App\Http\Controllers\OtherPlasticController;
 use App\Http\Controllers\PledgeController;
 
 use App\Http\Controllers\PETGuideDashboard;
 use App\Http\Controllers\HDPEPlasticController; // Added here
-
 use App\Http\Controllers\Admin\EventController;
 use App\Http\Controllers\Admin\MessageController;
 use App\Http\Controllers\Admin\NewsController;
@@ -101,4 +104,27 @@ Route::post('/hdpe-disposal-guide/quiz', [HDPEPlasticController::class, 'quiz'])
 Route::get('/HDPEDisposalGuide/{id}', [HDPEPlasticController::class, 'show']);
 Route::get('/hdpe-disposal-guide', [HDPEPlasticController::class, 'index'])->name('HDPEDisposalGuide.index');
 //Route::post('/hdpe-disposal-guide/quiz', [HDPEPlasticController::class, 'quiz'])->name('HDPEDisposalGuide.quiz');
+
+//Route::get('/LDPEDisposalGuide', [LDPEPlasticController::class, 'index'])->name('LDPEDisposalGuide');
+Route::get('SubmitQuiz',[LDPEPlasticController::class,'SubmitQuiz'])->name('submit.quiz');
+Route::post('/ldpe-disposal-guide/quiz', [LDPEPlasticController::class, 'quiz'])->name('LDPEDisposalGuide.quiz');
+Route::get('/LDPEDisposalGuide/{id}', [LDPEPlasticController::class, 'show']);
+Route::get('/ldpe-disposal-guide', [LDPEPlasticController::class, 'index'])->name('LDPEDisposalGuide.index');
+//Route::post('/hdpe-disposal-guide/quiz', [HDPEPlasticController::class, 'quiz'])->name('HDPEDisposalGuide.quiz');
+
+Route::get('SubmitQuiz',[PVCPlasticController::class,'SubmitQuiz'])->name('submit.quiz');
+Route::post('/pvc-disposal-guide/quiz', [PVCPlasticController::class, 'quiz'])->name('PVCDisposalGuide.quiz');
+Route::get('/PVCDisposalGuide/{id}', [PVCPlasticController::class, 'show']);
+Route::get('/pvc-disposal-guide', [PVCPlasticController::class, 'index'])->name('PVCDisposalGuide.index');
+
+Route::get('SubmitQuiz',[PPPlasticController::class,'SubmitQuiz'])->name('submit.quiz');
+Route::post('/pp-disposal-guide/quiz', [PPPlasticController::class, 'quiz'])->name('PPDisposalGuide.quiz');
+Route::get('/PPDisposalGuide/{id}', [PPPlasticController::class, 'show']);
+Route::get('/pp-disposal-guide', [PPPlasticController::class, 'index'])->name('PPDisposalGuide.index');
+
+
+Route::get('SubmitQuiz',[OtherPlasticController::class,'SubmitQuiz'])->name('submit.quiz');
+Route::post('/other-disposal-guide/quiz', [OtherPlasticController::class, 'quiz'])->name('OtherDisposalGuide.quiz');
+Route::get('/OtherDisposalGuide/{id}', [OtherPlasticController::class, 'show']);
+Route::get('/other-disposal-guide', [OtherPlasticController::class, 'index'])->name('OtherDisposalGuide.index');
 require __DIR__.'/auth.php';

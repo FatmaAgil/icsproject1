@@ -1,7 +1,7 @@
 <x-PlasticDisposalLayout>
     <main id="main">
         @section('content')
-            <div class="hero-section">
+            <div class="hero-section"style="background-image: url('{{ asset('assets/img/OtherImage.png') }}'); background-size: cover; height: 100vh;">
                 <div class="hero-overlay">
                     <div class="hero-content">
                         <h1>PET Plastic Disposal: Let's Make a Difference!</h1>
@@ -12,20 +12,20 @@
             </div>
 
             <section class="technology-section my-4">
-                @foreach ($petPlastics as $petPlastic)
-                    <h3 class="card-title">{{ $petPlastic->title }}</h3>
+                @foreach ($otherPlastics as $otherPlastic)
+                    <h3 class="card-title">{{ $otherPlastic->title }}</h3>
                     <div class="technology-container">
                         <div class="PET">
                             <div class="card-body">
                                 <h3>Introduction</h3>
-                                <p class="card-text">{{ $petPlastic->introduction }}</p>
+                                <p class="card-text">{{ $otherPlastic->introduction }}</p>
                             </div>
                         </div>
                         <div class="PET">
                             <div class="card-body">
                                 <div class="environmental-impact">
                                     <h3>Environmental Impact</h3>
-                                    <p>{{ $petPlastic->environmental_impact }}</p>
+                                    <p>{{ $otherPlastic->environmental_impact }}</p>
                                 </div>
                             </div>
                         </div>
@@ -33,7 +33,7 @@
                             <div class="card-body">
                                 <div class="brief-history">
                                     <h3>Brief History</h3>
-                                    <p>{{ $petPlastic->brief_history }}</p>
+                                    <p>{{ $otherPlastic->brief_history }}</p>
                                 </div>
                             </div>
                         </div>
@@ -41,7 +41,7 @@
                             <div class="card-body">
                                 <div class="recycling-info">
                                     <h3>Recycling Information</h3>
-                                    <p>{{ $petPlastic->recycling_info }}</p>
+                                    <p>{{ $otherPlastic->recycling_info }}</p>
                                 </div>
                             </div>
                         </div>
@@ -50,19 +50,19 @@
                                 <div class="physical-properties">
                                     <h3>Physical Properties</h3>
                                     <ul>
-                                        @if(is_array($petPlastic->physical_properties))
-                                            @if(isset($petPlastic->physical_properties['density']))
-                                                <li>Density: {{ $petPlastic->physical_properties['density'] }} g/cm³</li>
+                                        @if(is_array($otherPlastic->physical_properties))
+                                            @if(isset($otherPlastic->physical_properties['density']))
+                                                <li>Density: {{ $otherPlastic->physical_properties['density'] }} g/cm³</li>
                                             @else
                                                 <li>Density: N/A</li>
                                             @endif
-                                            @if(isset($petPlastic->physical_properties['melting_point']))
-                                                <li>Melting Point: {{ $petPlastic->physical_properties['melting_point'] }} °C</li>
+                                            @if(isset($otherPlastic->physical_properties['melting_point']))
+                                                <li>Melting Point: {{ $otherPlastic->physical_properties['melting_point'] }} °C</li>
                                             @else
                                                 <li>Melting Point: N/A</li>
                                             @endif
-                                            @if(isset($petPlastic->physical_properties['tensile_strength']))
-                                                <li>Tensile Strength: {{ $petPlastic->physical_properties['tensile_strength'] }} MPa</li>
+                                            @if(isset($otherPlastic->physical_properties['tensile_strength']))
+                                                <li>Tensile Strength: {{ $otherPlastic->physical_properties['tensile_strength'] }} MPa</li>
                                             @else
                                                 <li>Tensile Strength: N/A</li>
                                             @endif
@@ -77,7 +77,7 @@
                             <div class="card-body">
                                 <div class="uses">
                                     <h3>Uses</h3>
-                                    <p>{{ $petPlastic->uses }}</p>
+                                    <p>{{ $otherPlastic->uses }}</p>
                                 </div>
                             </div>
                         </div>
@@ -86,7 +86,7 @@
                     <div class="video-links">
                         <h3>Video Links</h3>
                         <div class="list-group">
-                            @foreach(explode(',', $petPlastic->video_links) as $link)
+                            @foreach(explode(',', $otherPlastic->video_links) as $link)
                                 <a href="{{ $link }}" class="list-group-item list-group-item-action video-link" target="_blank">
                                     <i class="fab fa-youtube"></i> Watch Video
                                 </a>
@@ -96,10 +96,10 @@
 
                     <!-- New Quizzes Section -->
                     <section class="quiz-section">
-                        <h2>Quiz: How well do you know PET plastic recycling?</h2>
-                        <form id="quizForm" action="{{ route('PETDisposalGuide.quiz') }}" method="post">
+                        <h2>Quiz: How well do you know Other plastic recycling?</h2>
+                        <form id="quizForm" action="{{ route('OtherDisposalGuide.quiz') }}" method="post">
                             @csrf
-                            @foreach($quizQuestions as $question)
+                            @foreach($otherQuestions as $question)
                                 <h3>{{ $question->question }}</h3>
                                 <ul>
                                     @foreach($question->options as $option)

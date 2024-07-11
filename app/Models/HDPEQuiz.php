@@ -14,6 +14,7 @@ class HDPEQuiz extends Model
         'difficulty',
     ];
     protected $casts = [
+        
         'options' =>'array',
     ];
     public static function createHDPEQuiz($question, $correctAnswer, $options, $category, $difficulty)

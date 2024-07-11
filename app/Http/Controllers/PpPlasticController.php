@@ -2,49 +2,50 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Plastic;
-use App\Models\HDPEQuiz;
 use Illuminate\Http\Request;
+use App\Models\Plastic;
+use App\Models\PpQuestion;
+use App\Models\Pledge;
 use Illuminate\Support\Facades\Storage;
 
-class HDPEPlasticController extends Controller
+class PpPlasticController extends Controller
 {
     /**
-     * Display a listing of the HDPE plastics.
+     * Display a listing of the PET plastics.
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        $hdpeQuizzes = HDPEQuiz::all();
-        $hdpePlastics = Plastic::where('type', 'HDPE')->paginate(10);
-        return response()->view('HDPEDisposalGuide', compact('hdpeQuizzes', 'hdpePlastics'));
+        $ppQuestions = PpQuestion::all();
+        $ppPlastics = Plastic::where('type', 'PP')->paginate(10);
+        return response()->view('PPDisposalGuide', compact('ppQuestions', 'ppPlastics'));
     }
 
     /**
-     * Display the specified HDPE plastic.
+     * Display the specified PP plastic.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\View\View
      */
     public function show($id)
     {
-        $hdpePlastic = Plastic::findOrFail($id);
-        return response()->view('HDPEDisposalGuide', compact('hdpePlastic'));
+        $ppPlastic = Plastic::findOrFail($id);
+        return view('PPDisposalGuide', compact('ppPlastic'));
     }
 
     /**
-     * Show the form for creating a new HDPE plastic.
+     * Show the form for creating a new PP plastic.
      *
      * @return \Illuminate\Contracts\View\View
      */
     public function create()
     {
-        return view('HDPEDisposalGuide');
+        return view('PPDisposalGuide');
     }
 
     /**
-     * Store a newly created HDPE plastic in storage.
+     * Store a newly created PP plastic in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
@@ -58,7 +59,7 @@ class HDPEPlasticController extends Controller
             'brief_history' => 'nullable|string',
             'video_links' => 'nullable|string',
             'recycling_info' => 'nullable|string',
-            'physical_properties' => 'nullable|array',
+            'physical_properties' => 'nullable|string',
             'uses' => 'nullable|string',
             'images' => 'nullable|array',
             'images.*' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
@@ -72,41 +73,41 @@ class HDPEPlasticController extends Controller
             }
         }
 
-        $hdpePlastic = new Plastic([
-            'type' => 'HDPE',
+        $ppPlastic = new Plastic([
+            'type' => 'PP',
             'title' => $request->input('title'),
             'introduction' => $request->input('introduction'),
             'environmental_impact' => $request->input('environmental_impact'),
             'brief_history' => $request->input('brief_history'),
             'video_links' => $request->input('video_links'),
             'recycling_info' => $request->input('recycling_info'),
-            'physical_properties' => json_encode('physical_properties'),
+            'physical_properties' => $request->input('physical_properties'),
             'uses' => $request->input('uses'),
             'images' => json_encode($images),
         ]);
 
-        $hdpePlastic->save();
+        $ppPlastic->save();
 
-        return redirect()->route('HDPEDisposalGuide')
-                         ->with('success', 'HDPE plastic created successfully.');
+        return redirect()->route('PPDisposalGuide')
+                         ->with('success', 'PP plastic created successfully.');
     }
 
     /**
-     * Show the form for editing the specified HDPE plastic.
+     * Show the form for editing the specified PP plastic.
      *
      * @param  int  $id
-     * @return \Illuminate\HTTP\Response
+     * @return \Illuminate\Http\Response
      */
     public function edit($id)
     {
-        $hdpePlastic = Plastic::findOrFail($id);
-        return response()->view('HDPEDisposalGuide', compact('hdpePlastic'));
+        $ppPlastic = Plastic::findOrFail($id);
+        return response()->view('PPDisposalGuide', compact('ppPlastic'));
     }
-    public function quiz(Request $request)
+    public function quizSubmit(Request $request)
     {
         $score = 0;
         foreach ($request->input('answers') as $questionId => $answer) {
-            $question = HDPEQuiz::find($questionId);
+            $question = PpQuestion::find($questionId);
             if ($question->correct_answer == $answer) {
                 $score++;
             }
@@ -114,14 +115,16 @@ class HDPEPlasticController extends Controller
         return response()->json(['quiz_score' => $score]);
     }
 
+
+
     /**
-     * Update the specified HDPE plastic in storage.
+     * Update the specified PP plastic in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $id): \Illuminate\Http\Response
     {
         $request->validate([
             'title' => 'required|string|max:255',
@@ -130,15 +133,15 @@ class HDPEPlasticController extends Controller
             'brief_history' => 'nullable|string',
             'video_links' => 'nullable|string',
             'recycling_info' => 'nullable|string',
-            'physical_properties' => 'nullable|array',
+            'physical_properties' => 'nullable|string',
             'uses' => 'nullable|string',
             'images' => 'nullable|array',
             'images.*' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
-        $hdpePlastic = Plastic::findOrFail($id);
+        $ppPlastic = Plastic::findOrFail($id);
 
-        $images = json_decode($hdpePlastic->images, true) ?? [];
+        $images = json_decode($ppPlastic->images, true) ?? [];
         if ($request->hasFile('images')) {
             foreach ($request->file('images') as $image) {
                 $path = $image->store('public/images');
@@ -146,49 +149,51 @@ class HDPEPlasticController extends Controller
             }
         }
 
-        $hdpePlastic->title = $request->input('title');
-        $hdpePlastic->introduction = $request->input('introduction');
-        $hdpePlastic->environmental_impact = $request->input('environmental_impact');
-        $hdpePlastic->brief_history = $request->input('brief_history');
-        $hdpePlastic->video_links = $request->input('video_links');
-        $hdpePlastic->recycling_info = $request->input('recycling_info');
-        $hdpePlastic->physical_properties = $request->input('physical_properties');
-        $hdpePlastic->uses = $request->input('uses');
-        $hdpePlastic->images = json_encode($images);
+        $ppPlastic->title = $request->input('title');
+        $ppPlastic->introduction = $request->input('introduction');
+        $ppPlastic->environmental_impact = $request->input('environmental_impact');
+        $ppPlastic->brief_history = $request->input('brief_history');
+        $ppPlastic->video_links = $request->input('video_links');
+        $ppPlastic->recycling_info = $request->input('recycling_info');
+        $ppPlastic->physical_properties = $request->input('physical_properties');
+        $ppPlastic->uses = $request->input('uses');
+        $ppPlastic->images = json_encode($images);
 
-        $hdpePlastic->save();
+        $ppPlastic->save();
 
-        return response()->route('HDPEDisposalGuide')
-                         ->with('success', 'HDPE plastic updated successfully.');
+        return response()->view('PETDisposalGuide')
+                         ->with('success', 'PET plastic updated successfully.');
     }
 
     /**
-     * Remove the specified HDPE plastic from storage.
+     * Remove the specified PP plastic from storage.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id):\Illuminate\Http\RedirectResponse
+    public function destroy($id): \Illuminate\Http\RedirectResponse
     {
-        $hdpePlastic = Plastic::findOrFail($id);
+        $ppPlastic = Plastic::findOrFail($id);
 
-        if (!empty($hdpePlastic->images)) {
-            foreach (json_decode($hdpePlastic->images, true) as $image) {
+        if (!empty($ppPlastic->images)) {
+            foreach (json_decode($ppPlastic->images, true) as $image) {
                 $imagePath = str_replace('/storage', 'public', $image);
                 Storage::delete($imagePath);
             }
         }
 
-        $hdpePlastic->delete();
+        $ppPlastic->delete();
 
-        return redirect()->route('HDPEDisposalGuide')
-                         ->with('success', 'HDPE plastic deleted successfully.');
+        return redirect()->route('PPDisposalGuide')
+                         ->with('success', 'PP plastic deleted successfully.');
     }
 
     /**
-     * Handle the quiz submission.
+     * Show the form for creating a new quiz question.
      *
      * @return \Illuminate\Http\Response
      */
 
+
 }
+

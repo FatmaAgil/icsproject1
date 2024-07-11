@@ -11,7 +11,7 @@
             </div>
         </div>
 
-        <section class="technology-section">
+        <section class="technology-section my-4">
             @foreach ($hdpePlastics as $hdpePlastic)
             <h3 class="card-title">{{ $hdpePlastic->title }}</h3>
             <div class="technology-container">
@@ -244,7 +244,7 @@
             }
 
             function generatePlastics() {
-                for (let i = 0; i < 80; i++) {
+                for (let i = 0; i < 40; i++) {
                     const plastic = document.createElement('div');
                     plastic.className = 'plastic';
                     plastic.innerHTML = `<img src="{{ asset('assets/img/GameHDPE.png') }}" >`;
