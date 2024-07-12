@@ -19,6 +19,7 @@
                 align-items: center;
                 flex-direction: column;
                 min-height: 100vh;
+                padding-top: 60px; /* Add padding to the top */
             }
 
             .container {
@@ -32,18 +33,21 @@
                 font-size: 2.5em;
                 color: #333;
                 font-weight: bold;
+                margin-top: 0; /* Ensure no margin at the top */
             }
 
             h5 {
                 font-size: 1.5em;
                 color: #333;
                 font-weight: italic;
+                margin-top: 0; /* Ensure no margin at the top */
             }
 
             .map-container {
                 width: 100%;
                 height: 350px;
                 margin-top: 20px;
+                border-radius: 20px;
             }
 
             .card {

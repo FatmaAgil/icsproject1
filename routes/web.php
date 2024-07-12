@@ -25,7 +25,7 @@ use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\ConnectController;
 use App\Http\Controllers\FaqController;
 use App\Http\Controllers\RecyclingOrganizationController;
-
+use App\Http\Controllers\PlasticFormController;
 
 
 Route::get('/', function () {
@@ -40,10 +40,14 @@ Route::get('/terms', function () {
 //Route::get('/home', function () { return Inertia('Home');});
 Route::get('/landingUser', function () {
     return view('plasticUser');
-});
+})->name('landingUser');
 Route::get('/register-organization', function () {
     return view('recyclerForm');
 })->name('register.organization');
+//Route::post('/connect', [PlasticFormController::class, 'store'])->name('details.store');
+Route::post('/plastic_forms', [PlasticFormController::class, 'store'])->name('pl.form');
+
+//Route::post('/connect/store', [ConnectController::class, 'store'])->name('connect.store');
 
 Route::post('/recycling_organizations', [RecyclingOrganizationController::class, 'store'])->name('recycling_organizations.store');
 

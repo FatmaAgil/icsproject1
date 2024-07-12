@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\RecyclingOrganization;
+use App\Models\PlasticForm;
 class ConnectController extends Controller
 {
     public function showMap()
@@ -28,4 +29,5 @@ class ConnectController extends Controller
 
         return response()->json($organizations);
     }
+
 }
