@@ -163,7 +163,7 @@
                         </script>
 
                         @if(session('quiz_score'))
-                            <p>You scored {{ session('quiz_score') }} out of {{ count($quizQuestions) }}!</p>
+                            <p>You scored {{ session('quiz_score') }} out of {{ count($pvcQuestions) }}!</p>
                         @endif
                     </section>
                 @endforeach

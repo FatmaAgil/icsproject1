@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\DashboardController;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Log;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RecyclerDashboard;
 use App\Http\Controllers\AdminDashboard;
@@ -25,7 +26,14 @@ use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\ConnectController;
 use App\Http\Controllers\FaqController;
 use App\Http\Controllers\RecyclingOrganizationController;
+use App\Http\Controllers\PaymentController;
 
+
+
+Route::get('/test-log', function () {
+    Log::info('Simple log message for testing');
+    return response('Log written', 200);
+});
 
 
 Route::get('/', function () {
@@ -37,13 +45,24 @@ Route::get('/event', function () {
 Route::get('/terms', function () {
     return view('terms');
 });
+Route::get('/mpesa', function () {
+    return view('mpesa');
+});
+
 //Route::get('/home', function () { return Inertia('Home');});
 Route::get('/landingUser', function () {
     return view('plasticUser');
 });
+Route::get('/accessToken', function () {
+    return view('accessToken');
+});
+
+
 Route::get('/register-organization', function () {
     return view('recyclerForm');
 })->name('register.organization');
+
+
 
 Route::post('/recycling_organizations', [RecyclingOrganizationController::class, 'store'])->name('recycling_organizations.store');
 
@@ -127,4 +146,8 @@ Route::get('SubmitQuiz',[OtherPlasticController::class,'SubmitQuiz'])->name('sub
 Route::post('/other-disposal-guide/quiz', [OtherPlasticController::class, 'quiz'])->name('OtherDisposalGuide.quiz');
 Route::get('/OtherDisposalGuide/{id}', [OtherPlasticController::class, 'show']);
 Route::get('/other-disposal-guide', [OtherPlasticController::class, 'index'])->name('OtherDisposalGuide.index');
+
+
+
+
 require __DIR__.'/auth.php';

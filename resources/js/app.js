@@ -1,5 +1,10 @@
 import { createApp, h } from 'vue'
 import { createInertiaApp } from '@inertiajs/vue3'
+import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap/dist/js/bootstrap.bundle.min';
+import 'jquery/dist/jquery.min';
+import axios from 'axios';
+window.axios = axios;
 
 createInertiaApp({
   resolve: name => {
