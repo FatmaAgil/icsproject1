@@ -117,6 +117,7 @@
                     </div>
                     <div class="form-group">
                         <button type="submit">Submit</button>
+                        <button type="button" onclick="window.location='{{ route('connect') }}'">Go to Connect Page</button>
                     </div>
                 </form>
             </div>

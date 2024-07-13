@@ -14,6 +14,7 @@ class RecyclingOrganization extends Model
         'requirements',
         'latitude',
         'longitude',
+        'email',
     ];
 
 }

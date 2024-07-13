@@ -48,7 +48,10 @@ Route::get('/register-organization', function () {
 Route::post('/plastic_forms', [PlasticFormController::class, 'store'])->name('pl.form');
 
 //Route::post('/connect/store', [ConnectController::class, 'store'])->name('connect.store');
+// web.php
 
+//Route::post('/connect-organization', [ConnectController::class, 'connectToOrganization'])->name('connect.organization');
+Route::post('/connect/{name}', [ConnectController::class, 'connectToOrganization'])->name('connect.organization');
 Route::post('/recycling_organizations', [RecyclingOrganizationController::class, 'store'])->name('recycling_organizations.store');
 
 Route::get('/connect', [ConnectController::class, 'showMap'])->name('connect');
