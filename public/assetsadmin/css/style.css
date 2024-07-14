@@ -5362,7 +5362,9 @@ input[type="button"].btn-block {
   flex-wrap: wrap;
   padding-left: 0;
   margin-bottom: 0;
-  list-style: none; }
+  list-style: none;
+
+ }
 
 .nav-link {
   display: block;
@@ -13486,7 +13488,7 @@ dl {
 /* Sidebar */
 .sidebar {
   min-height: calc(100vh - 64px);
-  background: #181824;
+  background:rgba(24, 24, 36, 0.9);
   font-family: "nunito-medium", sans-serif;
   padding: 0;
   width: 258px;
@@ -13748,7 +13750,7 @@ dl {
           background: transparent; }
 
 .sidebar-light .sidebar {
-  background: #fff; }
+  background: #666666; }
   .sidebar-light .sidebar .nav .nav-item .nav-link {
     color: #444343; }
     .sidebar-light .sidebar .nav .nav-item .nav-link i {

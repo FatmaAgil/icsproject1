@@ -116,6 +116,7 @@
                 <form method="POST" action="{{ route('recycling_organizations.store') }}">
                     @csrf
                     <input type="text" name="name" placeholder="Organization Name" required>
+                    <input type="email" name="email" placeholder="Email Address" required> <!-- New email input -->
                     <textarea name="description" placeholder="Description" required></textarea>
                     <textarea name="requirements" placeholder="Requirements" required></textarea>
                     <input type="text" id="address" placeholder="Enter address to geocode">

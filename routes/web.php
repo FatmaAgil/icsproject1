@@ -26,8 +26,13 @@ use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\ConnectController;
 use App\Http\Controllers\FaqController;
 use App\Http\Controllers\RecyclingOrganizationController;
+
 use App\Http\Controllers\PaymentController;
 
+use App\Http\Controllers\PlasticFormController;
+
+
+use App\Http\Controllers\Community\CommunityController;
 
 
 Route::get('/test-log', function () {
@@ -45,24 +50,35 @@ Route::get('/event', function () {
 Route::get('/terms', function () {
     return view('terms');
 });
-Route::get('/mpesa', function () {
-    return view('mpesa');
-});
+
+
 
 //Route::get('/home', function () { return Inertia('Home');});
 Route::get('/landingUser', function () {
     return view('plasticUser');
+
 });
 Route::get('/accessToken', function () {
     return view('accessToken');
 });
 
 
+
+//})->name('landingUser');
+
 Route::get('/register-organization', function () {
     return view('recyclerForm');
 })->name('register.organization');
+//Route::post('/connect', [PlasticFormController::class, 'store'])->name('details.store');
+Route::post('/plastic_forms', [PlasticFormController::class, 'store'])->name('pl.form');
+Route::get('community', [CommunityController::class, 'index'])->name('community.index');
+//Route::post('/connect/store', [ConnectController::class, 'store'])->name('connect.store');
+// web.php
 
 
+
+//Route::post('/connect-organization', [ConnectController::class, 'connectToOrganization'])->name('connect.organization');
+Route::post('/connect/{name}', [ConnectController::class, 'connectToOrganization'])->name('connect.organization');
 
 Route::post('/recycling_organizations', [RecyclingOrganizationController::class, 'store'])->name('recycling_organizations.store');
 

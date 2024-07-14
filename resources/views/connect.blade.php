@@ -1,8 +1,7 @@
 <x-plasticUserLayout>
-    <!-- Include Leaflet CSS -->
+    <!-- Include Leaflet CSS and JS -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
           integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
-    <!-- Include Leaflet JS -->
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
             integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
 
@@ -19,6 +18,7 @@
                 align-items: center;
                 flex-direction: column;
                 min-height: 100vh;
+                padding-top: 60px;
             }
 
             .container {
@@ -32,18 +32,21 @@
                 font-size: 2.5em;
                 color: #333;
                 font-weight: bold;
+                margin-top: 0;
             }
 
             h5 {
                 font-size: 1.5em;
                 color: #333;
                 font-weight: italic;
+                margin-top: 0;
             }
 
             .map-container {
                 width: 100%;
                 height: 350px;
                 margin-top: 20px;
+                border-radius: 20px;
             }
 
             .card {
@@ -84,11 +87,32 @@
                 font-weight: bold;
                 margin-top: 20px;
             }
+
+            .form-container {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                margin-bottom: 20px;
+            }
+
+            .form-container input {
+                margin: 5px;
+                padding: 10px;
+                font-size: 1em;
+                border: 1px solid #ccc;
+                border-radius: 5px;
+                width: 300px;
+            }
         </style>
 
         <div class="container">
             <h1>Welcome to RecycleConnect</h1>
             <h5>Get connected to plastic recyclers near you</h5><br><br>
+            <div class="form-container">
+                <input type="text" id="plasticUserName" placeholder="Your Name">
+                <input type="text" id="plasticUserPhone" placeholder="Your Phone Number">
+                <input type="text" id="plasticUserEmail" placeholder="Your Email">
+            </div>
             <div id="map" class="map-container"></div>
             <div id="card-container" class="card-container"></div>
             <div id="no-org-message" class="no-org-message" style="display: none;">
@@ -100,10 +124,10 @@
     <script>
         // Define custom icon for recycling organizations
         var recyclingIcon = L.icon({
-            iconUrl: 'https://www.flaticon.com/free-icon/organization_2560004?term=organization&related_id=2560004', // Replace with your custom icon path
-            iconSize: [32, 32], // Size of the icon
-            iconAnchor: [16, 32], // Point of the icon which will correspond to marker's location
-            popupAnchor: [0, -32] // Point from which the popup should open relative to the iconAnchor
+            iconUrl: 'https://www.flaticon.com/free-icon/organization_2560004?term=organization&related_id=2560004',
+            iconSize: [32, 32],
+            iconAnchor: [16, 32],
+            popupAnchor: [0, -32]
         });
 
         var map = L.map('map').setView([51.505, -0.09], 13);
@@ -154,7 +178,7 @@
                     console.log('Data received:', data);
                     const cardContainer = document.getElementById('card-container');
                     const noOrgMessage = document.getElementById('no-org-message');
-                    cardContainer.innerHTML = ''; // Clear existing cards
+                    cardContainer.innerHTML = '';
 
                     if (data.length === 0) {
                         noOrgMessage.style.display = 'block';
@@ -181,8 +205,27 @@
         }
 
         function connectToOrganization(name) {
-            alert(`You have connected to ${name}`);
+            const plasticUserName = document.getElementById('plasticUserName').value;
+            const plasticUserPhone = document.getElementById('plasticUserPhone').value;
+            const plasticUserEmail = document.getElementById('plasticUserEmail').value;
+
+            fetch(`/connect/${name}`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                },
+                body: JSON.stringify({
+                    name: plasticUserName,
+                    phone: plasticUserPhone,
+                    email: plasticUserEmail
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                alert(`You have connected to ${name}. Email: ${data.email}`);
+            })
+            .catch(error => console.error('Error connecting to organization:', error));
         }
     </script>
-
 </x-plasticUserLayout>

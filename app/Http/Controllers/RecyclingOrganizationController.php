@@ -15,6 +15,7 @@ class RecyclingOrganizationController extends Controller
             'requirements' => 'required|string',
             'latitude' => 'required|numeric',
             'longitude' => 'required|numeric',
+            'email' => 'required|email|unique:recycling_organizations,email', // Validation for email
 
         ]);
 

@@ -53,7 +53,7 @@
       </nav>
 
   </header>
-
+  @yield('content')
   {{$slot}}
 
 
