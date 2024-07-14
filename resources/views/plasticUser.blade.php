@@ -135,6 +135,7 @@
                     bankDetails.style.display = 'none';
                 }
             });
+
         </script>
     </main>
 </x-plasticUserLayout>

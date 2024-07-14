@@ -4,11 +4,12 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\RecyclingOrganization;
 use App\Mail\OrganizationConnection;
+use App\Models\PlasticForm;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Log;
 use App\Mail\OrganizationConnectedNotification;
 use App\Mail\PlasticUserConnectedNotification;
-
+use App\Models\Connection;
 class ConnectController extends Controller
 {
     public function showMap()
@@ -37,6 +38,7 @@ class ConnectController extends Controller
 
     public function connectToOrganization(Request $request, $name)
     {
+
         $request->validate([
             'name' => 'required|string|max:255',
             'phone' => 'required|string|max:255',

@@ -136,7 +136,7 @@
                 <h2>Community</h2>
                 <i class="bi bi-people-fill"></i>
                 <p>Join the community and explore the plastic adventure.</p>
-                <button type="button" class="btncommunity"><a href="/community">Community</a></button>
+                <button type="button" class="btncommunity"><a href="{{route('community.index')}}">Community</a></button>
             </div>
 
         </div>

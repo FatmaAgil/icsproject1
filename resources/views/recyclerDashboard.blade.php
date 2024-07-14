@@ -122,11 +122,11 @@
         <h5>Help us in making recycling plastic easier.</h5><br><br>
         <div class="services">
             <div class="service" ">
-                <h2>Guide</h2><i class="bi bi-book"></i>
-                <p>Employ to search different plastic and learn how to dispose and recycle them.</p>
+                <h2>Connections</h2><i class="bi bi-book"></i>
+                <p>View details of the different plastic users connected to you</p>
                 <button type="button" class="btnguide"><a href="/guide">Learn more</a></button>
             </div>
-            <div class="service" ">
+            <div class="service" >
                 <h2>Recycle</h2>
                 <i class="bi bi-geo-fill"></i>
                 <p>Register your organization.</p>
@@ -136,7 +136,7 @@
                 <h2>Community</h2>
                 <i class="bi bi-people-fill"></i>
                 <p>Join the community and explore the plastic adventure.</p>
-                <button type="button" class="btncommunity"><a href="/community">Community</a></button>
+                <button type="button" class="btncommunity"><a href="{{route('community.index')}}">Community</a></button>
             </div>
 
         </div>

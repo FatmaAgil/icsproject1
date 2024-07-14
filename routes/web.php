@@ -27,6 +27,8 @@ use App\Http\Controllers\FaqController;
 use App\Http\Controllers\RecyclingOrganizationController;
 use App\Http\Controllers\PlasticFormController;
 
+use App\Http\Controllers\Community\CommunityController;
+
 
 Route::get('/', function () {
     return view('welcome');
@@ -46,7 +48,7 @@ Route::get('/register-organization', function () {
 })->name('register.organization');
 //Route::post('/connect', [PlasticFormController::class, 'store'])->name('details.store');
 Route::post('/plastic_forms', [PlasticFormController::class, 'store'])->name('pl.form');
-
+Route::get('community', [CommunityController::class, 'index'])->name('community.index');
 //Route::post('/connect/store', [ConnectController::class, 'store'])->name('connect.store');
 // web.php
 
