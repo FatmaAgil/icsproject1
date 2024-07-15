@@ -64,6 +64,37 @@
         .card-text {
             font-size: 1rem; /* Standard font size for text */
         }
+        .community-section {
+        overflow-x: auto; /* enable horizontal scrolling */
+        padding: 20px;
+        }
+
+        .community-container {
+        display: flex; /* display elements in a row */
+        flex-wrap: nowrap; /* prevent wrapping to next line */
+        }
+        .community-card {
+        flex: 0 0 250px; /* set a fixed width for each card */
+        margin: 10px;
+        background-color: #fff;
+        border: 1px solid #ddd;
+        border-radius: 10px;
+        padding: 20px;
+        transition: transform 0.3s; /* add transition effect */
+        }
+
+        .community-card:hover {
+        transform: scale(1.05);
+        background-color: #2dc997; /* scale up on hover */
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* add shadow on hover */
+        cursor: pointer; /* change cursor to pointer on hover */
+        }
+        .community-card img {
+        width: 100%;
+        height: 150px;
+        object-fit: cover;
+        border-radius: 10px 10px 0 0;
+        }
 
         /* Button Styles */
         .btn-primary {
@@ -99,10 +130,19 @@
             </div>
         </div>
 
-        <div class="container">
-            <h1 id="news"><i class="fas fa-recycle"></i> Community Page</h1>
+        <div class="community-section">
+            <h2 style="display: flex; justify-content: center; align-items: center;"><i class="fas fa-recycle"></i> OUR COMMUNITIES</h2>
+            <div class="community-container">
+                @foreach ($communities as $community)
+                    <div class="community-card">
+                        <h2>{{ $community->name }}</h2>
+                        <p>{{ $community->description }}</p>
+                    </div>
+                @endforeach
+            </div>
+        </div>
 
-            <h2><i class="fas fa-newspaper"></i> Latest News</h2>
+            <h2 style="display: flex; justify-content: center; align-items: center;"><i class="fas fa-newspaper"></i> Latest News</h2>
             <div class="scrollable-content">
                 @foreach ($news as $item)
                     <div class="card mb-3">
@@ -115,7 +155,7 @@
                 {{ $news->links() }} {{-- Pagination links for news --}}
             </div>
 
-            <h2><i class="fas fa-calendar-alt"></i> Upcoming Events</h2>
+            <h2 style="display: flex; justify-content: center; align-items: center;"><i class="fas fa-calendar-alt"></i> Upcoming Events</h2>
             <div class="scrollable-content">
                 @foreach ($events as $event)
                     <div class="card mb-3">

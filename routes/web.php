@@ -26,12 +26,8 @@ use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\ConnectController;
 use App\Http\Controllers\FaqController;
 use App\Http\Controllers\RecyclingOrganizationController;
-
 use App\Http\Controllers\PaymentController;
-
 use App\Http\Controllers\PlasticFormController;
-
-
 use App\Http\Controllers\Community\CommunityController;
 
 
@@ -71,7 +67,7 @@ Route::get('/register-organization', function () {
 })->name('register.organization');
 //Route::post('/connect', [PlasticFormController::class, 'store'])->name('details.store');
 Route::post('/plastic_forms', [PlasticFormController::class, 'store'])->name('pl.form');
-Route::get('/community', [CommunityController::class, 'index'])->name('community.index');
+
 //Route::post('/connect/store', [ConnectController::class, 'store'])->name('connect.store');
 // web.php
 
@@ -163,7 +159,15 @@ Route::post('/other-disposal-guide/quiz', [OtherPlasticController::class, 'quiz'
 Route::get('/OtherDisposalGuide/{id}', [OtherPlasticController::class, 'show']);
 Route::get('/other-disposal-guide', [OtherPlasticController::class, 'index'])->name('OtherDisposalGuide.index');
 
-
+// Communities
+Route::get('/community', [CommunityController::class, 'index'])->name('community.index');
+Route::get('/communities', 'CommunityController@index')->name('communities.index');
+Route::get('/communities/create', 'CommunityController@create')->name('communities.create');
+Route::post('/communities', 'CommunityController@store')->name('communities.store');
+Route::get('/communities/{community}', 'CommunityController@show')->name('communities.show');
+Route::get('/communities/{community}/edit', 'CommunityController@edit')->name('communities.edit');
+Route::put('/communities/{community}', 'CommunityController@update')->name('communities.update');
+Route::delete('/communities/{community}', 'CommunityController@destroy')->name('communities.destroy');
 
 
 require __DIR__.'/auth.php';
