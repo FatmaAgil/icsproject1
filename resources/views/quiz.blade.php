@@ -287,7 +287,7 @@
                 const guideButton = document.createElement("button");
                 guideButton.innerHTML = 'Back to Guide';
                 guideButton.addEventListener('click', () => {
-                    window.location.href = '/guide';
+                    window.location.href = '/community';
                 });
                 answerButtonsElement.appendChild(guideButton);
                 if (score === questions.length) {
