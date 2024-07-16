@@ -137,8 +137,8 @@
             height: 100%;
         }
         .plastic {
-            width: 50px; /* Adjust size as needed */
-            height: 50px;
+            width: 100px; /* Adjust size as needed */
+            height: 100px;
             position: absolute;
             transition: transform 0.2s;
         }
@@ -246,10 +246,9 @@
             {{ $events->links() }} {{-- Pagination links for events --}}
         </div>
 
-        {{-- Button to redirect to quiz --}}
+        {{-- Button to take the quiz --}}
         <div class="text-center mt-4">
             <a href="{{ url('/quiz') }}" class="btn btn-primary"><i class="fas fa-question-circle"></i> Take the Plastic Quiz</a>
-        </div>
 
         {{-- Button to start the game --}}
         <div class="text-center mt-4">
@@ -259,16 +258,22 @@
         {{-- Game Container --}}
         <div id="gameContainer">
             <div id="gameInfo">
-                <h3><i class="fas fa-clock"></i> Time left: <span id="timer">60</span>s</h3>
+                <h3><i class="fas fa-clock"></i> Time left: <span id="timer">30</span>s</h3>
                 <h3><i class="fas fa-trophy"></i> Score: <span id="score">0</span></h3>
             </div>
             <div id="plasticContainer">
-                <img src="{{ asset('assets/img/LDPEGame.png') }}" id="plastic1" class="plastic">
-                <img src="{{ asset('assets/img/GameHDPE.png') }}" id="plastic2" class="plastic">
-                <img src="{{ asset('assets/img/PET-bottles.png') }}" id="plastic3" class="plastic">
-                <img src="{{ asset('assets/img/ppGame.png') }}" id="plastic3" class="plastic">
-                <img src="{{ asset('assets/img/GameIcon.png') }}" id="plastic3" class="plastic">
-                <img src="{{ asset('assets/img/OtherImage.png') }}" id="plastic3" class="plastic">
+                <img src="{{ asset('assets/img/LDPEGame.png') }}" class="plastic" data-points="1">
+                <img src="{{ asset('assets/img/GameHDPE.png') }}" class="plastic" data-points="2">
+                <img src="{{ asset('assets/img/PET-bottles.png') }}" class="plastic" data-points="3">
+                <img src="{{ asset('assets/img/ppGame.png') }}" class="plastic" data-points="1">
+                <img src="{{ asset('assets/img/GameIcon.png') }}" class="plastic" data-points="2">
+                <img src="{{ asset('assets/img/OtherImage.png') }}" class="plastic" data-points="3">
+                <img src="{{ asset('assets/img/LDPEGame.png') }}" class="plastic" data-points="1">
+                <img src="{{ asset('assets/img/GameHDPE.png') }}" class="plastic" data-points="2">
+                <img src="{{ asset('assets/img/PET-bottles.png') }}" class="plastic" data-points="3">
+                <img src="{{ asset('assets/img/ppGame.png') }}" class="plastic" data-points="1">
+                <img src="{{ asset('assets/img/GameIcon.png') }}" class="plastic" data-points="2">
+                <img src="{{ asset('assets/img/OtherImage.png') }}" class="plastic" data-points="3">
             </div>
         </div>
 
@@ -295,26 +300,25 @@
             const closePopupButton = document.getElementById('closePopupButton');
 
             let score = 0;
-            let timeLeft = 60;
+            let timeLeft = 30;
             let gameInterval;
 
             function startGame() {
                 gameContainer.style.display = 'block';
                 startGameButton.style.display = 'none';
                 score = 0;
-                timeLeft = 60;
+                timeLeft = 30;
                 scoreElement.textContent = score;
                 timerElement.textContent = timeLeft;
 
                 plastics.forEach(plastic => {
-                    plastic.style.left = `${Math.random() * (plasticContainer.offsetWidth - plastic.offsetWidth)}px`;
-                    plastic.style.top = `${Math.random() * (plasticContainer.offsetHeight - plastic.offsetHeight)}px`;
+                    positionPlastic(plastic);
 
                     plastic.addEventListener('click', () => {
-                        score++;
+                        const points = parseInt(plastic.getAttribute('data-points'), 10);
+                        score += points;
                         scoreElement.textContent = score;
-                        plastic.style.left = `${Math.random() * (plasticContainer.offsetWidth - plastic.offsetWidth)}px`;
-                        plastic.style.top = `${Math.random() * (plasticContainer.offsetHeight - plastic.offsetHeight)}px`;
+                        positionPlastic(plastic);
                     });
                 });
 
@@ -333,6 +337,35 @@
                 gameContainer.style.display = 'none';
                 popup.style.display = 'flex';
                 finalScoreElement.textContent = score;
+            }
+
+            function positionPlastic(plastic) {
+                let overlapping;
+                do {
+                    overlapping = false;
+                    const left = Math.random() * (plasticContainer.offsetWidth - plastic.offsetWidth);
+                    const top = Math.random() * (plasticContainer.offsetHeight - plastic.offsetHeight);
+                    plastic.style.left = `${left}px`;
+                    plastic.style.top = `${top}px`;
+
+                    plastics.forEach(otherPlastic => {
+                        if (plastic !== otherPlastic) {
+                            if (isOverlapping(plastic, otherPlastic)) {
+                                overlapping = true;
+                            }
+                        }
+                    });
+                } while (overlapping);
+            }
+
+            function isOverlapping(elem1, elem2) {
+                const rect1 = elem1.getBoundingClientRect();
+                const rect2 = elem2.getBoundingClientRect();
+
+                return !(rect1.right < rect2.left ||
+                         rect1.left > rect2.right ||
+                         rect1.bottom < rect2.top ||
+                         rect1.top > rect2.bottom);
             }
 
             closePopupButton.addEventListener('click', () => {
