@@ -16,5 +16,9 @@ class RecyclingOrganization extends Model
         'longitude',
         'email',
     ];
+    public function connections()
+    {
+        return $this->hasMany(Connection::class);
+    }
 
 }

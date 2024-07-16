@@ -21,4 +21,9 @@ class Connection extends Model
     {
         return $this->belongsTo(RecyclingOrganization::class);
     }
+
+    public function user()
+    {
+        return $this->plasticForm->user();
+    }
 }

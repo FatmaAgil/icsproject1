@@ -11,6 +11,7 @@ class PlasticForm extends Model
     protected $fillable = [
         'name',
         'phone_number',
+        'email',
         'plastic_type',
         'quantity',
         'condition',
@@ -21,4 +22,13 @@ class PlasticForm extends Model
         'bank_details',
         'comments',
     ];
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    public function connections()
+    {
+        return $this->hasMany(Connection::class);
+    }
 }

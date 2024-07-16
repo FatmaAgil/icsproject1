@@ -29,7 +29,18 @@ use App\Http\Controllers\RecyclingOrganizationController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\PlasticFormController;
 use App\Http\Controllers\Community\CommunityController;
+use App\Http\Controllers\ConnectionController;
+use App\Http\Controllers\PUConnectionController;
 
+Route::get('/puConnections', [PUConnectionController::class, 'index'])->name('puConnections.index');
+Route::get('/puConnections/{id}/message', [PUConnectionController::class, 'sendMessage'])->name('puConnections.sendMessage');
+Route::get('/connections', [ConnectionController::class, 'index'])->name('connections.index');
+Route::get('/connections/{id}', [ConnectionController::class, 'show'])->name('connections.show');
+Route::put('/connections/{connection}', [ConnectionController::class, 'update'])->name('connections.update');
+Route::get('connections/{id}/message', [ConnectionController::class, 'message'])->name('connections.message');
+Route::post('connections/{id}/message', [ConnectionController::class, 'sendMessage'])->name('connections.sendMessage');
+Route::delete('connections/{id}', [ConnectionController::class, 'destroy'])->name('connections.destroy');
+// Add more routes as per your application's needs
 
 Route::get('/test-log', function () {
     Log::info('Simple log message for testing');
