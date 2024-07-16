@@ -54,8 +54,8 @@ Route::get('/landingUser', function () {
     return view('plasticUser');
 
 });
-Route::get('/accessToken', function () {
-    return view('accessToken');
+Route::get('/game', function () {
+    return view('game');
 });
 
 
