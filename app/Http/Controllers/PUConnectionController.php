@@ -4,49 +4,81 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Connection; // Import the Connection model
-use Illuminate\Support\Facades\Mail;
-use App\Mail\ConnectionMessage;
+use App\Models\Connection;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
+use App\Models\Message;
+
 class PUConnectionController extends Controller
 {
     public function index()
     {
-        // Example index method to display plastic user's connection history
-        $userId = auth()->id(); // Assuming authentication and fetching current user ID
+        $userId = auth()->id();
+
+        // Retrieve connections associated with the logged-in user
         $connections = Connection::where('plastic_form_id', $userId)
-            ->with(['recyclingOrganization'])
+            ->with(['recyclingOrganization']) // Assuming 'plasticForm' relationship is not necessary here
             ->orderByDesc('created_at')
             ->get();
 
+        // Log the connections retrieved
+        Log::info('Connections retrieved for user ID:', ['user_id' => $userId, 'connections' => $connections->toArray()]);
+
         return view('Pl_userConnection', compact('connections'));
     }
-    public function show($id)
-    {
-        // Fetch connection details by ID
-        $connection = Connection::with('recyclingOrganization')->find($id);
 
-        // Check if connection exists
-        if (!$connection) {
-            // Handle case where connection is not found, perhaps redirect or show error
-            return redirect()->back()->with('error', 'Connection not found.');
+
+        public function show($id)
+        {
+            try {
+                // Fetch the connection including the related recycling organization and plastic form details
+                $connection = Connection::with(['recyclingOrganization', 'plasticForm'])->findOrFail($id);
+
+                // Return the connection details as JSON response
+                return response()->json($connection);
+            } catch (ModelNotFoundException $e) {
+                // Handle case where connection is not found
+                return response()->json(['error' => 'Connection not found'], 404);
+            }
         }
 
-        // Return view with connection details
-        return view('connection.show', compact('connection'));
-    }
-        public function sendMessage(Request $request)
+
+    public function sendMessage(Request $request)
     {
-        $connectionId = $request->input('connection_id'); // Assuming you have a way to get the connection ID
-        $message = $request->input('message');
+        // Log the incoming request data
+        Log::info('sendMessage request received:', ['request' => $request->all()]);
 
-        // Retrieve connection details
-        $connection = Connection::find($connectionId);
-        $orgEmail = $connection->recyclingOrganization->email;
+        // Validate the incoming request data
+        try {
+            $validatedData = $request->validate([
+                'message' => 'required|string',
+                'recyclingOrganizationId' => 'required|exists:recycling_organizations,id',
+            ]);
 
-        // Send email
-        Mail::to($orgEmail)->send(new ConnectionMessage($message));
+            // Log the validated data
+            Log::info('sendMessage request validated:', ['validatedData' => $validatedData]);
 
-        // Optionally, you can redirect back with a success message
-        return redirect()->back()->with('message_sent', 'Message sent successfully!');
+            // Create a new message instance
+            $message = new Message();
+            $message->message = $validatedData['message'];
+            $message->user_id = auth()->id(); // Assuming the authenticated user is sending the message
+            $message->recycling_organization_id = $validatedData['recyclingOrganizationId'];
+
+            // Log the message details before saving
+            Log::info('Message details before saving:', ['message' => $message->toArray()]);
+
+            // Save the message
+            $message->save();
+
+            // Log the saved message
+            Log::info('Message sent and saved:', ['message' => $message->toArray()]);
+
+            // Return a success response
+            return response()->json(['message' => 'Message sent successfully'], 200);
+        } catch (\Exception $e) {
+            // Log any exception that occurs
+            Log::error('Error in sendMessage:', ['error' => $e->getMessage()]);
+            return response()->json(['error' => 'Message sending failed'], 500);
+        }
     }
 }

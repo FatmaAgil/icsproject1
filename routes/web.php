@@ -180,8 +180,8 @@ Route::put('/communities/{community}', 'CommunityController@update')->name('comm
 Route::delete('/communities/{community}', 'CommunityController@destroy')->name('communities.destroy');
 
 Route::get('/puConnections', [PUConnectionController::class, 'index'])->name('puConnections.index');
-Route::get('/send-message', [PUConnectionController::class, 'sendMessage'])->name('puConnections.sendMessage');
-Route::get('/connections/{id}', [PUConnectionController::class, 'show'])->name('connections.show');
+Route::post('/send-message', [PUConnectionController::class, 'sendMessage'])->name('puConnections.sendMessage');
+Route::get('/admin/connections/{id}', [PUConnectionController::class, 'show']);
 
 Route::get('/connections', [ConnectionController::class, 'index'])->name('connections.index');
 Route::get('/connections/{id}', [ConnectionController::class, 'show'])->name('connections.show');
