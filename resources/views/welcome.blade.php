@@ -45,40 +45,7 @@
           </div>
         </section>
 
-              <section id="facts">
-              <div class="container" data-aos="fade-up">
-                <div class="section-header">
-                  <h3 class="section-title">Statistics</h3>
-                  <p class="section-description"></p>
-                </div>
-                <div class="row counters">
-
-                  <div class="col-lg-3 col-6 text-center">
-
-                      <i class="bi bi-person-add" style="font-size: 4em;"></i>
-                      <span data-purecounter-start="0" data-purecounter-end="10" data-purecounter-duration="1" class="purecounter"></span>
-                    <p><h5>Plastic waste generators</h5></p>
-                  </div>
-
-                  <div class="col-lg-3 col-6 text-center">
-                      <i class="bi bi-recycle" style="font-size: 4em;"></i>
-                      <span data-purecounter-start="0" data-purecounter-end="534" data-purecounter-duration="1" class="purecounter"></span>
-                    <p><h5>Recycling organizations</h5></p>
-                  </div>
-
-                  <div class="col-lg-3 col-6 text-center">
-                      <i class="bi bi-bar-chart-line" style="font-size: 4em;"></i><span data-purecounter-start="0" data-purecounter-end="1463" data-purecounter-duration="1" class="purecounter"></span>
-                    <p><h5>Plastic waste recycled</h5></p>
-                  </div>
-
-                </div>
-                <a href="/about" class="btn-read-more">Read More</a>
-                </div>
-
-              </div>
-            </section>
-        </div>
-      </section><!-- End About Section -->
+            <!-- End About Section -->
       <section id="events">
           <div class="container" data-aos="fade-up">
             <div class="section-header">
