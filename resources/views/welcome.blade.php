@@ -183,10 +183,7 @@
 
         </div>
       </section>
-      <!-- ======= Portfolio Section ======= -->
-      <
-      <!-- ======= Team Section ======= -->
-     <!-- End Team Section -->
+     
 
       <!-- ======= Contact Section ======= -->
       <section id="contact">

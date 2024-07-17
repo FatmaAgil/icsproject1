@@ -22,6 +22,7 @@ class User extends Authenticatable implements MustVerifyEmail
         'email',
         'password',
         'role',
+        'points',
     ];
     const ROLE_PLASTIC_USER = 'plastic user';
     const ROLE_ADMIN = 'admin';
@@ -65,4 +66,16 @@ class User extends Authenticatable implements MustVerifyEmail
             'password' => 'hashed',
         ];
     }
+    public function updatePoints($points)
+    {
+        $this->points += $points;
+        $this->save();
+    }
+    public function attendedEvents()
+    {
+        return $this->belongsToMany(Event::class, 'event_user', 'user_id', 'event_id')
+                    ->withPivot('attended')
+                    ->withTimestamps();
+    }
+
 }

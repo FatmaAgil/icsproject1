@@ -48,9 +48,9 @@
         <ul>
           <li><a class="nav-link scrollto active" href="/">Home</a></li>
           <li><a class="nav-link scrollto" href="/guide">Guide</a></li>
-          <li><a class="nav-link scrollto" href="#support">Support</a></li>
-          <li><a class="nav-link scrollto" href="#FAQ">FAQ</a></li>
-          <li><a class="nav-link scrollto" href="#accessibility"><span>Accessibility</span><i class="bi bi-person-wheelchair"></i></a></li>
+          <li><a class="nav-link scrollto" href="/community">FAQ</a></li>
+             <li><a class="nav-link scrollto" href="/faq">FAQ</a></li>
+
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav>

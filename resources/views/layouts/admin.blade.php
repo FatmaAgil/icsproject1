@@ -272,7 +272,7 @@
                 <ul class="nav flex-column sub-menu">
                     <li class="nav-item"> <a class="nav-link" href="{{ route('admin.events.index') }}">Events</a></li>
                     <li class="nav-item"> <a class="nav-link" href="{{ route('admin.news.index') }}">News</a></li>
-                    <li class="nav-item"> <a class="nav-link" href="pages/ui-features/typography.html">Typography</a></li>
+                   
                 </ul>
               </div>
             </li>

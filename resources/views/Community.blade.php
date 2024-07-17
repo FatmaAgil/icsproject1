@@ -240,10 +240,47 @@
                         <h5 class="card-title">{{ $event->title }}</h5>
                         <p class="card-text">{{ $event->description }}</p>
                         <p class="card-text">Event Date: {{ \Carbon\Carbon::parse($event->event_date)->format('Y-m-d H:i:s') }}</p>
+                        {{ $events->links() }}
+                        <button class="btn btn-primary attend-event" data-event-id="{{ $event->id }}">Attend Event and Earn Points</button>
                     </div>
                 </div>
             @endforeach
-            {{ $events->links() }} {{-- Pagination links for events --}}
+            <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+            <script>
+                $.ajaxSetup({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    }
+                });
+
+                $(document).ready(function() {
+                    $('.attend-event').on('click', function() {
+                        var eventId = $(this).data('event-id');
+                        console.log('Event ID:', eventId); // Log the event ID
+
+                        $.ajax({
+                            url: '{{ route("events.attend") }}',
+                            method: 'POST',
+                            data: {
+                                event_id: eventId
+                            },
+                            success: function(response) {
+                                console.log(response); // Log the response
+                                if (response.success) {
+                                    alert(response.message);
+                                } else {
+                                    alert(response.message);
+                                }
+                            },
+                            error: function(xhr) {
+                                console.log(xhr.responseText); // Log any errors
+                                alert('An error occurred while processing your request.');
+                            }
+                        });
+                    });
+                });
+            </script>
+
         </div>
 
         {{-- Button to take the quiz --}}

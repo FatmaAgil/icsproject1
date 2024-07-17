@@ -1,4 +1,4 @@
-<x-plasticUserLayout><br><br><br><br><br>
+<x-plasticUserLayout><br><br>
 
     <main id="main">
 

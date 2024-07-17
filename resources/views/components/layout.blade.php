@@ -57,17 +57,12 @@
                     <a href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Log out</a>
                 </li>
                 </ul>
-              <li><a href="signup">Creating a source of income</a></li>
-             <li><a href="/guide">Scheduling pick up</a></li>
-              <li><a href="/community">Progress report</a></li>
-              <li><a href="/community">Plastic Disposal guide</a></li>
-
             </ul>
           </li>
-          <li><a class="nav-link scrollto" href="#support">Support</a></li>
+          <li><a class="nav-link scrollto" href="#call-to-action">Support</a></li>
           <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
           <li><a class="nav-link scrollto" href="{{ route('faq.index') }}#faq">FAQ</a></li>
-          <li><a href = "#accessibility"><span>Accessibility</span><i class="bi bi-person-wheelchair"></i></a><li>
+
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav>

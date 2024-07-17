@@ -29,6 +29,8 @@ use App\Http\Controllers\RecyclingOrganizationController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\PlasticFormController;
 use App\Http\Controllers\Community\CommunityController;
+use App\Http\Controllers\EventAttendanceController;
+
 
 
 Route::get('/test-log', function () {
@@ -68,12 +70,12 @@ Route::get('/register-organization', function () {
 //Route::post('/connect', [PlasticFormController::class, 'store'])->name('details.store');
 Route::post('/plastic_forms', [PlasticFormController::class, 'store'])->name('pl.form');
 
-//Route::post('/connect/store', [ConnectController::class, 'store'])->name('connect.store');
+Route::post('/connect/store', [ConnectController::class, 'store'])->name('connect.store');
 // web.php
 
 
 
-//Route::post('/connect-organization', [ConnectController::class, 'connectToOrganization'])->name('connect.organization');
+Route::post('/connect-organization', [ConnectController::class, 'connectToOrganization'])->name('connect.organization');
 Route::post('/connect/{name}', [ConnectController::class, 'connectToOrganization'])->name('connect.organization');
 
 Route::post('/recycling_organizations', [RecyclingOrganizationController::class, 'store'])->name('recycling_organizations.store');
@@ -168,6 +170,9 @@ Route::get('/communities/{community}', 'CommunityController@show')->name('commun
 Route::get('/communities/{community}/edit', 'CommunityController@edit')->name('communities.edit');
 Route::put('/communities/{community}', 'CommunityController@update')->name('communities.update');
 Route::delete('/communities/{community}', 'CommunityController@destroy')->name('communities.destroy');
+
+
+Route::post('/events/attend', [EventAttendanceController::class, 'attendEvent'])->name('events.attend');
 
 
 require __DIR__.'/auth.php';

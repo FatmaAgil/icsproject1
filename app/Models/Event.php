@@ -11,4 +11,8 @@ class Event extends Model
     protected $fillable = ['title', 'description', 'event_date'];
 
     protected $dates = ['event_date'];
+    public function attendees()
+    {
+        return $this->belongsToMany(User::class, 'event_user', 'event_id', 'user_id')->withTimestamps();
+    }
 }

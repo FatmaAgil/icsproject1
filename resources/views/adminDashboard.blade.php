@@ -1,4 +1,4 @@
-<x-plasticUserLayout><br><br><br><br><br>
+<x-adminLayout><br><br>
 
     <main id="main">
 
@@ -152,5 +152,4 @@
 
 </main>
 
-
-</x-plasticUserLayout>
+</x-adminLayout>
