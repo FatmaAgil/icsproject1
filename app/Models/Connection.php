@@ -26,4 +26,8 @@ class Connection extends Model
     {
         return $this->plasticForm->user();
     }
+    public function plasticUser()
+    {
+        return $this->belongsTo(User::class, 'plastic_user_id');
+    }
 }

@@ -64,4 +64,11 @@ class ConnectionController extends Controller
 
         return response()->json(['message' => 'Connection status updated successfully.']);
     }
+    public function showMessage($id)
+    {
+        $message = Message::with('plasticUser')->findOrFail($id);
+        return response()->json($message);
+    }
+
+
 }

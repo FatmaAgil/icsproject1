@@ -56,6 +56,7 @@
         <li><a class="nav-link scrollto" href="/profile">Profile</a></li>
 
         <li><a class="nav-link scrollto" href="/community">Community</a></li>
+        <li><a class="nav-link scrollto" href="/pointsProgress">points progress</a></li>
         <li><a class="nav-link scrollto" href="/guide">Guide</a></li>
         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
             @csrf

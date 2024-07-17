@@ -36,7 +36,7 @@ use App\Http\Controllers\EventAttendanceController;
 
 use App\Http\Controllers\ConnectionController;
 use App\Http\Controllers\PUConnectionController;
-
+use App\Http\Controllers\PointsProgressController;
 
 
 // Add more routes as per your application's needs
@@ -71,7 +71,10 @@ Route::get('/communit', function () {
 Route::get('/game', function () {
     return view('game');
 });
+Route::get('/pointsProgress', function () {
+    return view('pointsProgress');
 
+});
 
 
 //})->name('landingUser');
@@ -86,7 +89,7 @@ Route::post('/connect/store', [ConnectController::class, 'store'])->name('connec
 // web.php
 
 
-
+Route::get('/pointsProgress', [PointsProgressController::class, 'index'])->name('points.progress');
 Route::post('/connect-organization', [ConnectController::class, 'connectToOrganization'])->name('connect.organization');
 Route::post('/connect/{name}', [ConnectController::class, 'connectToOrganization'])->name('connect.organization');
 
@@ -205,6 +208,8 @@ Route::put('connections/{id}/status', [ConnectionController::class, 'updateStatu
 Route::get('connections/{id}/message', [ConnectionController::class, 'message'])->name('connections.message');
 Route::post('connections/{id}/send-message', [ConnectionController::class, 'sendMessage'])->name('connections.sendMessage');
 Route::get('/admin/connections/{id}', [ConnectionController::class, 'show'])->name('connections.show');
+Route::get('messages/{id}', [ConnectionController::class, 'showMessage'])->name('messages.show');
+
 Route::post('/events/attend', [EventAttendanceController::class, 'attendEvent'])->name('events.attend');
 
 
