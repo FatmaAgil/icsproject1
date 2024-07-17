@@ -43,9 +43,14 @@
       <ul>
         <li><a class="nav-link scrollto active" href="/landingRecycler">Home</a></li>
         <li><a class="nav-link scrollto" href="/profile">Profile</a></li>
-        <li><a class="nav-link scrollto" href="/events">Events & News</a></li>
         <li><a class="nav-link scrollto" href="/community">Community</a></li>
         <li><a class="nav-link scrollto" href="/guide">Guide</a></li>
+        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+            @csrf
+        </form>
+        <li>
+        <a class="nav-link scrollto"href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Log out</a>
+        </li>
       </ul>
       <i class="bi bi-list mobile-nav-toggle"></i>
     </nav>

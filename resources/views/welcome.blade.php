@@ -168,21 +168,6 @@
         </div>
       </section><!-- End Services Section -->
 
-      <!-- ======= Call To Action Section ======= -->
-      <section id="call-to-action">
-        <div class="container">
-          <div class="row" data-aos="zoom-in">
-            <div class="col-lg-9 text-center text-lg-start">
-              <h3 class="cta-title">SUPPORT AND DONATE</h3>
-              <p class="cta-text"> Join us in making Kenya a plastic clean country.</p>
-            </div>
-            <div class="col-lg-3 cta-btn-container text-center">
-              <a class="cta-btn align-middle" href="/support">Support</a>
-            </div>
-          </div>
-
-        </div>
-      </section>
      
 
       <!-- ======= Contact Section ======= -->

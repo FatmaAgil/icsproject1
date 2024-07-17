@@ -1,4 +1,4 @@
-<x-plasticUserLayout>
+<x-RecycleLayout>
     <!-- Include Leaflet CSS and JavaScript -->
     <link rel="stylesheet" href="{{ asset('leaflet/dist/leaflet.css') }}">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
@@ -196,4 +196,4 @@
             .catch(error => console.error('Error:', error));
         }
     </script>
-</x-plasticUserLayout>
+</x-RecycleLayout>

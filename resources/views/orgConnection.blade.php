@@ -1,4 +1,4 @@
-<x-plasticUserLayout>
+<x-RecycleLayout>
     <style>
         body {
             padding-top: 70px; /* Adjust this value based on the height of your navigation bar */
@@ -113,4 +113,4 @@
             </div>
         </div>
     </div>
-</x-plasticUserLayout>
+</x-RecycleLayout>

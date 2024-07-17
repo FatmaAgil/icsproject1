@@ -59,12 +59,31 @@
                 </ul>
             </ul>
           </li>
-          <li><a class="nav-link scrollto" href="#call-to-action">Support</a></li>
-          <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
+           <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
           <li><a class="nav-link scrollto" href="{{ route('faq.index') }}#faq">FAQ</a></li>
 
         </ul>
-        <i class="bi bi-list mobile-nav-toggle"></i>
+        <i class="bi bi-list mobile-nav-toggle">
+            <ul>
+                <li><a class="nav-link scrollto active" href="/">Home</a></li>
+                <li><a class="nav-link scrollto" href="#about">About</a></li>
+                <li><a class="nav-link scrollto " href="#events">Events & News</a></li>
+                   <li class="dropdown"><a href="#"><span>Our Services</span> <i class="bi bi-chevron-down"></i></a>
+                  <ul>
+
+                    <li class="dropdown"><a href="#"><span>Registration and profiles</span> <i class="bi bi-chevron-right"></i></a>
+                      <ul>
+                        <li><a href="{{ route('register') }}">Create account</a></li>
+                        <li><a href="{{ route('login') }}">Log in</a></li>
+                        <li>
+                          <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                              @csrf
+                          </form>
+                          <a href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Log out</a>
+                      </li>
+                      </ul>
+                  </ul>
+        </i>
       </nav>
     </div>
   </header>

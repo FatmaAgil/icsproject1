@@ -61,7 +61,11 @@ Route::get('/terms', function () {
 
 //Route::get('/home', function () { return Inertia('Home');});
 Route::get('/landingUser', function () {
-    return view('plasticUser');
+    return view('recyclerDashboard');
+
+});
+Route::get('/communit', function () {
+    return view('RecyclerCommunity');
 
 });
 Route::get('/game', function () {

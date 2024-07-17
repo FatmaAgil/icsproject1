@@ -1,6 +1,7 @@
-<x-layout>
+<x-plasticUserLayout>
 
     <main id ="main">
+        
   <section id="facts">
       <section id="events">
           <div class="container" data-aos="fade-up">
@@ -42,6 +43,6 @@
           </div>
         </section>
     </main>
-  </x-layout>
-  @include('layout.script')
+</x-plasticUserLayout>
+
 

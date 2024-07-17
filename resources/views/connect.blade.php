@@ -1,4 +1,4 @@
-<x-plasticUserLayout>
+<x-plasticUserLayout><br><br><br><br><br>
     <!-- Include Leaflet CSS and JS -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
           integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
@@ -132,21 +132,7 @@
                         <textarea id="instructions" name="instructions" rows="4" placeholder="Any special instructions"></textarea>
                     </div>
 
-                    <h3>Payment Information</h3>
-                    <div class="form-group">
-                        <label for="payment-method">Preferred Payment Method:</label>
-                        <select id="payment-method" name="payment_method" required>
-                            <option value="" disabled selected>Select payment method</option>
-                            <option value="bank_transfer">Bank Transfer</option>
-                            <option value="cash">Cash</option>
-                            <option value="MPESA">MPESA</option>
-                        </select>
-                    </div>
-                    <div class="form-group" id="bank-details" style="display:none;">
-                        <label for="bank-details-input">Bank Account Details:</label>
-                        <input type="text" id="bank-details-input" name="bank_details" placeholder="Enter bank account details">
-                    </div>
-
+                
                     <h3>Additional Information</h3>
                     <div class="form-group">
                         <label for="comments">Comments:</label>
