@@ -6,13 +6,27 @@
         /* General Styles */
         body {
             font-family: 'Arial', sans-serif;
-            background-color: #e0f7fa;
+            background-color: #fff;
             color: #333;
             padding-top: 0;
         }
-        h1, h2 {
-            color: #00796b;
+        h1 {
+            color: #fff;
+            text-transform: uppercase;
         }
+        h2 {
+            color: #2dc997;
+            display: flex;
+            align-items: center;
+        }
+        h3 {
+            color: black;
+        }
+        h5 {
+            text-align: center;
+
+        }
+
 
         /* Hero Section Styles */
         .hero-section {
@@ -56,6 +70,9 @@
         }
         .card-body {
             padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            align-content: center;
+            justify-content: center;
         }
         .card-title {
             font-size: 1.5rem; /* Larger font for titles */
@@ -65,29 +82,27 @@
             font-size: 1rem; /* Standard font size for text */
         }
         .community-section {
-            overflow-x: auto; /* enable horizontal scrolling */
+            overflow-x: auto; /* Enable horizontal scrolling */
             padding: 20px;
         }
-
         .community-container {
-            display: flex; /* display elements in a row */
-            flex-wrap: nowrap; /* prevent wrapping to next line */
+            display: flex; /* Display elements in a row */
+            flex-wrap: nowrap; /* Prevent wrapping to next line */
         }
         .community-card {
-            flex: 0 0 250px; /* set a fixed width for each card */
+            flex: 0 0 250px; /* Set a fixed width for each card */
             margin: 10px;
             background-color: #fff;
             border: 1px solid #ddd;
             border-radius: 10px;
             padding: 20px;
-            transition: transform 0.3s; /* add transition effect */
+            transition: transform 0.3s; /* Add transition effect */
         }
-
         .community-card:hover {
-            transform: scale(1.05);
-            background-color: #2dc997; /* scale up on hover */
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* add shadow on hover */
-            cursor: pointer; /* change cursor to pointer on hover */
+            transform: scale(1.05); /* Scale up on hover */
+            background-color: #2dc997;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Add shadow on hover */
+            cursor: pointer; /* Change cursor to pointer on hover */
         }
         .community-card img {
             width: 100%;
@@ -98,15 +113,15 @@
 
         /* Button Styles */
         .btn-primary {
-            background-color: #00796b;
-            border-color: #00796b;
+            background-color: #2dc997;
+            border-color: #2dc997;
             color: #fff;
             font-size: 1.1rem;
             padding: 10px 20px;
         }
         .btn-primary:hover {
-            background-color: #004d40;
-            border-color: #004d40;
+            background-color: #28a745;
+            border-color: #28a745;
         }
 
         .scrollable-content {
@@ -193,7 +208,7 @@
             cursor: pointer;
         }
         .popup button:hover {
-            background-color: #004d40;
+            background-color: #28a745;
         }
     </style>
 
@@ -203,7 +218,6 @@
             <div class="hero-content">
                 <h1 class="hero-title"><i class="fas fa-leaf"></i> Welcome to the Plastic Community</h1>
                 <p class="hero-subtitle">Join us in making a difference by staying informed and participating in our community events.</p>
-                <a href="#news" class="btn btn-primary"><i class="fas fa-arrow-down"></i> Explore More</a>
             </div>
         </div>
 
@@ -212,7 +226,7 @@
             <div class="community-container">
                 @foreach ($communities as $community)
                     <div class="community-card">
-                        <h2>{{ $community->name }}</h2>
+                        <h3>{{ $community->name }}</h3>
                         <p>{{ $community->description }}</p>
                     </div>
                 @endforeach
