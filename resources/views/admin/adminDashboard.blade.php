@@ -9,16 +9,8 @@
 
     <h2 class="text-dark font-weight-bold mb-2"> RecycleConnect dashboard </h2>
     <div class="d-sm-flex justify-content-xl-between align-items-center mb-2">
-        <div class="btn-group bg-white p-3" role="group" aria-label="Basic example" style="display: inline-block; padding: 1rem; background-color: #ffffff;">
-            <button type="button" class="btn btn-link text-dark py-0 border-right" onclick="setDateRange(7)" style="border: 1px solid #dee2e6; padding: 0.5rem 1rem; border-right: 0; color: #000000; text-decoration: none;">7 Days</button>
-            <button type="button" class="btn btn-link text-dark py-0 border-right" onclick="setDateRange(30)" style="border: 1px solid #dee2e6; padding: 0.5rem 1rem; border-right: 0; color: #000000; text-decoration: none;">1 Month</button>
-            <button type="button" class="btn btn-link text-dark py-0" onclick="setDateRange(90)" style="border: 1px solid #dee2e6; padding: 0.5rem 1rem; color: #000000; text-decoration: none;">3 Months</button>
-        </div>
-        <div class="dropdown ml-0 ml-md-4 mt-2 mt-lg-0" style="margin-left: 1rem; margin-top: 0.5rem;">
-            <button class="btn bg-white dropdown-toggle p-3 d-flex align-items-center" type="button" id="dropdownMenuButton1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="background-color: #ffffff; padding: 1rem; display: flex; align-items: center;">
-                <i class="mdi mdi-calendar mr-1" style="font-family: 'Material Design Icons'; font-style: normal; font-weight: normal; font-size: inherit; text-rendering: auto; line-height: 1; margin-right: 0.25rem;"></i><span id="date-range"></span>
-            </button>
-        </div>
+
+
       </div>
 
     <h2 class="text-dark font-weight-bold mb-2"> Analytics </h2>
@@ -43,14 +35,7 @@
 
 
         </ul>
-        <div class="col-lg-6 grid-margin stretch-card">
-            <div class="card">
-              <div class="card-body">
-                <h4 class="card-title">Doughnut chart</h4>
-                <canvas id="doughnutChart" style="height:250px"></canvas>
-              </div>
-            </div>
-          </div>
+
         <div class="d-md-block d-none">
           <a href="#" class="text-light p-1"><i class="mdi mdi-view-dashboard"></i></a>
           <a href="#" class="text-light p-1"><i class="mdi mdi-dots-vertical"></i></a>
@@ -82,28 +67,7 @@
                     </div>
                 </div>
 
-            <div class="col-xl-3  col-lg-6 col-sm-6 grid-margin stretch-card">
-              <div class="card">
-                <div class="card-body text-center">
-                  <h5 class="mb-2 text-dark font-weight-normal">Impressions</h5>
-                  <h2 class="mb-4 text-dark font-weight-bold">100,38</h2>
-                  <div class="dashboard-progress dashboard-progress-3 d-flex align-items-center justify-content-center item-parent"><i class="mdi mdi-eye icon-md absolute-center text-dark"></i></div>
-                  <p class="mt-4 mb-0">Increased since yesterday</p>
-                  <h3 class="mb-0 font-weight-bold mt-2 text-dark">35%</h3>
-                </div>
-              </div>
-            </div>
-            <div class="col-xl-3 col-lg-6 col-sm-6 grid-margin stretch-card">
-              <div class="card">
-                <div class="card-body text-center">
-                  <h5 class="mb-2 text-dark font-weight-normal">Followers</h5>
-                  <h2 class="mb-4 text-dark font-weight-bold">4250k</h2>
-                  <div class="dashboard-progress dashboard-progress-4 d-flex align-items-center justify-content-center item-parent"><i class="mdi mdi-cube icon-md absolute-center text-dark"></i></div>
-                  <p class="mt-4 mb-0">Decreased since yesterday</p>
-                  <h3 class="mb-0 font-weight-bold mt-2 text-dark">25%</h3>
-                </div>
-              </div>
-            </div>
+
           </div>
           <div class="row">
             <div class="col-12 grid-margin">

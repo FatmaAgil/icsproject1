@@ -191,14 +191,20 @@ Route::get('/puConnections', [PUConnectionController::class, 'index'])->name('pu
 Route::post('/send-message', [PUConnectionController::class, 'sendMessage'])->name('puConnections.sendMessage');
 Route::get('/admin/connections/{id}', [PUConnectionController::class, 'show']);
 
-Route::get('/connections', [ConnectionController::class, 'index'])->name('connections.index');
-Route::get('/connections/{id}', [ConnectionController::class, 'show'])->name('connections.show');
-Route::put('/connections/{connection}', [ConnectionController::class, 'update'])->name('connections.update');
+
+// Routes for recycling organization connections
+//Route::get('/connections', [ConnectionController::class, 'index'])->name('connections.index');
+//Route::get('/connections/{id}', [ConnectionController::class, 'show'])->name('connections.show');
+//Route::put('/connections/{connection}', [ConnectionController::class, 'update'])->name('connections.update');
+//Route::get('connections/{id}/message', [ConnectionController::class, 'message'])->name('connections.message');
+//Route::post('connections/{id}/message', [ConnectionController::class, 'sendMessage'])->name('connections.sendMessage');
+//Route::delete('connections/{id}', [ConnectionController::class, 'destroy'])->name('connections.destroy');
+
+Route::resource('connections', ConnectionController::class);
+Route::put('connections/{id}/status', [ConnectionController::class, 'updateStatus'])->name('connections.updateStatus');
 Route::get('connections/{id}/message', [ConnectionController::class, 'message'])->name('connections.message');
-Route::post('connections/{id}/message', [ConnectionController::class, 'sendMessage'])->name('connections.sendMessage');
-Route::delete('connections/{id}', [ConnectionController::class, 'destroy'])->name('connections.destroy');
-
-
+Route::post('connections/{id}/send-message', [ConnectionController::class, 'sendMessage'])->name('connections.sendMessage');
+Route::get('/recycling/connections/{id}', [ConnectionController::class, 'show'])->name('connections.show');
 Route::post('/events/attend', [EventAttendanceController::class, 'attendEvent'])->name('events.attend');
 
 
