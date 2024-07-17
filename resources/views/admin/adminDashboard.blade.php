@@ -6,6 +6,7 @@
 @section('content')
 
   <div class="d-xl-flex justify-content-between align-items-start">
+
     <h2 class="text-dark font-weight-bold mb-2"> RecycleConnect dashboard </h2>
     <div class="d-sm-flex justify-content-xl-between align-items-center mb-2">
         <div class="btn-group bg-white p-3" role="group" aria-label="Basic example" style="display: inline-block; padding: 1rem; background-color: #ffffff;">
@@ -19,6 +20,10 @@
             </button>
         </div>
       </div>
+
+    <h2 class="text-dark font-weight-bold mb-2"> Analytics </h2>
+    <div class="d-sm-flex justify-content-xl-between align-items-center mb-2">
+
     </div>
   </div>
   <div class="row">
@@ -29,9 +34,23 @@
             <a class="nav-link" id="home-tab" data-toggle="tab" href="#" role="tab" aria-selected="true">Users</a>
           </li>
           <li class="nav-item">
+
             <a class="nav-link" id="home-tab" data-toggle="tab" href="#" role="tab" aria-selected="true">Recyling </a>
           </li>
+
+            <a class="nav-link active" id="business-tab" data-toggle="tab" href="#business-1" role="tab" aria-selected="false">Business</a>
+          </li>
+
+
         </ul>
+        <div class="col-lg-6 grid-margin stretch-card">
+            <div class="card">
+              <div class="card-body">
+                <h4 class="card-title">Doughnut chart</h4>
+                <canvas id="doughnutChart" style="height:250px"></canvas>
+              </div>
+            </div>
+          </div>
         <div class="d-md-block d-none">
           <a href="#" class="text-light p-1"><i class="mdi mdi-view-dashboard"></i></a>
           <a href="#" class="text-light p-1"><i class="mdi mdi-dots-vertical"></i></a>
@@ -271,3 +290,4 @@
     </script>
 
 @endsection
+<script src="../../assets/js/chart.js"></script>

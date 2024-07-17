@@ -5,25 +5,23 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Connection extends Model
+class Message extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'plastic_form_id', 'recycling_organization_id', 'status',
+        'message',
+        'user_id',
+        'recycling_organization_id',
     ];
 
-    public function plasticForm()
+    // Define relationships
+    public function user()
     {
-        return $this->belongsTo(PlasticForm::class);
+        return $this->belongsTo(User::class);
     }
 
     public function recyclingOrganization()
     {
         return $this->belongsTo(RecyclingOrganization::class);
-    }
-
-    public function user()
-    {
-        return $this->plasticForm->user();
     }
 }

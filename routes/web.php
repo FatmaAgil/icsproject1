@@ -23,15 +23,23 @@ use App\Http\Controllers\Admin\EventController;
 use App\Http\Controllers\Admin\MessageController;
 use App\Http\Controllers\Admin\NewsController;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Admin\AnalyticsController;
+
 use App\Http\Controllers\ConnectController;
 use App\Http\Controllers\FaqController;
 use App\Http\Controllers\RecyclingOrganizationController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\PlasticFormController;
 use App\Http\Controllers\Community\CommunityController;
+
 use App\Http\Controllers\EventAttendanceController;
 
+use App\Http\Controllers\ConnectionController;
+use App\Http\Controllers\PUConnectionController;
 
+
+
+// Add more routes as per your application's needs
 
 Route::get('/test-log', function () {
     Log::info('Simple log message for testing');
@@ -109,7 +117,11 @@ Route::prefix('admin')->name('admin.')->group(function() {
     Route::get('/messages', [MessageController::class, 'index'])->name('messages.index');
     Route::get('/messages/{id}', [MessageController::class, 'show'])->name('messages.show');
     Route::post('/messages/{id}/reply', [MessageController::class, 'reply'])->name('messages.reply');
+    Route::get('admin/latest-messages', [MessageController::class, 'latestMessages'])->name('admin.latest.messages');
 });
+Route::get('/admin/analytics', [AnalyticsController::class, 'showAnalytics'])->name('admin.analytics');
+Route::get('/admin/analytics/weekly-registrations', [AnalyticsController::class, 'userRegistrationsWeekly'])
+    ->name('admin.analytics.weeklyRegistrations');
 Route::get('/PETDisposalGuide', [PETPlasticController::class, 'index'])->name('PETDisposalGuide');
 Route::post('/quizSubmit', [PETPlasticController::class, 'quizSubmit'])->name('quiz.submit');
 Route::post('/PETDisposalGuide/quiz', [PETPlasticController::class, 'quizSubmit'])->name('PETDisposalGuide.quiz');
@@ -161,7 +173,7 @@ Route::post('/other-disposal-guide/quiz', [OtherPlasticController::class, 'quiz'
 Route::get('/OtherDisposalGuide/{id}', [OtherPlasticController::class, 'show']);
 Route::get('/other-disposal-guide', [OtherPlasticController::class, 'index'])->name('OtherDisposalGuide.index');
 
-// Communities
+
 Route::get('/community', [CommunityController::class, 'index'])->name('community.index');
 Route::get('/communities', 'CommunityController@index')->name('communities.index');
 Route::get('/communities/create', 'CommunityController@create')->name('communities.create');
@@ -170,6 +182,17 @@ Route::get('/communities/{community}', 'CommunityController@show')->name('commun
 Route::get('/communities/{community}/edit', 'CommunityController@edit')->name('communities.edit');
 Route::put('/communities/{community}', 'CommunityController@update')->name('communities.update');
 Route::delete('/communities/{community}', 'CommunityController@destroy')->name('communities.destroy');
+
+Route::get('/puConnections', [PUConnectionController::class, 'index'])->name('puConnections.index');
+Route::post('/send-message', [PUConnectionController::class, 'sendMessage'])->name('puConnections.sendMessage');
+Route::get('/admin/connections/{id}', [PUConnectionController::class, 'show']);
+
+Route::get('/connections', [ConnectionController::class, 'index'])->name('connections.index');
+Route::get('/connections/{id}', [ConnectionController::class, 'show'])->name('connections.show');
+Route::put('/connections/{connection}', [ConnectionController::class, 'update'])->name('connections.update');
+Route::get('connections/{id}/message', [ConnectionController::class, 'message'])->name('connections.message');
+Route::post('connections/{id}/message', [ConnectionController::class, 'sendMessage'])->name('connections.sendMessage');
+Route::delete('connections/{id}', [ConnectionController::class, 'destroy'])->name('connections.destroy');
 
 
 Route::post('/events/attend', [EventAttendanceController::class, 'attendEvent'])->name('events.attend');

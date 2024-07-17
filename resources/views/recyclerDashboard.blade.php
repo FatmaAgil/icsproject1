@@ -124,7 +124,7 @@
             <div class="service" ">
                 <h2>Connections</h2><i class="bi bi-book"></i>
                 <p>View details of the different plastic users connected to you</p>
-                <button type="button" class="btnguide"><a href="/guide">Learn more</a></button>
+                <button type="button" class="btnguide"><a href="{{route('connections.index')}}">Learn more</a></button>
             </div>
             <div class="service" >
                 <h2>Recycle</h2>

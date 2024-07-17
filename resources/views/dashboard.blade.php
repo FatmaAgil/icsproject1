@@ -138,7 +138,12 @@
                 <p>Join the community and explore the plastic adventure.</p>
                 <button type="button" class="btncommunity"><a href="{{route('community.index')}}">Community</a></button>
             </div>
-
+            <div class="service">
+                <h2>My Connections</h2>
+                <i class="bi bi-people-fill"></i>
+                <p>View the history of your connections</p>
+                <button type="button" class="btncommunity"><a href="{{route('puConnections.index')}}">Connections</a></button>
+            </div>
         </div>
     </div>
 
