@@ -81,4 +81,9 @@ class PUConnectionController extends Controller
             return response()->json(['error' => 'Message sending failed'], 500);
         }
     }
+    private function getConnectionStatus($connection)
+    {
+        // Return the status directly from the connection model
+        return ucfirst($connection->status); // Assuming status is stored in lowercase and you want to capitalize the first letter
+    }
 }

@@ -26,6 +26,7 @@
                         <tr>
                             <td>{{ $connection->created_at->format('Y-m-d H:i:s') }}</td>
                             <td>{{ $connection->recyclingOrganization->name }}</td>
+                            <td>{{ $connection->status }}</td>
                             <td>
                                 <button type="button" class="btn btn-info"
                                         onclick="viewPlasticDetailsModal({{ $connection->id }})">

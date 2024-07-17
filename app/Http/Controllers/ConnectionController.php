@@ -2,99 +2,66 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 use App\Models\Connection;
-use Illuminate\Support\Facades\Mail;
-use App\Mail\ConnectionMessage;
+use App\Models\Message;
+use Illuminate\Http\Request;
+
 class ConnectionController extends Controller
 {
     public function index()
     {
-        // Fetch connections from the database, adjust as per your model structure
-        $connections = Connection::all(); // Example to fetch all connections, adjust as per your needs
-
-        // Pass data to the view
-        return view('orgConnection', ['connections' => $connections]);
+        $connections = Connection::with(['plasticForm.user', 'recyclingOrganization'])->get();
+        return view('orgConnection', compact('connections'));
     }
+
+    public function update(Request $request, $id)
+    {
+        $connection = Connection::findOrFail($id);
+        $connection->status = $request->status;
+        $connection->save();
+
+        return redirect()->back()->with('success', 'Connection status updated successfully.');
+    }
+
     public function destroy($id)
     {
         $connection = Connection::findOrFail($id);
         $connection->delete();
 
-        return redirect()->route('connections.index')->with('success', 'Connection deleted successfully.');
-    }
-    public function update(Request $request, Connection $connection)
-    {
-        $connection->status = $request->input('status');
-        $connection->save();
-
-        return redirect()->route('connections.index')->with('success', 'Connection status updated successfully.');
-    }
-    // Method to handle storing a new connection
-    public function store(Request $request)
-    {
-        // Validate the incoming request data
-        $validatedData = $request->validate([
-            // Add validation rules as per your form fields
-            'plastic_user_id' => 'required|integer',
-            'recycling_org_id' => 'required|integer',
-            'details' => 'nullable|string',
-            // Add more fields as per your form requirements
-        ]);
-
-        // Create a new connection record
-        $connection = Connection::create($validatedData);
-        return view('orgConnection', ['connection' => $connection]);
-        // Optionally, you can return a response or redirect
-
+        return redirect()->back()->with('success', 'Connection cancelled successfully.');
     }
 
-    // Method to handle showing a specific connection
     public function show($id)
     {
-        // Fetch the connection with the given $id
+        $connection = Connection::with(['plasticForm.user', 'recyclingOrganization'])->findOrFail($id);
+        return response()->json($connection);
+    }
+
+    public function message($id)
+    {
+        $connection = Connection::with(['plasticForm.user', 'recyclingOrganization'])->findOrFail($id);
+        return view('orgConnection', compact('connection'));
+    }
+
+    public function sendMessage(Request $request, $id)
+    {
         $connection = Connection::findOrFail($id);
+        $message = new Message();
+        $message->connection_id = $connection->id;
+        $message->sender_id = auth()->user()->id;
+        $message->recipient_id = $request->recipient_id;
+        $message->content = $request->message;
+        $message->save();
 
-        // Return a view to show the connection details
-        return view('orgConnection', ['connection' => $connection]);
+        return redirect()->back()->with('success', 'Message sent successfully.');
     }
-    public function orgConnections()
+
+    public function updateStatus(Request $request, $id)
     {
-        $connections = Connection::with('plasticForm.user')->get();
-        return view('orgConnections', compact('connections'));
+        $connection = Connection::findOrFail($id);
+        $connection->status = $request->status;
+        $connection->save();
+
+        return response()->json(['message' => 'Connection status updated successfully.']);
     }
-    public function sendMessage($id)
-    {
-        $plasticUserId = $id; // ID of the plastic user you want to email
-
-        // Fetch details of the connection or plastic user as needed
-        $connection = Connection::where('recycling_organization_id', auth()->id())
-            ->whereHas('plasticForm', function ($query) use ($plasticUserId) {
-                $query->where('user_id', $plasticUserId);
-            })
-            ->first();
-
-        if (!$connection) {
-            return redirect()->back()->with('error', 'Connection not found.');
-        }
-
-        // Assuming you have a mail class like ConnectionMessage to send the email
-        $userEmail = $connection->plasticForm->user->email; // Fetch plastic user's email
-        $userName = $connection->plasticForm->user->name; // Fetch plastic user's name
-
-        // Send email
-        Mail::to($userEmail)->send(new ConnectionMessage($userName));
-
-        return redirect()->back()->with('success', 'Email sent successfully.');
-    }
-
-    /**
-     * Send the message to the user.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\RedirectResponse
-     */
-
 }
