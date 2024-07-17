@@ -204,7 +204,7 @@ Route::resource('connections', ConnectionController::class);
 Route::put('connections/{id}/status', [ConnectionController::class, 'updateStatus'])->name('connections.updateStatus');
 Route::get('connections/{id}/message', [ConnectionController::class, 'message'])->name('connections.message');
 Route::post('connections/{id}/send-message', [ConnectionController::class, 'sendMessage'])->name('connections.sendMessage');
-Route::get('/recycling/connections/{id}', [ConnectionController::class, 'show'])->name('connections.show');
+Route::get('/admin/connections/{id}', [ConnectionController::class, 'show'])->name('connections.show');
 Route::post('/events/attend', [EventAttendanceController::class, 'attendEvent'])->name('events.attend');
 
 

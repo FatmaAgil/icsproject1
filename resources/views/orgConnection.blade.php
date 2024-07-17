@@ -57,6 +57,7 @@
             box-shadow: 0 0 0 .2rem rgba(0,123,255,.25);
         }
     </style>
+    @section('content')
     <div class="container">
         <div class="row">
             <div class="col-md-12">
@@ -99,7 +100,10 @@
                                                 </form>
                                             </td>
                                             <td>
-                                                <a href="{{ route('connections.message', $connection->id) }}" class="btn btn-primary btn-sm">Message</a>
+                                                <button type="button" class="btn btn-primary"
+                                        onclick="openSendMessageModal({{ $connection->recyclingOrganization->id }})">
+                                    Send Message
+                                </button>
                                                 <form action="{{ route('connections.destroy', $connection->id) }}" method="POST" style="display: inline;">
                                                     @csrf
                                                     @method('DELETE')
@@ -145,16 +149,49 @@
                         </div>
                     </div>
                     <!-- End View Plastic Details Modal -->
+                    <!-- Send Message Modal -->
+    <div class="modal fade" id="sendMessageModal" tabindex="-1" role="dialog" aria-labelledby="sendMessageModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="sendMessageModalLabel">Send Message to Recycling Organization</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form id="sendMessageForm" action="{{ route('puConnections.sendMessage') }}" method="POST">
+                        @csrf
+                        <div class="form-group">
+                            <label for="message">Message:</label>
+                            <textarea class="form-control" id="message" name="message" rows="3" required></textarea>
+                        </div>
+                        <input type="hidden" id="recyclingOrganizationId" name="recyclingOrganizationId">
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" onclick="sendMessage()">Send Message</button>
                 </div>
             </div>
         </div>
     </div>
+    <!-- End Send Message Modal -->
+                </div>
+            </div>
+        </div>
+    </div>
+    @endsection
+    <!-- Include necessary scripts -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
     <script>
       function viewPlasticDetailsModal(id) {
     fetch(`/admin/connections/${id}`)
         .then(response => {
             if (!response.ok) {
-                console.error('HTTP error, status = ' + response.status);
+
                 throw new Error('Network response was not ok');
             }
             return response.json();
@@ -209,6 +246,33 @@
             .catch(error => {
                 console.error('Error updating connection status:', error);
                 alert('Failed to update connection status');
+            });
+        }
+
+        function openSendMessageModal(plasticUserId) {
+            $('#plasticUserId').val(recyclingOrganizationId);
+            $('#sendMessageModal').modal('show');
+        }
+
+        function sendMessage() {
+            let formData = new FormData(document.getElementById('sendMessageForm'));
+            fetch('{{ route('puConnections.sendMessage') }}', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then(data => {
+                alert(data.message);
+                $('#sendMessageModal').modal('hide');
+            })
+            .catch(error => {
+                console.error('Error sending message:', error);
+                alert('Failed to send message');
             });
         }
     </script>
