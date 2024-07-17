@@ -33,6 +33,14 @@
           </li>
 
         </ul>
+        <div class="col-lg-6 grid-margin stretch-card">
+            <div class="card">
+              <div class="card-body">
+                <h4 class="card-title">Doughnut chart</h4>
+                <canvas id="doughnutChart" style="height:250px"></canvas>
+              </div>
+            </div>
+          </div>
         <div class="d-md-block d-none">
           <a href="#" class="text-light p-1"><i class="mdi mdi-view-dashboard"></i></a>
           <a href="#" class="text-light p-1"><i class="mdi mdi-dots-vertical"></i></a>
@@ -189,3 +197,4 @@
       </div>
     </div>
 @endsection
+<script src="../../assets/js/chart.js"></script>

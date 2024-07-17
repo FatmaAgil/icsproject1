@@ -20,27 +20,33 @@ class PUConnectionController extends Controller
 
         return view('Pl_userConnection', compact('connections'));
     }
+    public function show($id)
+    {
+        // Fetch connection details by ID
+        $connection = Connection::with('recyclingOrganization')->find($id);
 
-    public function sendMessage($id)
-{
-    $orgId = $id; // ID of the recycling organization you want to email
+        // Check if connection exists
+        if (!$connection) {
+            // Handle case where connection is not found, perhaps redirect or show error
+            return redirect()->back()->with('error', 'Connection not found.');
+        }
 
-    // Fetch details of the connection or organization as needed
-    $connection = Connection::where('plastic_form_id', auth()->id())
-        ->where('recycling_organization_id', $orgId)
-        ->first();
-
-    if (!$connection) {
-        return redirect()->back()->with('error', 'Connection not found.');
+        // Return view with connection details
+        return view('connection.show', compact('connection'));
     }
+        public function sendMessage(Request $request)
+    {
+        $connectionId = $request->input('connection_id'); // Assuming you have a way to get the connection ID
+        $message = $request->input('message');
 
-    // Assuming you have a mail class like ConnectionMessage to send the email
-    $orgEmail = $connection->recyclingOrganization->email; // Fetch organization's email
-    $orgName = $connection->recyclingOrganization->name; // Fetch organization's name
+        // Retrieve connection details
+        $connection = Connection::find($connectionId);
+        $orgEmail = $connection->recyclingOrganization->email;
 
-    // Send email
-    Mail::to($orgEmail)->send(new ConnectionMessage($orgName));
+        // Send email
+        Mail::to($orgEmail)->send(new ConnectionMessage($message));
 
-    return redirect()->back()->with('success', 'Email sent successfully.');
-}
+        // Optionally, you can redirect back with a success message
+        return redirect()->back()->with('message_sent', 'Message sent successfully!');
+    }
 }

@@ -33,6 +33,11 @@ class MessageController extends Controller
 
             return redirect()->route('admin.messages.index')->with('success', 'Reply sent successfully.');
         }
+        public function latestMessages()
+        {
+            $messages = ContactMessage::latest()->take(4)->get();
+            return view('admin.partials.latest-messages', compact('messages'));
+        }
     }
 
 
