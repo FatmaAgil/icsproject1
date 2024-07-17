@@ -285,7 +285,7 @@
                 nextButton.style.display = 'block';
                 nextButton.addEventListener('click', startQuiz);
                 const guideButton = document.createElement("button");
-                guideButton.innerHTML = 'Back to Guide';
+                guideButton.innerHTML = 'Back to Community';
                 guideButton.addEventListener('click', () => {
                     window.location.href = '/community';
                 });
