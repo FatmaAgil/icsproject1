@@ -27,7 +27,7 @@
         }
 
         .card-header {
-            background-color: #007bff;
+            background-color: #2dc997;
             color: #fff;
             text-align: center;
         }
@@ -81,29 +81,34 @@
                                     @foreach($connections as $connection)
                                         <tr>
                                             <td>{{ $connection->created_at->format('Y-m-d') }}</td>
-                                            <td>{{ $connection->plasticForm->user->name ?? 'No User' }}</td>
+                                            <td>
+                                                @if($connection->plasticForm && $connection->plasticForm->user)
+                                                    {{ $connection->plasticForm->user->name }}
+                                                @else
+                                                    Name
+                                                @endif
+                                            </td>
                                             <td>
                                                 <button type="button" class="btn btn-info"
                                                         onclick="viewPlasticDetailsModal({{ $connection->id }})">
                                                     View
                                                 </button>
                                             </td>
+                                            <td>{{ $connection->status }}</td>
                                             <td>
                                                 <form action="{{ route('connections.update', $connection->id) }}" method="POST" style="display: inline;">
                                                     @csrf
                                                     @method('PUT')
                                                     <select class="form-select" name="status" data-connection-id="{{ $connection->id }}" onchange="handleStatusChange(this)">
-                                                        <option value="pending" {{ $connection->status == 'Pending' ? 'selected' : '' }}>Pending</option>
-                                                        <option value="approved" {{ $connection->status == 'Approved' ? 'selected' : '' }}>Approved</option>
-                                                        <option value="rejected" {{ $connection->status == 'Rejected' ? 'selected' : '' }}>Reject</option>
+                                                        <option value="Pending" {{ $connection->status == 'Pending' ? 'selected' : '' }}>Pending</option>
+                                                        <option value="Approved" {{ $connection->status == 'Approved' ? 'selected' : '' }}>Approved</option>
+                                                        <option value="Rejected" {{ $connection->status == 'Rejected' ? 'selected' : '' }}>Reject</option>
                                                     </select>
                                                 </form>
-                                            </td>
-                                            <td>
-                                                <button type="button" class="btn btn-primary"
-                                        onclick="openSendMessageModal({{ $connection->recyclingOrganization->id }})">
-                                    Send Message
-                                </button>
+                                              <!-- ( <button type="button" class="btn btn-primary"
+                                                        onclick="openSendMessageModal({{ $connection->recyclingOrganization->id }})">
+                                                    Send Message
+                                                </button> )-->
                                                 <form action="{{ route('connections.destroy', $connection->id) }}" method="POST" style="display: inline;">
                                                     @csrf
                                                     @method('DELETE')
@@ -116,6 +121,7 @@
                             </table>
                         </div>
                     </div>
+
                     <!-- View Plastic Details Modal -->
                     <div class="modal fade" id="viewPlasticDetailsModal" tabindex="-1" role="dialog" aria-labelledby="viewPlasticDetailsModalLabel" aria-hidden="true">
                         <div class="modal-dialog" role="document">
@@ -149,131 +155,105 @@
                         </div>
                     </div>
                     <!-- End View Plastic Details Modal -->
+
                     <!-- Send Message Modal -->
-    <div class="modal fade" id="sendMessageModal" tabindex="-1" role="dialog" aria-labelledby="sendMessageModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="sendMessageModalLabel">Send Message to the Plastic User</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <form id="sendMessageForm" action="{{ route('puConnections.sendMessage') }}" method="POST">
-                        @csrf
-                        <div class="form-group">
-                            <label for="message">Message:</label>
-                            <textarea class="form-control" id="message" name="message" rows="3" required></textarea>
+                    <div class="modal fade" id="sendMessageModal" tabindex="-1" role="dialog" aria-labelledby="sendMessageModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="sendMessageModalLabel">Send Message to the Plastic User</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <form id="sendMessageForm" action="{{ route('puConnections.sendMessage') }}" method="POST">
+                                        @csrf
+                                        <div class="form-group">
+                                            <label for="message">Message:</label>
+                                            <textarea class="form-control" id="message" name="message" rows="3" required></textarea>
+                                        </div>
+                                        <input type="hidden" id="recyclingOrganizationId" name="recyclingOrganizationId">
+                                    </form>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-primary" onclick="sendMessage()">Send Message</button>
+                                </div>
+                            </div>
                         </div>
-                        <input type="hidden" id="recyclingOrganizationId" name="recyclingOrganizationId">
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary" onclick="sendMessage()">Send Message</button>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- End Send Message Modal -->
+                    </div>
+                    <!-- End Send Message Modal -->
+
                 </div>
             </div>
         </div>
     </div>
     @endsection
+
     <!-- Include necessary scripts -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
     <script>
-      function viewPlasticDetailsModal(id) {
-    fetch(`/admin/connections/${id}`)
-        .then(response => {
-            if (!response.ok) {
-
-                throw new Error('Network response was not ok');
-            }
-            return response.json();
-        })
-        .then(connection => {
-            // Populate modal fields with connection data
-            $('#viewDate').text(connection.created_at);
-            $('#viewOrganization').text(connection.recycling_organization.name);
-            $('#viewName').text(connection.plastic_form.name);
-            $('#viewPhoneNumber').text(connection.plastic_form.phone_number);
-            $('#viewEmail').text(connection.plastic_form.email);
-            $('#viewPlasticType').text(connection.plastic_form.plastic_type);
-            $('#viewQuantity').text(connection.plastic_form.quantity);
-            $('#viewCondition').text(connection.plastic_form.condition);
-            $('#viewCollectionDate').text(connection.plastic_form.collection_date);
-            $('#viewCollectionTime').text(connection.plastic_form.collection_time);
-            $('#viewInstructions').text(connection.plastic_form.instructions);
-            $('#viewPaymentMethod').text(connection.plastic_form.payment_method);
-            $('#viewBankDetails').text(connection.plastic_form.bank_details);
-            $('#viewComments').text(connection.plastic_form.comments);
-
-            $('#viewPlasticDetailsModal').modal('show');
-        })
-        .catch(error => {
-            console.error('Error fetching connection data:', error);
-            alert('Failed to fetch connection details');
-        });
-}
-
-        function handleStatusChange(selectElement) {
-            const newStatus = selectElement.value;
-            const connectionId = selectElement.dataset.connectionId; // Add this attribute in your <select> tag
-
-            fetch(`/connections/${connectionId}/status`, {
-                method: 'PUT',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'X-CSRF-TOKEN': '{{ csrf_token() }}'
-                },
-                body: JSON.stringify({ status: newStatus })
-            })
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Network response was not ok');
-                }
-                return response.json();
-            })
-            .then(data => {
-                alert(data.message);
-                // Optionally reload or update the connections table
-            })
-            .catch(error => {
-                console.error('Error updating connection status:', error);
-                alert('Failed to update connection status');
-            });
+        function viewPlasticDetailsModal(id) {
+            fetch(`/admin/connections/${id}`)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.json();
+                })
+                .then(connection => {
+                    // Populate modal fields with connection data
+                    $('#viewDate').text(connection.created_at);
+                    $('#viewOrganization').text(connection.recycling_organization.name);
+                    $('#viewName').text(connection.plastic_form.name);
+                    $('#viewPhoneNumber').text(connection.plastic_form.phone_number);
+                    $('#viewEmail').text(connection.plastic_form.email);
+                    $('#viewPlasticType').text(connection.plastic_form.plastic_type);
+                    $('#viewQuantity').text(connection.plastic_form.quantity);
+                    $('#viewCondition').text(connection.plastic_form.condition);
+                    $('#viewCollectionDate').text(connection.plastic_form.collection_date);
+                    $('#viewCollectionTime').text(connection.plastic_form.collection_time);
+                    $('#viewInstructions').text(connection.plastic_form.instructions);
+                    $('#viewPaymentMethod').text(connection.plastic_form.payment_method);
+                    $('#viewBankDetails').text(connection.plastic_form.bank_details);
+                    $('#viewComments').text(connection.plastic_form.comments);
+                    $('#viewPlasticDetailsModal').modal('show');
+                })
+                .catch(error => {
+                    console.error('There was a problem with the fetch operation:', error);
+                });
         }
 
-        function openSendMessageModal(plasticUserId) {
-            $('#plasticUserId').val(recyclingOrganizationId);
+        function openSendMessageModal(recyclingOrganizationId) {
+            $('#recyclingOrganizationId').val(recyclingOrganizationId);
             $('#sendMessageModal').modal('show');
         }
 
         function sendMessage() {
-            let formData = new FormData(document.getElementById('sendMessageForm'));
-            fetch('{{ route('puConnections.sendMessage') }}', {
-                method: 'POST',
-                body: formData
-            })
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Network response was not ok');
+            $('#sendMessageForm').submit();
+        }
+
+        function handleStatusChange(selectElement) {
+            const connectionId = $(selectElement).data('connection-id');
+            const selectedStatus = $(selectElement).val();
+
+            $.ajax({
+                url: `/admin/connections/${connectionId}`,
+                method: 'PUT',
+                data: {
+                    status: selectedStatus,
+                    _token: '{{ csrf_token() }}'
+                },
+                success: function(response) {
+                    console.log('Status updated successfully.');
+                },
+                error: function(xhr, status, error) {
+                    console.error('Failed to update status:', error);
                 }
-                return response.json();
-            })
-            .then(data => {
-                alert(data.message);
-                $('#sendMessageModal').modal('hide');
-            })
-            .catch(error => {
-                console.error('Error sending message:', error);
-                alert('Failed to send message');
             });
         }
     </script>
-</x-plasticUserLayout>
+</x-RecycleLayout>

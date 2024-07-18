@@ -32,10 +32,10 @@
                                         onclick="viewPlasticDetailsModal({{ $connection->id }})">
                                     View
                                 </button>
-                                <button type="button" class="btn btn-primary"
+                              <!-- ( <button type="button" class="btn btn-primary"
                                         onclick="openSendMessageModal({{ $connection->recyclingOrganization->id }})">
                                     Send Message
-                                </button>
+                                </button> )-->
                             </td>
                         </tr>
                     @endforeach
